@@ -459,6 +459,9 @@
             as child theme in any other theme (unless overriden).
         -->
         <theme name="" ref="*"/>
+        <param name="hgap"><int>6</int></param>
+        <param name="vgap"><int>6</int></param>
+    
        
     </theme>
     <theme name="boxLayout" ref="-defaults">
@@ -467,6 +470,8 @@
         <param name="minWidth"><int>256</int></param>
         <param name="minHeight"><int>512</int></param>
         <param name="font"><font>normal</font></param>
+        <param name="hgap"><gap>6,6</gap></param>
+        <param name="spacing"><int>1</int></param>
     </theme>
 
     <theme name="state0" ref="-defaults"/>

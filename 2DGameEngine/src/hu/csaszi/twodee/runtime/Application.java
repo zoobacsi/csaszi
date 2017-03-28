@@ -74,6 +74,8 @@ public class Application extends TWLStateBasedGame{
 			appgc.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
               
 			appgc.start();
+			appgc.setTargetFrameRate(60);
+			appgc.setVSync(true);
 			
 		}
 		catch (SlickException e) {

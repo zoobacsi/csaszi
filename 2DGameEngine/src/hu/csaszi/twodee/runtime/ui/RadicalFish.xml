@@ -471,6 +471,8 @@
         <param name="minHeight"><int>512</int></param>
         <param name="font"><font>normal</font></param>
         <param name="hgap"><gap>6,6</gap></param>
+        <param name="spacing"><int>1</int></param>
+        <param name="textAlignment"><enum type="alignment">CENTER</enum></param>
     </theme>
 
     <theme name="state0" ref="-defaults"/>

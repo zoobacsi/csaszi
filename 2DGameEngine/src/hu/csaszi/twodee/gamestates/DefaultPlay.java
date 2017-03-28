@@ -25,6 +25,7 @@ import hu.csaszi.twodee.util.PropsValues;
 import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -41,6 +42,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.Log;
 import org.newdawn.slick.util.pathfinding.AStarPathFinder;
 import org.newdawn.slick.util.pathfinding.Path;
 import org.newdawn.slick.util.pathfinding.Path.Step;
@@ -52,6 +54,9 @@ import de.matthiasmann.twl.ColumnLayout;
 import de.matthiasmann.twl.ColumnLayout.Columns;
 import de.matthiasmann.twl.DialogLayout.Group;
 import de.matthiasmann.twl.Label;
+import de.matthiasmann.twl.ProgressBar;
+import de.matthiasmann.twl.renderer.DynamicImage.Format;
+import de.matthiasmann.twl.theme.AnimatedImage;
 
 public class DefaultPlay extends BasicTWLGameState implements MapState {
 
@@ -92,24 +97,30 @@ public class DefaultPlay extends BasicTWLGameState implements MapState {
 	protected int mapIndex;
 	protected Path drawPath;
 	protected boolean isometric = true;
-
-	//private BoxLayout boxLayout;
-	private de.matthiasmann.twl.Label label;
-	private de.matthiasmann.twl.BorderLayout borderLayout;
-	private de.matthiasmann.twl.ResizableFrame frame;
-	private de.matthiasmann.twl.ColumnLayout columnLayout;
-	private Group buttonGroupH, buttonGroupV;
-	private Label fpsLabel;
-	private de.matthiasmann.twl.Label normalX;
-	private de.matthiasmann.twl.Label normalY;
-	private de.matthiasmann.twl.Label playerX;
-	private de.matthiasmann.twl.Label playerY;
-	private de.matthiasmann.twl.Label tileX;
-	private de.matthiasmann.twl.Label tileY;
-	private de.matthiasmann.twl.Label selectedTile;
+	protected boolean initialized = false;
+	
+	private de.matthiasmann.twl.renderer.DynamicImage image;
+	
+	private de.matthiasmann.twl.Label fpsLabel, normalX, normalY, playerX, playerY, tileX, tileY, selectedTile;
+	private de.matthiasmann.twl.Label label, normalXLabel, normalYLabel, playerXLabel, playerYLabel, tileXLabel, tileYLabel, selectedTileLabel, tile;
 	private BoxLayout btnBox;
 	private BoxLayout valueBox;
 	private BoxLayout horizontal;
+	private ProgressBar hpBar;
+	
+	public List<Character> getCharactersByTile(int x, int y){
+		List<Character> list = new ArrayList<>();
+		for(Character character : characterList){
+			if(!(character instanceof Player)){
+				TileObject tileObject = tiledMap.getTilesByOrtho(character.getCharOrtoPosX(), character.getCharOrtoPosY()).get(0);
+				//Log.info("x: " + tileObject.getXIndex() + " y: " + tileObject.getYIndex() + " tx: " + x + " ty: " + y);
+				if(tileObject.getXIndex() == x && tileObject.getYIndex() == y){
+					list.add(character);
+				}
+			}
+		}
+		return list;
+	}
 	
 	@Override
 	protected RootPane createRootPane() {
@@ -117,106 +128,40 @@ public class DefaultPlay extends BasicTWLGameState implements MapState {
 		RootPane rp = super.createRootPane();
 		rp.setTheme("playState");
 	
-//		columnLayout = new ColumnLayout();
+		hpBar = new ProgressBar();
+		hpBar.setTheme("progressbar");
 		
 		valueBox = new BoxLayout(BoxLayout.Direction.VERTICAL);
 		btnBox = new BoxLayout(BoxLayout.Direction.VERTICAL);
 		horizontal = new BoxLayout(BoxLayout.Direction.HORIZONTAL);
-//		
-//		Columns columns = columnLayout.getColumns("label", "value");
-//		buttonGroupH = columnLayout.createSequentialGroup();
-//		buttonGroupV = columnLayout.createParallelGroup();
-//		columnLayout.setVerticalGroup(buttonGroupV);
-//		columnLayout.setHorizontalGroup(buttonGroupH);
-//		
-//		columnLayout.addRow(columns);
-//		columnLayout.addDefaultGaps();
-//		
-//		borderLayout = new BorderLayout();
-//		columnLayout.setTheme("boxLayout");
+
 		horizontal.setTheme("boxLayout");
-//		boxLayout = new de.matthiasmann.twl.BoxLayout();
-//		boxLayout.setTheme("boxLayout");
-		
+
 		label = new Label();
-		label.setMinSize(100, 100);
-		label.setBorderSize(new Border(6));
-		
 
 		fpsLabel = new Label();
-		fpsLabel.setMinSize(100, 100);
-		fpsLabel.setBorderSize(new Border(6));
 		fpsLabel.setText("FPS: ");
-		fpsLabel.setAutoSize(true);
 
 		normalX = new Label();
-		normalX.setMinSize(100, 100);
-		normalX.setBorderSize(new Border(6));
 		normalX.setText("NormalX: ");
-		normalX.setAutoSize(true);
 		
 		normalY = new Label();
-		normalY.setMinSize(100, 100);
-		normalY.setBorderSize(new Border(6));
 		normalY.setText("NormalY: ");
-		normalY.setAutoSize(true);
 		
 		playerX = new Label();
-		playerX.setMinSize(100, 100);
-		playerX.setBorderSize(new Border(6));
 		playerX.setText("PlayerX: ");
-		playerX.setAutoSize(true);
 		
 		playerY = new Label();
-		playerY.setMinSize(100, 100);
-		playerY.setBorderSize(new Border(6));
 		playerY.setText("PlayerY: ");
-		playerY.setAutoSize(true);
 		
 		tileX = new Label();
-		tileX.setMinSize(100, 100);
-		tileX.setBorderSize(new Border(6));
 		tileX.setText("TileX: ");
-		tileX.setAutoSize(true);
 		
 		tileY = new Label();
-		tileY.setMinSize(100, 100);
-		tileY.setBorderSize(new Border(6));
 		tileY.setText("TileY: ");
-		tileY.setAutoSize(true);
 
 		selectedTile = new Label();
-		selectedTile.setMinSize(100, 100);
-		selectedTile.setBorderSize(new Border(6));
 		selectedTile.setText("SelectedTile: ");
-		selectedTile.setAutoSize(true);
-		
-//		buttonGroupV.addWidget(fpsLabel, Alignment.TOPLEFT); 
-//		buttonGroupH.addWidget(fpsLabel, Alignment.LEFT);
-//		
-//		buttonGroupV.addWidget(label, Alignment.TOPRIGHT);
-//		buttonGroupH.addWidget(label, Alignment.RIGHT);
-//		columnLayout.addRow(columns);
-//		buttonGroupV.addWidget(normalX, Alignment.CENTER); 
-//		buttonGroupH.addWidget(normalX, Alignment.LEFT);
-//		columnLayout.addRow(columns);
-//		buttonGroupV.addWidget(normalY, Alignment.CENTER); 
-//		buttonGroupH.addWidget(normalY, Alignment.LEFT);
-//		columnLayout.addRow(columns);
-//		buttonGroupV.addWidget(playerX, Alignment.TOPLEFT); 
-//		buttonGroupH.addWidget(playerX, Alignment.LEFT);
-//		columnLayout.addRow(columns);
-//		buttonGroupV.addWidget(playerY, Alignment.TOPLEFT); 
-//		buttonGroupH.addWidget(playerY, Alignment.LEFT);
-//		columnLayout.addRow(columns);
-//		buttonGroupV.addWidget(tileX, Alignment.TOPLEFT); 
-//		buttonGroupH.addWidget(tileX, Alignment.LEFT);
-//		columnLayout.addRow(columns);
-//		buttonGroupV.addWidget(tileY, Alignment.TOPLEFT); 
-//		buttonGroupH.addWidget(tileY, Alignment.LEFT);
-//		
-//		buttonGroupV.addWidget(selectedTile, Alignment.TOPLEFT); 
-//		buttonGroupH.addWidget(selectedTile, Alignment.LEFT);
 		
 		btnBox.add(fpsLabel);
 		btnBox.add(normalX);
@@ -226,27 +171,47 @@ public class DefaultPlay extends BasicTWLGameState implements MapState {
 		btnBox.add(tileX);
 		btnBox.add(tileY);
 		btnBox.add(selectedTile);
+
+		normalXLabel = new Label();
+		normalYLabel = new Label();
+		playerXLabel = new Label();
+		playerYLabel = new Label();
+		tileXLabel = new Label();
+		tileYLabel = new Label();
+		selectedTileLabel = new Label();
+		tile = new Label();
 		
 		valueBox.add(label);
+		valueBox.add(normalXLabel);
+		valueBox.add(normalYLabel);
+		valueBox.add(playerXLabel);
+		valueBox.add(playerYLabel);
+		valueBox.add(tileXLabel);
+		valueBox.add(tileYLabel);
+		valueBox.add(selectedTileLabel);
+		valueBox.add(tile);
 		
+		
+		valueBox.add(hpBar);
+
 		
 		horizontal.add(btnBox);
 		horizontal.add(valueBox);
 		
 		rp.add(horizontal);
 		
-//		rp.add(columnLayout);
-			
 		return rp;
 	}
 
 	@Override
 	protected void layoutRootPane() {
 		//columnLayout.adjustSize();
+		
+		btnBox.setBorderSize(0, 30, 0, 0);
+		
 		horizontal.setSize(256, 512);
 		horizontal.setPosition(Application.SCREEN_WIDTH * 3/4 , 0);
 		
-		fpsLabel.adjustSize();
 		fpsLabel.setBorderSize(40, 6, 6, 6);
 		normalX.setBorderSize(6);
 		normalY.setBorderSize(6);
@@ -255,6 +220,19 @@ public class DefaultPlay extends BasicTWLGameState implements MapState {
 		tileX.setBorderSize(6);
 		tileY.setBorderSize(6);
 		selectedTile.setBorderSize(6);
+		
+		label.setBorderSize(40, 6 , 6, 6);
+		normalXLabel.setBorderSize(6);
+		normalYLabel.setBorderSize(6);
+		normalYLabel.setBorderSize(6);
+		playerXLabel.setBorderSize(6);
+		playerYLabel.setBorderSize(6);
+		tileXLabel.setBorderSize(6);
+		tileYLabel.setBorderSize(6);
+		selectedTileLabel.setBorderSize(6);
+		tile.setBorderSize(6);
+		
+		hpBar.setBorderSize(6);
 	}
 	
 	public DefaultPlay(int state) {
@@ -289,6 +267,8 @@ public class DefaultPlay extends BasicTWLGameState implements MapState {
 				selectedType = null;
 			}
 
+			//setLabelImage();
+			
 		} else if (curTile != null) {
 			if (selectedType != null) {
 				int imageNum = selectedType.getActualImgNum();
@@ -349,78 +329,90 @@ public class DefaultPlay extends BasicTWLGameState implements MapState {
 			}
 		}
 	}
+	
+	public void reset() throws SlickException{
+		initialized = false;
+		init(Application.getGameContainer(), Application.getInstance());
+	}
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-		// FIXME Audio --- should come from map file
-		// AudioManager.playDefaultMusic();
-
-		try {
-			tiledMap = FileUtil.parseFile(new File("res/maps/isomap.txt"));
-			// tiledMap = FileUtil.parseFile(new
-			// File("res/maps/orthomap.txt"));
-		} catch (FileNotFoundException e) {
-			throw new SlickException(e.getMessage(), e);
+		
+		if(!initialized){
+			
+			// FIXME Audio --- should come from map file
+			// AudioManager.playDefaultMusic();
+	
+			try {
+				tiledMap = FileUtil.parseFile(new File("res/maps/isomap.txt"));
+				// tiledMap = FileUtil.parseFile(new
+				// File("res/maps/orthomap.txt"));
+			} catch (FileNotFoundException e) {
+				throw new SlickException(e.getMessage(), e);
+			}
+	
+			isometric = tiledMap.getMapTypeId() == MapType.ISOMETRIC.getId();
+	
+			maxX = tiledMap.getMaxX();
+			maxY = tiledMap.getMaxY();
+			pathFinder = new AStarPathFinder(tiledMap, maxX * maxY, false);
+			camera = new Camera(container, tiledMap);
+	
+			// Starting position
+			TileObject startingTile = tiledMap.getFloorTile(2, 3);
+	
+	//		CharGraphics swordMan = null;
+	//		try {
+	//			swordMan = CharGraphicsUtil.getGraphics("SwordsMan");
+	//		} catch (Exception e) {
+	//			new SlickException(e.getMessage());
+	//			e.printStackTrace();
+	//		}
+	//		
+	//		CharGraphics walker = null;
+	//		try {
+	//			walker = CharGraphicsUtil.getGraphics("Walker");
+	//		} catch (Exception e) {
+	//			new SlickException(e.getMessage());
+	//			e.printStackTrace();
+	//		}
+			
+			CharacterSet characterSet = CharGraphicsUtil.getDefaultCharSet("SwordMan", "res/swordman.png");
+			characterList.clear();
+			
+			NPC enemy = new NPC(1, this, characterSet, 100, new Circle(0, 0, 1), "Enemy1", 3, 1f, maxX * 100 + (startingTile.getXIndex() + 3) * 100 + 50, (startingTile.getYIndex() + 5) * 100 + 50);
+			characterList.add(enemy.setCommand(new ScoutCommand(enemy)));
+			
+			enemy = new NPC(2, this, characterSet, 100, new Circle(0, 0, 1), "Enemy2", 3, 1f, maxX * 100 + (startingTile.getXIndex() + 2) * 100 + 50, (startingTile.getYIndex() + 1) * 100 + 50);
+			characterList.add(enemy.setCommand(new ScoutCommand(enemy)));
+			
+			enemy = new NPC(3, this, characterSet, 100, new Circle(0, 0, 1), "Enemy3", 3, 1f, maxX * 100 + (startingTile.getXIndex() + 1) * 100 + 50, (startingTile.getYIndex() + 3) * 100 + 50);
+			characterList.add(enemy.setCommand(new ScoutCommand(enemy)));
+			
+			player = new Player(0, this, characterSet, 100, new Circle(0, 0, 1), "player", 5, 1f, (float) (maxX * 100 + startingTile.getXIndex() * 100 + 50), (float) (startingTile.getYIndex() * 100 + 50));
+	
+			characterList.add(player);
+	
+			selectBox = new Image("res/selectbox.png");
+	
+			tileMap.put(Integer.valueOf(0), TileUtil.getTile(1, isometric));
+			tileMap.put(Integer.valueOf(1), TileUtil.getTile(3, isometric));
+			tileMap.put(Integer.valueOf(2), TileUtil.getTile(2, isometric));
+			tileMap.put(Integer.valueOf(3), TileUtil.getTile(4, isometric));
+			tileMap.put(Integer.valueOf(4), TileUtil.getTile(5, isometric));
+			tileMap.put(Integer.valueOf(5), TileUtil.getTile(6, isometric));
+			tileMap.put(Integer.valueOf(6), TileUtil.getTile(7, isometric));
+			tileMap.put(Integer.valueOf(6), TileUtil.getTile(8, isometric));
+	
+			camera.centerOn(player.getX(), player.getY());
+	
+			Font awtFont = new Font("Courier New", java.awt.Font.PLAIN, 26);
+			container.getGraphics().setFont(new TrueTypeFont(awtFont, true));
+			container.getGraphics().setAntiAlias(true);
+			container.getGraphics().setLineWidth(0.5f);
+			
+			initialized = true;
 		}
-
-		isometric = tiledMap.getMapTypeId() == MapType.ISOMETRIC.getId();
-
-		maxX = tiledMap.getMaxX();
-		maxY = tiledMap.getMaxY();
-		pathFinder = new AStarPathFinder(tiledMap, maxX * maxY, true);
-		camera = new Camera(container, tiledMap);
-
-		// Starting position
-		TileObject startingTile = tiledMap.getFloorTile(2, 3);
-
-//		CharGraphics swordMan = null;
-//		try {
-//			swordMan = CharGraphicsUtil.getGraphics("SwordsMan");
-//		} catch (Exception e) {
-//			new SlickException(e.getMessage());
-//			e.printStackTrace();
-//		}
-//		
-//		CharGraphics walker = null;
-//		try {
-//			walker = CharGraphicsUtil.getGraphics("Walker");
-//		} catch (Exception e) {
-//			new SlickException(e.getMessage());
-//			e.printStackTrace();
-//		}
-		
-		CharacterSet characterSet = CharGraphicsUtil.getDefaultCharSet("SwordMan", "res/swordman.png");
-		
-		NPC enemy = new NPC(1, this, characterSet, 100, new Circle(0, 0, 1), "Enemy1", 3, 1f, maxX * 100 + (startingTile.getXIndex() + 3) * 100 + 50, (startingTile.getYIndex() + 5) * 100 + 50);
-		characterList.add(enemy.setCommand(new ScoutCommand(enemy)));
-		
-		enemy = new NPC(2, this, characterSet, 100, new Circle(0, 0, 1), "Enemy2", 3, 1f, maxX * 100 + (startingTile.getXIndex() + 2) * 100 + 50, (startingTile.getYIndex() + 1) * 100 + 50);
-		characterList.add(enemy.setCommand(new ScoutCommand(enemy)));
-		
-		enemy = new NPC(3, this, characterSet, 100, new Circle(0, 0, 1), "Enemy3", 3, 1f, maxX * 100 + (startingTile.getXIndex() + 1) * 100 + 50, (startingTile.getYIndex() + 3) * 100 + 50);
-		characterList.add(enemy.setCommand(new ScoutCommand(enemy)));
-		
-		player = new Player(0, this, characterSet, 100, new Circle(0, 0, 1), "player", 5, 1f, (float) (maxX * 100 + startingTile.getXIndex() * 100 + 50), (float) (startingTile.getYIndex() * 100 + 50));
-
-		characterList.add(player);
-
-		selectBox = new Image("res/selectbox.png");
-
-		tileMap.put(Integer.valueOf(0), TileUtil.getTile(1, isometric));
-		tileMap.put(Integer.valueOf(1), TileUtil.getTile(3, isometric));
-		tileMap.put(Integer.valueOf(2), TileUtil.getTile(2, isometric));
-		tileMap.put(Integer.valueOf(3), TileUtil.getTile(4, isometric));
-		tileMap.put(Integer.valueOf(4), TileUtil.getTile(5, isometric));
-		tileMap.put(Integer.valueOf(5), TileUtil.getTile(6, isometric));
-		tileMap.put(Integer.valueOf(6), TileUtil.getTile(7, isometric));
-		tileMap.put(Integer.valueOf(6), TileUtil.getTile(8, isometric));
-
-		camera.centerOn(player.getX(), player.getY());
-
-		Font awtFont = new Font("Courier New", java.awt.Font.PLAIN, 26);
-		container.getGraphics().setFont(new TrueTypeFont(awtFont, true));
-		container.getGraphics().setAntiAlias(true);
-		container.getGraphics().setLineWidth(0.5f);
 	}
 
 	@Override
@@ -470,12 +462,12 @@ public class DefaultPlay extends BasicTWLGameState implements MapState {
 
 		camera.untranslateGraphics();
 
-		g.drawString("Normal X: " + (player.getCharOrtoPosX() - (maxX * 100)) + "\nNormal Y: " + player.getCharOrtoPosY(), Application.SCREEN_WIDTH * 3 / 4, 20);
-		g.drawString("Player X: " + player.getCenterX() + "\nPlayer Y: " + player.getCenterY(), Application.SCREEN_WIDTH * 3 / 4, 108);
-		g.drawString("Tile X: " + positionX + "\nTile Y: " + positionY, Application.SCREEN_WIDTH * 3 / 4, 64);
+//		g.drawString("Normal X: " + (player.getCharOrtoPosX() - (maxX * 100)) + "\nNormal Y: " + player.getCharOrtoPosY(), Application.SCREEN_WIDTH * 3 / 4, 20);
+//		g.drawString("Player X: " + player.getCenterX() + "\nPlayer Y: " + player.getCenterY(), Application.SCREEN_WIDTH * 3 / 4, 108);
+//		g.drawString("Tile X: " + positionX + "\nTile Y: " + positionY, Application.SCREEN_WIDTH * 3 / 4, 64);
 
 		if (selectedType != null) {
-			g.drawString("SelectedTile: " + selectedType.getImage(selectedType.getActualImgNum()).getName() + " [" + selectedType.getActualImgNum() + "]", Application.SCREEN_WIDTH * 3 / 4, 172);
+//			g.drawString("SelectedTile: " + selectedType.getImage(selectedType.getActualImgNum()).getName() + " [" + selectedType.getActualImgNum() + "]", Application.SCREEN_WIDTH * 3 / 4, 172);
 			g.setColor(Color.darkGray);
 			g.fillRoundRect(Application.SCREEN_WIDTH * 3 / 4, 200, selectedType.getImage(selectedType.getActualImgNum()).getWidth(), selectedType.getImage(selectedType.getActualImgNum()).getHeight(),
 					3);
@@ -484,7 +476,7 @@ public class DefaultPlay extends BasicTWLGameState implements MapState {
 			g.drawRoundRect(Application.SCREEN_WIDTH * 3 / 4, 200, selectedType.getImage(selectedType.getActualImgNum()).getWidth(), selectedType.getImage(selectedType.getActualImgNum()).getHeight(),
 					3);
 		} else {
-			g.drawString("SelectedTile: none", Application.SCREEN_WIDTH * 3 / 4, 172);
+//			g.drawString("SelectedTile: none", Application.SCREEN_WIDTH * 3 / 4, 172);
 		}
 
 		g.drawRect(tileBarXOff - 21, Application.SCREEN_HEIGHT - 60, 20, 53);
@@ -530,6 +522,16 @@ public class DefaultPlay extends BasicTWLGameState implements MapState {
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		
 		label.setText(Application.getInstance().getGameContainer().getFPS() + "FPS");
+		normalXLabel.setText(String.valueOf(player.getCharOrtoPosX() - (maxX * 100)));
+		normalYLabel.setText(String.valueOf(player.getCharOrtoPosY()));
+		playerXLabel.setText(String.valueOf(player.getCenterX()));
+		playerYLabel.setText(String.valueOf(player.getCenterY()));
+		tileXLabel.setText(String.valueOf(positionX));
+		tileYLabel.setText(String.valueOf(positionY));
+		if(selectedType != null){
+			selectedTileLabel.setText(selectedType.getImage(selectedType.getActualImgNum()).getName() + " [" + selectedType.getActualImgNum() + "]");
+			
+		}
 		
 		tileBarMouse = Mouse.getY() > 6 && Mouse.getY() < 60 && Mouse.getX() > tileBarXOff && Mouse.getX() < Application.SCREEN_WIDTH - tileBarXOff;
 
@@ -562,43 +564,17 @@ public class DefaultPlay extends BasicTWLGameState implements MapState {
 
 			if (enemy != null && enemy.isAlive()) {
 
-//				TileObject enemyTile = tiledMap.getTilesByOrtho(enemy.getCharOrtoPosX(), enemy.getCharOrtoPosY()).get(0);
-//				TileObject playerTile = tiledMap.getTilesByOrtho(player.getCharOrtoPosX(), player.getCharOrtoPosY()).get(0);
-//
-//				if (enemy.distanceFromSq(player) < 200) {
-//					if (enemyTile != null && playerTile != null) {
-//						drawPath = pathFinder.findPath(enemy, enemyTile.getXIndex(), enemyTile.getYIndex(), playerTile.getXIndex(), playerTile.getYIndex());
-//					}
-//					Step step1 = null;
-//					Step step2 = null;
-//					TileObject nextTile = null;
-//
-//					if (drawPath != null) {
-//
-//						if (drawPath.getLength() > 0) {
-//							step1 = drawPath.getStep(0);
-//							step2 = drawPath.getStep(1);
-//						}
-//						if (step1 != null && step2 != null) {
-//
-//							if (enemy.distanceFromSq(player) > 50f) {
-//								enemy.moveToTile(step2.getX(), step2.getY(), delta);
-//							} else {
-//								enemy.moveCharacter(0, Direction.STAND);
-//							}
-//						} else {
-//							enemy.moveCharacter(0, Direction.STAND);
-//						}
-//					}
-//				} else {
-//					enemy.moveCharacter(1, player.moveTowardsDirection(enemy));
-//				}
-
 				enemy.update(delta);
 				if (player.isAttack()) {
 					if (enemy.distanceFromSq(player) < 2500) {
 						enemy.setHp(enemy.getHp() - 1);
-						enemy.moveCharacter(delta * 10, player.moveTowardsDirection(enemy));
+						enemy.moveCharacter(delta * 100, player.moveTowardsDirection(enemy));
+					}
+				}
+				if(enemy.isAttack()){
+					if (player.distanceFromSq(enemy) < 2500) {
+						player.setHp(player.getHp() - 1);
+						player.moveCharacter(delta * 100, enemy.moveTowardsDirection(player));
 					}
 				}
 			}
@@ -664,9 +640,27 @@ public class DefaultPlay extends BasicTWLGameState implements MapState {
 		}
 
 		Collections.sort(characterList);
+		
+		hpBar.setValue(player.getHp() / 5.0f);
 	}
 
 	public Character getPlayer() {
 		return player;
+	}
+	
+	public void setLabelImage(){
+		image = getRootPane().getGUI().getRenderer().createDynamicImage(200, 200);
+		Image actualImage = selectedType.getImage(selectedType.getActualImgNum());
+		if(actualImage != null){
+			
+			byte[] bytes = selectedType.getImage(selectedType.getActualImgNum()).getTexture().getTextureData();
+			
+			if(bytes.length > 0){
+				if(image != null){
+					image.update(ByteBuffer.wrap(bytes), Format.RGBA);
+					tile.setBackground(image);
+				}
+			}
+		}
 	}
 }

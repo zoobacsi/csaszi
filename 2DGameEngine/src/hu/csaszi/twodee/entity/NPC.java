@@ -36,6 +36,7 @@ public class NPC implements Character {
 	protected CharacterSet characterSet;
 	protected int id;
 	protected Command command;
+	protected long lastAttackTime;
 
 	protected boolean alive;
 	protected boolean attack;
@@ -156,7 +157,7 @@ public class NPC implements Character {
 		Image[] idleLeftDown = characterSet.getAnimation("idle", Direction.SOUTH_WEST);
 		Image[] idleLeft = characterSet.getAnimation("idle", Direction.WEST);
 
-		this.fightAnim = new Animation(fight, 30, true);
+		this.fightAnim = new Animation(fight, 100, true);
 		this.deadAnim = new Animation(dead, 100, true);
 		this.moveUp = new Animation(walkUp, (int) (duration / speed), false);
 		this.moveDown = new Animation(walkDown, (int) (duration / speed), false);
@@ -436,12 +437,17 @@ public class NPC implements Character {
 		fightAnim.setAutoUpdate(attack);
 		fightAnim.start();
 		charAnim = fightAnim;
+		lastAttackTime = System.currentTimeMillis();
 	}
 
 	public void update(int delta) {
-		if (attack && charAnim == fightAnim) {
+		if (attack && lastAttackTime > 0 && System.currentTimeMillis() - lastAttackTime > delta*2) {
+			attack = false;
+			lastAttackTime = 0;
+		}
+
+		if(charAnim == fightAnim){
 			if (charAnim.getFrame() == fightAnim.getFrameCount() - 1) {
-				attack = false;
 				charAnim.stop();
 				charAnim.restart();
 				charAnim = lastAnim;
@@ -449,6 +455,7 @@ public class NPC implements Character {
 		}
 
 		if (this.getHp() == 0) {
+			attack = false;
 			alive = false;
 			charAnim = deadAnim;
 		}

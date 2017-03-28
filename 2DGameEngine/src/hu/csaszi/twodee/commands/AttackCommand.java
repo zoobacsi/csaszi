@@ -16,7 +16,7 @@ public class AttackCommand extends BasicCommand {
 
 		TileObject actorTile = ((DefaultPlay)Application.getInstance().getCurrentState()).getTiledMap().getTilesByOrtho(actor.getCharOrtoPosX(), actor.getCharOrtoPosY()).get(0);
 		TileObject targetTile = ((DefaultPlay)Application.getInstance().getCurrentState()).getTiledMap().getTilesByOrtho(target.getCharOrtoPosX(), target.getCharOrtoPosY()).get(0);
-		if(actorTile.equals(targetTile)){			
+		if(actorTile.equals(targetTile) || (actor.distanceFromSq(target) <= 2500)){			
 			actor.attack();
 		} else {
 			actor.setCommand(new MoveCommand(actor, target));

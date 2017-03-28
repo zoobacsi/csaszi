@@ -1,11 +1,13 @@
 package hu.csaszi.twodee.map;
 
 import hu.csaszi.twodee.entity.Character;
+import hu.csaszi.twodee.gamestates.DefaultPlay;
 import hu.csaszi.twodee.map.beans.MapTile;
 import hu.csaszi.twodee.map.beans.TileType;
 import hu.csaszi.twodee.map.interfaces.PathfindableMap;
 import hu.csaszi.twodee.map.interfaces.TileObject;
 import hu.csaszi.twodee.map.interfaces.TiledMap;
+import hu.csaszi.twodee.runtime.Application;
 import hu.csaszi.twodee.util.FileUtil;
 
 import java.io.File;
@@ -14,6 +16,7 @@ import java.util.List;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.Log;
 import org.newdawn.slick.util.pathfinding.PathFindingContext;
 
 public abstract class AbstractTiledMap implements TiledMap, PathfindableMap {
@@ -232,6 +235,11 @@ public abstract class AbstractTiledMap implements TiledMap, PathfindableMap {
 					break;
 				}
 			}
+		}
+		int size = ((DefaultPlay)Application.getInstance().getCurrentState()).getCharactersByTile(tx, ty).size();
+		//Log.info("size: " + size);
+		if(size > 0){
+			blocked = true;
 		}
 		return blocked;
 	}
