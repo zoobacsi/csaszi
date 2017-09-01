@@ -1,5 +1,6 @@
 package hu.csaszi.gameengine.game;
 
+import hu.csaszi.gameengine.physics.objects.ObjectManager;
 import hu.csaszi.gameengine.render.core.Window;
 
 import java.awt.Color;
@@ -11,6 +12,15 @@ public class GameManager {
 	private Set<GameState> states = new HashSet<>();
 	private GameState currentState;
 	private Window window;
+	private boolean pause;
+
+	public boolean isPause() {
+		return pause;
+	}
+
+	public void setPause(boolean pause) {
+		this.pause = pause;
+	}
 
 	// Game Access
 	public void addState(GameState state) {
@@ -46,35 +56,45 @@ public class GameManager {
 
 	// Window Access
 	public void init() {
-		
-		if(isStateOpen()){
+
+		if (isStateOpen()) {
 			currentState.init(window, this);
 		}
 	}
 
 	public void render() {
-		if(isStateOpen()){
-			window.clear(Color.BLACK);
-			currentState.render(window, window.getDrawer(), this);
+		if (isStateOpen()) {
+			if (!pause) {
+				window.clear(Color.BLACK);
+
+				currentState.render(window, window.getDrawer(), this);
+
+				ObjectManager.render(window, window.getDrawer());
+
+			}
 			window.update();
 			window.increaseFrames();
 		}
 	}
 
 	public void update() {
-		
-		if(isStateOpen()){
-			currentState.update(window, this);
+
+		if (isStateOpen()) {
+			if (!pause) {
+				currentState.update(window, this);
+
+				ObjectManager.update(window, this);
+			}
 			window.increaseTicks();
 		}
 	}
 
 	private boolean isStateOpen() {
-		
+
 		if (currentState == null) {
 			return false;
 		}
-		
+
 		return true;
 	}
 }

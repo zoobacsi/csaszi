@@ -1,6 +1,8 @@
 package hu.csaszi.gameengine.render.core;
 
 import hu.csaszi.gameengine.game.GameManager;
+import hu.csaszi.gameengine.input.Input;
+import hu.csaszi.gameengine.input.Mouse;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -26,6 +28,9 @@ public class Window extends Canvas {
 	private GameManager gameManager;
 	private Drawer drawer;
 	
+	private Input input = new Input();
+	private Mouse mouse = new Mouse();
+	
 	private int frames, ticks, time;
 	private int lastFrames, lastTicks;
 
@@ -45,11 +50,13 @@ public class Window extends Canvas {
 		Dimension size = new Dimension(WIDTH, HEIGHT);
 		setPreferredSize(size);
 		setSize(size);
+		
 		setFocusable(true);
 
 		FRAME = new JFrame(TITLE);
 		FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		FRAME.setSize(size);
+		FRAME.setPreferredSize(size);
 		FRAME.add(this);
 		FRAME.pack();
 		FRAME.setResizable(false);
@@ -64,7 +71,17 @@ public class Window extends Canvas {
 		FRAME.setVisible(true);
 		
 		drawer = new Drawer(this);
+		
+		startInputListeners();
+		
 		gameLoop();
+	}
+	
+	private void startInputListeners(){
+		this.addKeyListener(input);
+		this.addMouseListener(mouse);
+		this.addMouseMotionListener(mouse);
+		this.addMouseWheelListener(mouse);
 	}
 
 	public void update() {
@@ -89,8 +106,22 @@ public class Window extends Canvas {
 	}
 
 	public void close() {
+		System.out.println("Closing");
 		FRAME.dispose();
+		loop.interrupt();
 		System.exit(0);
+	}
+	
+	public void setFullscreen(boolean fullscreen){
+		if(fullscreen && !isRunning){
+			System.out.println("miafasz");
+			FRAME.dispose();
+			FRAME.setUndecorated(true);
+			FRAME.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			FRAME.setVisible(true);
+		}
+		WIDTH = FRAME.getWidth();
+		HEIGHT = FRAME.getHeight();
 	}
 
 	public boolean isRunning() {
@@ -154,5 +185,13 @@ public class Window extends Canvas {
 	
 	public Drawer getDrawer(){
 		return drawer;
+	}
+	
+	public Input getInput() {
+		return input;
+	}
+	
+	public Mouse getMouse(){
+		return mouse;
 	}
 }

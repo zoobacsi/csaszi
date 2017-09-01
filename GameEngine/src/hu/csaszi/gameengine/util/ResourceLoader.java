@@ -1,6 +1,6 @@
 package hu.csaszi.gameengine.util;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -8,12 +8,12 @@ import javax.imageio.ImageIO;
 
 public class ResourceLoader {
 
-	public static Image loadImage(String path) {
+	public static BufferedImage loadImage(String path) {
 
 		try {
 			File imgFile = new File(path);
 			System.out.println("exists: " + imgFile.exists());
-			Image img = ImageIO.read(imgFile);
+			BufferedImage img = ImageIO.read(imgFile);
 			
 			return img;
 			

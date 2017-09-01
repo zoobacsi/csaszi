@@ -2,15 +2,21 @@ package hu.csaszi.gameengine.render.graphics;
 
 import hu.csaszi.gameengine.util.ResourceLoader;
 
+import java.awt.image.BufferedImage;
+
 public class Image {
 
-	private java.awt.Image img;
+	private BufferedImage img;
 	
 	public Image(String path) {
 		img = ResourceLoader.loadImage(path);
 	}
+	
+	public Image(BufferedImage img){
+		this.img = img;
+	}
 
-	public java.awt.Image getRawImage() {
+	public BufferedImage getRawImage() {
 		return img;
 	}
 	
