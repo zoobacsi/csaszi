@@ -1,6 +1,8 @@
 package hu.csaszi.gameengine.render.core;
 
 import hu.csaszi.gameengine.game.GameManager;
+import hu.csaszi.gameengine.input.Input;
+import hu.csaszi.gameengine.input.Mouse;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -25,6 +27,9 @@ public class Window extends Canvas {
 
 	private GameManager gameManager;
 	private Drawer drawer;
+	
+	private Input input = new Input();
+	private Mouse mouse = new Mouse();
 	
 	private int frames, ticks, time;
 	private int lastFrames, lastTicks;
@@ -64,7 +69,16 @@ public class Window extends Canvas {
 		FRAME.setVisible(true);
 		
 		drawer = new Drawer(this);
+		
+		startInputListeners();
+		
 		gameLoop();
+	}
+	
+	private void startInputListeners(){
+		this.addKeyListener(input);
+		this.addMouseListener(mouse);
+		this.addMouseMotionListener(mouse);
 	}
 
 	public void update() {
@@ -89,7 +103,9 @@ public class Window extends Canvas {
 	}
 
 	public void close() {
+		System.out.println("Closing");
 		FRAME.dispose();
+		loop.interrupt();
 		System.exit(0);
 	}
 
@@ -154,5 +170,13 @@ public class Window extends Canvas {
 	
 	public Drawer getDrawer(){
 		return drawer;
+	}
+	
+	public Input getInput() {
+		return input;
+	}
+	
+	public Mouse getMouse(){
+		return mouse;
 	}
 }
