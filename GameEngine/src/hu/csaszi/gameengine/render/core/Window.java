@@ -81,10 +81,8 @@ public class Window extends Canvas {
 		this.addKeyListener(input);
 		this.addMouseListener(mouse);
 		this.addMouseMotionListener(mouse);
-<<<<<<< HEAD
 		this.addMouseWheelListener(mouse);
-=======
->>>>>>> 652032aa1c8ed11f9515168a762b918842a52ea9
+
 	}
 
 	public void update() {
