@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_121"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_131"/>
 	<classpathentry kind="lib" path="E:/Dev/workspace/2DGameEngine/lib/jars/eventbus-1.4.jar"/>
 	<classpathentry kind="lib" path="E:/Dev/workspace/2DGameEngine/lib/jars/ibxm.jar"/>
 	<classpathentry kind="lib" path="E:/Dev/workspace/2DGameEngine/lib/jars/jinput.jar"/>

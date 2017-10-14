@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root tilesetImage="res/testTileset.png" tileWidth="128" tileHeight="54">
+	<tile name="Grass" autoTile="false" collapse="false" movementCost="2" tileOffset="0">
+		<images name="grass" externalPath="" innerBounds="0,0,127,107" />
+	</tile>
+	<tile name="Water" autoTile="true" imagesNum="16" numOfLayers="2" collapse="true" movementCost="100">
+		<images name="water1" externalPath="" innerBounds="0,108,511,323" />
+		<images name="water2" externalPath="" innerBounds="0,324,511,539" />
+	</tile>
+</root>

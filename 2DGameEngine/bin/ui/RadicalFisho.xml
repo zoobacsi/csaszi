@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE themes PUBLIC "-//www.matthiasmann.de//TWL-Theme//EN" "http://hg.l33tlabs.org/twl/raw-file/tip/src/de/matthiasmann/twl/theme/theme.dtd">
 <themes>
-    <include filename="Eforen_red.xml"/>
     <images file="gui.png">
         <area name="arrow-down" xywh="169,17,13,17" center="true"/>
         <area name="default-overlay" xywh="90,18,3,3" splitx="L1,R1" splity="T1,B1" tiled="true" tint="#88FFFFFF"/>
         <area name="textarea" xywh="72,69,12,12" splitx="L4,R4" splity="T4,B4"/>
+        <area name="white" xywh="53,1,1,1"/>
+    
+        <area name="black" xywh="1,1,1,1"/>
     
         <area name="pixel.separator" xywh="3,2,1,1"/>
     
@@ -387,19 +389,6 @@
         <cursor name="cursor.resizerow" hotSpotX="7" hotSpotY="10" xywh="22,22,15,21"/>
         <cursor name="cursor.finger" hotSpotX="5" hotSpotY="1" xywh="47,0,17,22"/>
     </images>
-    <images file="rockback.png">
-        <area name="rockbg" xywh="0,0,1024,768" splitx="L74,R82" splity="T79,B84"/>
-    </images>
-	<images file="cursor.png">
-        <cursor name="pointer" hotSpotX="0" hotSpotY="0" xywh="0,0,32,32"/>
-    </images>
-    <images file="buttonbg.png">
-        <area name="button.box.csaszi" xywh="*" splitx="L13,R13" splity="T20,B18" tiled="true"/>
-    </images>
-    <images file="cursor2.png">
-        <cursor name="nopointer" hotSpotX="0" hotSpotY="0" xywh="0,0,32,32"/>
-    </images>
-    <fontDef name="buttonfont" filename="buttonFont.fnt" color="#BABD00"/>
 
 
     <fontDef name="normal" filename="font3.fnt" color="#FFFFFF" offsetX="0" default="true">
@@ -459,34 +448,8 @@
             as child theme in any other theme (unless overriden).
         -->
         <theme name="" ref="*"/>
-        <param name="hgap"><int>6</int></param>
-        <param name="vgap"><int>6</int></param>
-    
        
     </theme>
-    <theme name="boxLayout" ref="-defaults">
-        <param name="background"><image>eforen.frame.resizeable-title</image></param>
-        <param name="mouseCursor"><cursor>nopointer</cursor></param>
-        <param name="minWidth"><int>256</int></param>
-        <param name="minHeight"><int>512</int></param>
-        <param name="font"><font>normal</font></param>
-        <param name="hgap"><gap>6,6</gap></param>
-        <param name="spacing"><int>1</int></param>
-        <param name="textAlignment"><enum type="alignment">CENTER</enum></param>
-    </theme>
-
-    <theme name="state0" ref="-defaults"/>
-    <theme name="state1" ref="-defaults"/>
-
-
-    <theme name="mainMenu" ref="-defaults">
-        <param name="background"><image>rockbg</image></param>
-        <param name="mouseCursor"><cursor>nopointer</cursor></param>
-    </theme>
-    <theme name="playState" ref="-defaults">
-    </theme>
-
-
 	
 	<!-- the fallback theme is used when the requested theme can't be found -->
     <theme name="*" ref="-defaults"/>
@@ -572,9 +535,9 @@
     <theme name="button" ref="-defaults">
         <param name="background"><image>button.box.csaszi</image></param>
         <param name="border"><border>background.border</border></param>
-        <param name="font"><font>buttonfont</font></param>
+        <param name="font"><font>normal</font></param>
         <param name="textAlignment"><enum type="alignment">CENTER</enum></param>
-        <param name="mouseCursor"><cursor>pointer</cursor></param>
+        <param name="mouseCursor"><cursor>cursor.finger</cursor></param>
     </theme>
     <theme name="togglebutton" ref="-defaults">
         <param name="background"><image>button.select</image></param>
@@ -1245,7 +1208,17 @@
         <param name="border"><border>3,5,4,4</border></param>
         <theme name="dialoglayout" ref="-defaults"/>
     </theme>
-    
+    <images file="/E:/Dev/workspace/2DGameEngine/res/cursor.png">
+        <cursor name="pointer" hotSpotX="0" hotSpotY="0" xywh="0,0,51,51"/>
+    </images>
+    <images file="/E:/Dev/workspace/2DGameEngine/res/buttonbg.png">
+        <area name="button.box.csaszi" xywh="*" splitx="L13,R13" splity="T20,B18" tiled="true"/>
+    </images>
+
+
+
+
+
 
 
 
