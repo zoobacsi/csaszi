@@ -47,8 +47,17 @@ public class TestSimpleGamePlayState extends GameState {
 		
 		Input input = window.getInput();
 
-		if(input.isKeyPressed(KeyEvent.VK_SPACE)){
-			AudioPlayer.playSound(clip);
+		if(input.isKeyPressed(KeyEvent.VK_Y)){
+			AudioPlayer.playSound(clip, 0.25);
+		}
+		if(input.isKeyPressed(KeyEvent.VK_X)){
+			AudioPlayer.playSound(clip, 0.5);
+		}
+		if(input.isKeyPressed(KeyEvent.VK_C)){
+			AudioPlayer.playSound(clip, 0.75);
+		}
+		if(input.isKeyPressed(KeyEvent.VK_V)){
+			AudioPlayer.playSound(clip, 1.0);
 		}
 		if(input.isKeyDown(KeyEvent.VK_ESCAPE)){
 			window.close();

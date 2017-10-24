@@ -32,5 +32,7 @@ public class AudioPlayer {
 
     private static void setVol(double vol, Clip clip){
         FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        float dB = (float)(Math.log(vol) / Math.log(10) * 20);
+        gain.setValue(dB);
     }
 }
