@@ -8,14 +8,14 @@ import hu.csaszi.gameengine.input.Input;
 import hu.csaszi.gameengine.physics.objects.ObjectManager;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
+import hu.csaszi.gameengine.render.graphics.gui.GUIManager;
+import hu.csaszi.gameengine.render.graphics.gui.Label;
 import hu.csaszi.gameengine.test.objects.BlockSpawner;
 import hu.csaszi.gameengine.test.objects.Player;
 
 import java.awt.event.KeyEvent;
 
 public class TestSimpleGamePlayState extends GameState {
-
-	AudioClip clip;
 
 	public TestSimpleGamePlayState(int stateId) {
 		this.stateId = stateId;
@@ -24,13 +24,15 @@ public class TestSimpleGamePlayState extends GameState {
 	@Override
 	public void init(Window window, GameManager gameManager) {
 
-		clip = new AudioClip("src/main/resources/gate.wav");
+		AudioPlayer.addClip("playerHit", new AudioClip("src/main/resources/phit.wav"));
 
 		for(int i = 0; i < 6; i++){
 			ObjectManager.addObject(new BlockSpawner(window, i*64+64));
 		}
 		
-		ObjectManager.addObject(new Player(window));
+		ObjectManager.addObject(new Player(window, "playerHit"));
+
+		GUIManager.add(new Label("Volume: " + Math.round(AudioPlayer.getVolume() * 100f),"Apple LiGothic",16,0,window.getHeight()));
 	}
 
 	@Override
@@ -47,22 +49,17 @@ public class TestSimpleGamePlayState extends GameState {
 		
 		Input input = window.getInput();
 
-		if(input.isKeyPressed(KeyEvent.VK_Y)){
-			AudioPlayer.playSound(clip, 0.25);
+		if(input.isKeyDown(KeyEvent.VK_Y)){
+			AudioPlayer.decreaseVolume();
+			GUIManager.getObjects().get(0).setLabelText("Volume: " + Math.round(AudioPlayer.getVolume() * 100f));
 		}
-		if(input.isKeyPressed(KeyEvent.VK_X)){
-			AudioPlayer.playSound(clip, 0.5);
+		if(input.isKeyDown(KeyEvent.VK_X)){
+			AudioPlayer.increaseVolume();
+			GUIManager.getObjects().get(0).setLabelText("Volume: " + Math.round(AudioPlayer.getVolume() * 100f));
 		}
-		if(input.isKeyPressed(KeyEvent.VK_C)){
-			AudioPlayer.playSound(clip, 0.75);
-		}
-		if(input.isKeyPressed(KeyEvent.VK_V)){
-			AudioPlayer.playSound(clip, 1.0);
-		}
+
 		if(input.isKeyDown(KeyEvent.VK_ESCAPE)){
 			window.close();
 		}
-
 	}
-
 }

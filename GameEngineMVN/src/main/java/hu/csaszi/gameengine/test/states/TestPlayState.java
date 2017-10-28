@@ -7,7 +7,7 @@ import hu.csaszi.gameengine.input.Mouse;
 import hu.csaszi.gameengine.physics.objects.ObjectManager;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
-import hu.csaszi.gameengine.render.graphics.SpriteSheet;
+import hu.csaszi.gameengine.render.graphics.imaging.SpriteSheet;
 import hu.csaszi.gameengine.test.objects.Block;
 
 import java.awt.event.KeyEvent;

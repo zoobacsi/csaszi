@@ -1,4 +1,4 @@
-package hu.csaszi.gameengine.render.graphics;
+package hu.csaszi.gameengine.render.graphics.imaging;
 
 import hu.csaszi.gameengine.util.ResourceLoader;
 

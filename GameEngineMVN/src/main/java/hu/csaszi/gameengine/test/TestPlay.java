@@ -8,7 +8,7 @@ import hu.csaszi.gameengine.input.Input;
 import hu.csaszi.gameengine.input.Mouse;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
-import hu.csaszi.gameengine.render.graphics.Image;
+import hu.csaszi.gameengine.render.graphics.imaging.Image;
 
 public class TestPlay extends GameState {
 

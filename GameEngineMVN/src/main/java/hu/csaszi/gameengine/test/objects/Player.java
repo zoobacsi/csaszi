@@ -1,5 +1,6 @@
 package hu.csaszi.gameengine.test.objects;
 
+import hu.csaszi.gameengine.audio.AudioPlayer;
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.input.Input;
 import hu.csaszi.gameengine.physics.collission.Collission;
@@ -13,8 +14,9 @@ public class Player extends GameObject {
 
 	private static boolean isAlive = true;
 	private static int score;
+	private String hitSound;
 	
-	public Player(Window window){
+	public Player(Window window, String hitSound){
 		
 		this.sx = 32;
 		this.sy = sx;
@@ -23,6 +25,7 @@ public class Player extends GameObject {
 		this.y = window.getHeight()/2- sy/2;
 		
 		this.tag = "player";
+		this.hitSound = hitSound;
 	}
 
 	@Override
@@ -66,7 +69,11 @@ public class Player extends GameObject {
 		for(GameObject gameObject : ObjectManager.getObjects()){
 			if("block".equals(gameObject.getTag())){
 				if(Collission.isColliding(this, gameObject)){
-					
+
+					if(hitSound != null && !hitSound.isEmpty()){
+						AudioPlayer.playSound(hitSound);
+					}
+
 					System.out.println("You Died!");
 					isAlive = false;
 				}

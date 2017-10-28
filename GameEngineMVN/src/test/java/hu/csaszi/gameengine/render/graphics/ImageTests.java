@@ -1,7 +1,7 @@
 package hu.csaszi.gameengine.render.graphics;
 
+import hu.csaszi.gameengine.render.graphics.imaging.Image;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
