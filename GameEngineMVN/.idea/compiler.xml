@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="GameEngineMVN" target="1.8" />
+      <module name="GameEngineMVN" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>

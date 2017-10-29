@@ -59,48 +59,7 @@ public abstract class Window extends Canvas {
 		return isRunning;
 	}
 
-	protected void gameLoop() {
-
-		loop = new Thread(){
-		
-			public void run(){
-				double lastTime = System.nanoTime();
-				double delta = 0;
-				final double ns = 1e9/UPDATE_SPEED;
-				
-				double start = System.currentTimeMillis();
-				long next = 1L;
-				
-				while(isRunning()){
-					
-					double nowTime = System.nanoTime();
-					double now = (System.currentTimeMillis() - start)/1000;
-					delta += (nowTime - lastTime)/ns;
-					
-					lastTime = nowTime;
-					
-					while(delta >= 1){
-						
-						gameManager.update();
-						
-						gameManager.render();
-						delta--;
-					}
-					
-					if(now >= next){
-						
-						next++;
-						time++;
-						lastFrames = frames;
-						lastTicks = ticks;
-						System.out.println("FPS: " + lastFrames + " UPS: " + lastTicks);
-						frames = 0;
-						ticks = 0;
-					}
-				}
-			}
-		}; loop.start();
-	}
+	protected abstract void gameLoop();
 
 	public void increaseFrames() {
 		frames++;

@@ -103,23 +103,13 @@ public class GLFWWindow extends Window {
     }
 
     @Override
-    public void update() {
+    public synchronized void update() {
 
-        if(!glfwWindowShouldClose(window)){
-
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-
-            glfwSwapBuffers(window); // swap the color buffers
-
-            // Poll for window events. The key callback above will only be
-            // invoked during this call.
-            glfwPollEvents();
-        }
     }
 
     @Override
     public void clear() {
-
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
     }
 
     @Override
@@ -136,6 +126,33 @@ public class GLFWWindow extends Window {
     @Override
     public void setFullscreen(boolean fullscreen) {
 
+    }
+
+    protected void gameLoop() {
+        // This line is critical for LWJGL's interoperation with GLFW's
+        // OpenGL context, or any context that is managed externally.
+        // LWJGL detects the context that is current in the current thread,
+        // creates the GLCapabilities instance and makes the OpenGL
+        // bindings available for use.
+        GL.createCapabilities();
+
+        // Set the clear color
+        glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+
+        // Run the rendering loop until the user has attempted to close
+        // the window or has pressed the ESCAPE key.
+        while ( !glfwWindowShouldClose(window) ) {
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+
+            gameManager.update();
+            gameManager.render();
+
+            glfwSwapBuffers(window); // swap the color buffers
+
+            // Poll for window events. The key callback above will only be
+            // invoked during this call.
+            glfwPollEvents();
+        }
     }
 
     private void startInputListeners(){

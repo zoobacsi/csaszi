@@ -9,6 +9,8 @@ import java.awt.image.BufferStrategy;
 
 public class SoftwareWindow extends Window {
 
+    private Thread loop;
+
     public SoftwareWindow(String title, int width, int height, int bufferSize, GameManager gameManager) {
 
         this.gameManager = gameManager;
@@ -37,8 +39,8 @@ public class SoftwareWindow extends Window {
         FRAME.setLocationRelativeTo(null);
     }
 
-    public void setFullscreen(boolean fullscreen){
-        if(fullscreen && !isRunning){
+    public void setFullscreen(boolean fullscreen) {
+        if (fullscreen && !isRunning) {
             System.out.println("miafasz");
             FRAME.dispose();
             FRAME.setUndecorated(true);
@@ -84,7 +86,7 @@ public class SoftwareWindow extends Window {
         gameLoop();
     }
 
-    private void startInputListeners(){
+    private void startInputListeners() {
         this.addKeyListener(input);
         this.addMouseListener(mouse);
         this.addMouseMotionListener(mouse);
@@ -112,5 +114,48 @@ public class SoftwareWindow extends Window {
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
+    }
+
+    protected void gameLoop() {
+
+        loop = new Thread(){
+
+            public void run(){
+                double lastTime = System.nanoTime();
+                double delta = 0;
+                final double ns = 1e9/UPDATE_SPEED;
+
+                double start = System.currentTimeMillis();
+                long next = 1L;
+
+                while(isRunning()){
+
+                    double nowTime = System.nanoTime();
+                    double now = (System.currentTimeMillis() - start)/1000;
+                    delta += (nowTime - lastTime)/ns;
+
+                    lastTime = nowTime;
+
+                    while(delta >= 1){
+
+                        gameManager.update();
+
+                        gameManager.render();
+                        delta--;
+                    }
+
+                    if(now >= next){
+
+                        next++;
+                        time++;
+                        lastFrames = frames;
+                        lastTicks = ticks;
+                        System.out.println("FPS: " + lastFrames + " UPS: " + lastTicks);
+                        frames = 0;
+                        ticks = 0;
+                    }
+                }
+            }
+        }; loop.start();
     }
 }
