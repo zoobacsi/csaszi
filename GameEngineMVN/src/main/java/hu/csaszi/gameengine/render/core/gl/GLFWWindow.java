@@ -2,6 +2,7 @@ package hu.csaszi.gameengine.render.core.gl;
 
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.render.core.Window;
+import hu.csaszi.gameengine.render.core.gl.pbuffer.GraphicsFactory;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -153,6 +154,8 @@ public class GLFWWindow extends Window {
             // invoked during this call.
             glfwPollEvents();
         }
+        Graphics g = new Graphics();
+        g.drawLine(0,2,32,52);
     }
 
     private void startInputListeners(){

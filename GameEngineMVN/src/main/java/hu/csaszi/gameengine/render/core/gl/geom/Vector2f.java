@@ -1,6 +1,7 @@
 package hu.csaszi.gameengine.render.core.gl.geom;
 
-import org.newdawn.slick.util.FastTrig;
+
+import hu.csaszi.gameengine.util.FastTrig;
 
 import java.io.Serializable;
 

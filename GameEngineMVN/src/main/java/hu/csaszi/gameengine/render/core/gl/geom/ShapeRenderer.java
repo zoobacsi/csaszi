@@ -1,12 +1,8 @@
 package hu.csaszi.gameengine.render.core.gl.geom;
 
-import org.newdawn.slick.Image;
-import org.newdawn.slick.ShapeFill;
-import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureImpl;
-import org.newdawn.slick.opengl.renderer.LineStripRenderer;
-import org.newdawn.slick.opengl.renderer.Renderer;
-import org.newdawn.slick.opengl.renderer.SGL;
+import hu.csaszi.gameengine.render.core.gl.renderer.*;
+import hu.csaszi.gameengine.render.graphics.imaging.Image;
+import hu.csaszi.gameengine.util.ShapeFill;
 
 /**
  * @author Mark Bernard
@@ -15,7 +11,7 @@ import org.newdawn.slick.opengl.renderer.SGL;
  */
 public final class ShapeRenderer {
 	/** The renderer to use for all GL operations */
-	private static SGL GL = Renderer.get();
+	private static GL GL = Renderer.get();
 	/** The renderer to use line strips */
 	private static LineStripRenderer LSR = Renderer.getLineStripRenderer();
 	
@@ -63,7 +59,7 @@ public final class ShapeRenderer {
         TextureImpl.bindNone();
 
         float center[] = shape.getCenter();
-        GL.glBegin(SGL.GL_LINE_STRIP);
+        GL.glBegin(GL.GL_LINE_STRIP);
         for(int i=0;i<points.length;i+=2) {
             fill.colorAt(shape, points[i], points[i + 1]).bind();
             Vector2f offset = fill.getOffsetAt(shape, points[i], points[i + 1]);
@@ -135,7 +131,7 @@ public final class ShapeRenderer {
     private static final void fill(Shape shape, PointCallback callback) {
     	Triangulator tris = shape.getTriangles();
 
-        GL.glBegin(SGL.GL_TRIANGLES);
+        GL.glBegin(GL.GL_TRIANGLES);
         for (int i=0;i<tris.getTriangleCount();i++) {
         	for (int p=0;p<3;p++) {
         		float[] pt = tris.getTrianglePoint(i, p);
