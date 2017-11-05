@@ -5,7 +5,7 @@ import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.graphics.imaging.Image;
 
-import java.awt.Color;
+import java.awt.*;
 
 public abstract class GameObject {
 
@@ -19,7 +19,7 @@ public abstract class GameObject {
 	protected boolean hasImage;
 	protected boolean isDestroyed;
 	
-	protected Color color = Color.WHITE;
+	protected Color color = Color.white;
 	protected String tag;
 	
 	protected Image image;
@@ -28,7 +28,7 @@ public abstract class GameObject {
 		
 		if(doDraw){
 			if(hasImage){
-				drawer.drawImage(image, x, y);
+				drawer.drawImage(image.getLoadedImage(), x, y);
 			} else {
 				
 				drawer.fillRect(x, y, sx, sy, color);

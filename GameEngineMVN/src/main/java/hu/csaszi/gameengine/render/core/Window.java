@@ -1,87 +1,35 @@
 package hu.csaszi.gameengine.render.core;
 
-import hu.csaszi.gameengine.game.GameManager;
-import hu.csaszi.gameengine.input.Input;
-import hu.csaszi.gameengine.input.Mouse;
-import hu.csaszi.gameengine.render.core.Drawer;
+public interface Window  {
 
-import java.awt.Canvas;
+	public void show();
 
-import javax.swing.JFrame;
+	public void update();
 
-public abstract class Window extends Canvas {
+	public void clear();
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	public void close();
 
-	protected static String TITLE;
-	protected static int WIDTH;
-	protected static int HEIGHT;
-	protected static int BUFFER_SIZE;
-	protected static JFrame FRAME;
+	public int getWidth();
+	public int getHeight();
 
-	protected GameManager gameManager;
-	protected Drawer drawer;
+	public void run();
 
-	protected Input input = new Input();
-	protected Mouse mouse = new Mouse();
+	public String getTitle();
 
-	protected int frames, ticks, time;
-	protected int lastFrames, lastTicks;
-
-	protected Thread loop;
-	protected final double UPDATE_SPEED = 60;
-	protected static boolean isRunning;
-
-
-
-	public abstract void show();
+	public boolean shouldClose();
 	
-//	private void startInputListeners(){
-//		this.addKeyListener(input);
-//		this.addMouseListener(mouse);
-//		this.addMouseMotionListener(mouse);
-//		this.addMouseWheelListener(mouse);
+//	public void setFullscreen(boolean fullscreen);
 //
-//	}
-
-	public abstract void update();
-
-	public abstract void clear();
-
-	public abstract void close();
-	
-	public abstract void setFullscreen(boolean fullscreen);
-
-	public boolean isRunning() {
-		return isRunning;
-	}
-
-	protected abstract void gameLoop();
-
-	public void increaseFrames() {
-		frames++;
-	}
-
-	public void increaseTicks() {
-		ticks++;
-	}
-
-	public void increaseTime() {
-		time++;
-	}
-	
-	public Drawer getDrawer(){
-		return drawer;
-	}
-	
-	public Input getInput() {
-		return input;
-	}
-	
-	public Mouse getMouse(){
-		return mouse;
-	}
+//	public boolean isRunning();
+//
+//	public void increaseFrames();
+//
+//	public void increaseTicks();
+//
+//	public void increaseTime();
+//
+//	public Drawer getDrawer();
+//
+//	public AWTInput getInput();
 }

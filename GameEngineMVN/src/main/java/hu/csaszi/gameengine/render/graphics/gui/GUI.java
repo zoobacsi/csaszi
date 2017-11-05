@@ -43,7 +43,7 @@ public abstract class GUI {
                     drawer.fillRect(MathUtil.convert(x), MathUtil.convert(getY()), MathUtil.convert(getSx()), MathUtil.convert(getSy()), backgroundColor);
                 }
             } else {
-                drawer.drawImage(image, MathUtil.convert(x), MathUtil.convert(getY()));
+                drawer.drawImage(image.getLoadedImage(), MathUtil.convert(x), MathUtil.convert(getY()));
             }
 
             if(showWireFrame){

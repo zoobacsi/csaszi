@@ -18,7 +18,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 /**
- * An input stream that can extract ogg data. This class is a bit of an experiment with continuations
+ * An AWTInput stream that can extract ogg data. This class is a bit of an experiment with continuations
  * so uses thread where possibly not required. It's just a test to see if continuations make sense in 
  * some cases.
  *
@@ -76,7 +76,7 @@ public class OggInputStream extends InputStream implements OAudioInputStream {
 	/**
 	 * Create a new stream to decode OGG data
 	 * 
-	 * @param inputq The input stream from which to read the OGG file
+	 * @param inputq The AWTInput stream from which to read the OGG file
 	 * @throws IOException Indicates a failure to read from the supplied stream
 	 */
 	public OggInputStream(InputStream inputq) throws IOException {
@@ -163,7 +163,7 @@ public class OggInputStream extends InputStream implements OAudioInputStream {
 				return false;
 
 			// error case.  Must not be Vorbis data
-			logger.error("Input does not appear to be an Ogg bitstream.");
+			logger.error("AWTInput does not appear to be an Ogg bitstream.");
 			endOfStream = true;
 			return false;
 		}

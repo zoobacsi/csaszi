@@ -2,7 +2,6 @@ package hu.csaszi.gameengine.render.core.gl;
 
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
-import hu.csaszi.gameengine.render.graphics.imaging.Image;
 
 import java.awt.*;
 
@@ -16,7 +15,7 @@ public class GLDrawer implements Drawer {
     }
 
     @Override
-    public void drawImage(Image img, int x, int y) {
+    public void drawImage(java.awt.Image img, int x, int y) {
 
     }
 

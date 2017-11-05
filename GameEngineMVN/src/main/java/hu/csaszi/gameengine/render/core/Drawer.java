@@ -1,7 +1,5 @@
 package hu.csaszi.gameengine.render.core;
 
-import hu.csaszi.gameengine.render.graphics.imaging.Image;
-
 import java.awt.*;
 
 public interface Drawer {

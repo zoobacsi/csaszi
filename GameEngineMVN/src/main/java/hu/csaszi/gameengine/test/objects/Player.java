@@ -2,13 +2,10 @@ package hu.csaszi.gameengine.test.objects;
 
 import hu.csaszi.gameengine.audio.AudioPlayer;
 import hu.csaszi.gameengine.game.GameManager;
-import hu.csaszi.gameengine.input.Input;
 import hu.csaszi.gameengine.physics.collission.Collission;
 import hu.csaszi.gameengine.physics.objects.GameObject;
 import hu.csaszi.gameengine.physics.objects.ObjectManager;
 import hu.csaszi.gameengine.render.core.Window;
-
-import java.awt.event.KeyEvent;
 
 public class Player extends GameObject {
 
@@ -31,32 +28,32 @@ public class Player extends GameObject {
 	@Override
 	public void update(Window window, GameManager gameManager) {
 		
-		Input input = window.getInput();
-		
-		if(!isAlive){
-			if(input.isKeyDown(KeyEvent.VK_SPACE)){
-				isAlive = true;
-				score = 0;
-				ObjectManager.clearGameObjects();
-				gameManager.enterState(0, true);
-			}
-			return;
-		}
-		score++;
-		
-		checkCollission(gameManager);
-		
-		if(input.isKeyDown(KeyEvent.VK_W)){
-			y -= 5;
-		} else if(input.isKeyDown(KeyEvent.VK_S)){
-			y += 5;
-		}
-		
-		if(y > window.getHeight() - sy){
-			y = window.getHeight() - sy;
-		} else if( y <= 0){
-			y = 0;
-		}
+//		AWTInput AWTInput = window.getInput();
+//
+//		if(!isAlive){
+//			if(AWTInput.isKeyDown(KeyEvent.VK_SPACE)){
+//				isAlive = true;
+//				score = 0;
+//				ObjectManager.clearGameObjects();
+//				gameManager.enterState(0, true);
+//			}
+//			return;
+//		}
+//		score++;
+//
+//		checkCollission(gameManager);
+//
+//		if(AWTInput.isKeyDown(KeyEvent.VK_W)){
+//			y -= 5;
+//		} else if(AWTInput.isKeyDown(KeyEvent.VK_S)){
+//			y += 5;
+//		}
+//
+//		if(y > window.getHeight() - sy){
+//			y = window.getHeight() - sy;
+//		} else if( y <= 0){
+//			y = 0;
+//		}
 		
 	}
 

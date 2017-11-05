@@ -579,10 +579,7 @@ public class SoundStore {
 		if (!inited) {
 			throw new RuntimeException("Can't load sounds until SoundStore is init(). Use the container init() method.");
 		}
-		if (deferred) {
-			return new DeferredSound(ref, in, DeferredSound.MOD);
-		}
-		
+
 		return new MODSound(this, in);
 	}
 
@@ -625,9 +622,6 @@ public class SoundStore {
 		}
 		if (!inited) {
 			throw new RuntimeException("Can't load sounds until SoundStore is init(). Use the container init() method.");
-		}
-		if (deferred) {
-			return new DeferredSound(ref, in, DeferredSound.AIF);
 		}
 		
 		int buffer = -1;
@@ -698,9 +692,6 @@ public class SoundStore {
 		}
 		if (!inited) {
 			throw new RuntimeException("Can't load sounds until SoundStore is init(). Use the container init() method.");
-		}
-		if (deferred) {
-			return new DeferredSound(ref, in, DeferredSound.WAV);
 		}
 		
 		int buffer = -1;
@@ -819,9 +810,6 @@ public class SoundStore {
 		}
 		if (!inited) {
 			throw new RuntimeException("Can't load sounds until SoundStore is init(). Use the container init() method.");
-		}
-		if (deferred) {
-			return new DeferredSound(ref, in, DeferredSound.OGG);
 		}
 		
 		int buffer = -1;

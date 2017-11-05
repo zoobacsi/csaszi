@@ -25,7 +25,7 @@ public class OggDecoder {
 	/**
 	 * Get the data out of an OGG file 
 	 * 
-	 * @param input The input stream from which to read the OGG file
+	 * @param input The AWTInput stream from which to read the OGG file
 	 * @return The data describing the OGG thats been read
 	 * @throws IOException Indicaites a failure to read the OGG file
 	 */
@@ -66,7 +66,7 @@ public class OggDecoder {
 //			
 //			buffer = oy.data;
 //			try {
-//				bytes = input.read(buffer, index, 4096);
+//				bytes = AWTInput.read(buffer, index, 4096);
 //			} catch (Exception e) {
 //				Log.error("Failure reading in vorbis");
 //				Log.error(e);
@@ -81,7 +81,7 @@ public class OggDecoder {
 //					break;
 //
 //				// error case.  Must not be Vorbis data
-//				Log.error("Input does not appear to be an Ogg bitstream.");
+//				Log.error("AWTInput does not appear to be an Ogg bitstream.");
 //				System.exit(0);
 //			}
 //
@@ -160,7 +160,7 @@ public class OggDecoder {
 //				index = oy.buffer(4096);
 //				buffer = oy.data;
 //				try {
-//					bytes = input.read(buffer, index, 4096);
+//					bytes = AWTInput.read(buffer, index, 4096);
 //				} catch (Exception e) {
 //					Log.error("Failed to read Vorbis: ");
 //					Log.error(e);
@@ -274,7 +274,7 @@ public class OggDecoder {
 //					if (index >= 0) {
 //						buffer = oy.data;
 //						try {
-//							bytes = input.read(buffer, index, 4096);
+//							bytes = AWTInput.read(buffer, index, 4096);
 //						} catch (Exception e) {
 //							Log.error("Failure during vorbis decoding");
 //							Log.error(e);

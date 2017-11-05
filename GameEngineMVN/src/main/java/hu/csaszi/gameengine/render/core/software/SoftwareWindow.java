@@ -1,34 +1,56 @@
 package hu.csaszi.gameengine.render.core.software;
 
 import hu.csaszi.gameengine.game.GameManager;
+import hu.csaszi.gameengine.input.AWTInput;
+import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public class SoftwareWindow extends Window {
+public class SoftwareWindow extends Canvas implements Window {
 
     private Thread loop;
+
+    private static int BUFFER_SIZE;
+    private static JFrame FRAME;
+
+    private String title;
+    protected int width;
+    protected int HEIGHT;
+
+    private boolean shouldClose;
+
+    protected GameManager gameManager;
+    protected Drawer drawer;
+
+    protected AWTInput AWTInput = new AWTInput();
+
+    protected int frames, ticks, time;
+    protected int lastFrames, lastTicks;
+
+    protected final double UPDATE_SPEED = 60;
+    protected static boolean isRunning;
 
     public SoftwareWindow(String title, int width, int height, int bufferSize, GameManager gameManager) {
 
         this.gameManager = gameManager;
 
         setName(title);
-        TITLE = title;
-        WIDTH = width;
+        this.title = title;
+        this.width = width;
         HEIGHT = height;
         BUFFER_SIZE = bufferSize;
 
-        Dimension size = new Dimension(WIDTH, HEIGHT);
+        Dimension size = new Dimension(this.width, HEIGHT);
         setPreferredSize(size);
         setSize(size);
         setMinimumSize(size);
 
         setFocusable(true);
 
-        FRAME = new JFrame(TITLE);
+        FRAME = new JFrame(this.title);
         FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FRAME.setSize(size);
         FRAME.setPreferredSize(size);
@@ -47,20 +69,38 @@ public class SoftwareWindow extends Window {
             FRAME.setExtendedState(JFrame.MAXIMIZED_BOTH);
             FRAME.setVisible(true);
         }
-        WIDTH = FRAME.getWidth();
+        width = FRAME.getWidth();
         HEIGHT = FRAME.getHeight();
     }
 
     public void close() {
+        shouldClose = true;
         System.out.println("Closing");
         FRAME.dispose();
         loop.interrupt();
-        System.exit(0);
+        if(loop.isInterrupted()){
+            System.exit(0);
+        }
+    }
+
+    @Override
+    public void run() {
+        show();
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public boolean shouldClose() {
+        return shouldClose;
     }
 
     public void clear(Color clearColor) {
 
-        if (!isRunning()) {
+        if (!isRunning) {
             System.out.println("WINDOW NOT INITIALIZED!");
         }
 
@@ -68,7 +108,7 @@ public class SoftwareWindow extends Window {
 
         Graphics g = bufferStrategy.getDrawGraphics();
         g.setColor(clearColor);
-        g.fillRect(0, 0, WIDTH, HEIGHT);
+        g.fillRect(0, 0, width, HEIGHT);
 
     }
 
@@ -87,15 +127,15 @@ public class SoftwareWindow extends Window {
     }
 
     private void startInputListeners() {
-        this.addKeyListener(input);
-        this.addMouseListener(mouse);
-        this.addMouseMotionListener(mouse);
-        this.addMouseWheelListener(mouse);
+        this.addKeyListener(AWTInput);
+        this.addMouseListener(AWTInput);
+        this.addMouseMotionListener(AWTInput);
+        this.addMouseWheelListener(AWTInput);
 
     }
 
     public void update() {
-        if (!isRunning()) {
+        if (!isRunning) {
             System.out.println("WINDOW NOT INITIALIZED!");
         }
         this.getBufferStrategy().show();
@@ -104,7 +144,7 @@ public class SoftwareWindow extends Window {
     @Override
     public void clear() {
 
-        if (!isRunning()) {
+        if (!isRunning) {
             System.out.println("WINDOW NOT INITIALIZED!");
         }
 
@@ -112,7 +152,7 @@ public class SoftwareWindow extends Window {
 
         Graphics g = bufferStrategy.getDrawGraphics();
         g.setColor(Color.black);
-        g.fillRect(0, 0, WIDTH, HEIGHT);
+        g.fillRect(0, 0, width, HEIGHT);
 
     }
 
@@ -128,7 +168,7 @@ public class SoftwareWindow extends Window {
                 double start = System.currentTimeMillis();
                 long next = 1L;
 
-                while(isRunning()){
+                while(isRunning){
 
                     double nowTime = System.nanoTime();
                     double now = (System.currentTimeMillis() - start)/1000;

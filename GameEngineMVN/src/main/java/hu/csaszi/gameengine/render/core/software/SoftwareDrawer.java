@@ -2,7 +2,6 @@ package hu.csaszi.gameengine.render.core.software;
 
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
-import hu.csaszi.gameengine.render.graphics.imaging.Image;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -16,16 +15,16 @@ public class SoftwareDrawer implements Drawer{
 	private int cameraX;
 	private int cameraY;
 
-	public SoftwareDrawer(Window window) {
+	public SoftwareDrawer(SoftwareWindow window) {
 
 		this.window = window;
 		this.bufferStrategy = window.getBufferStrategy();
 		this.g = bufferStrategy.getDrawGraphics();
-		g.setColor(Color.WHITE);
+		g.setColor(Color.white);
 	}
 
-	public void drawImage(Image img, int x, int y) {
-		g.drawImage(img.getRawImage(), x, y, null);
+	public void drawImage(java.awt.Image img, int x, int y) {
+		g.drawImage(img, x, y, null);
 	}
 
 	public void drawString(String string, int x, int y) {
@@ -71,7 +70,7 @@ public class SoftwareDrawer implements Drawer{
 	}
 
 	public void setColor(Color color) {
-		g.setColor(color);
+		g.setColor(Color.white);
 	}
 
 	public void setCameraPos(int cx, int cy) {

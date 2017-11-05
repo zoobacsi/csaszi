@@ -4,7 +4,7 @@ import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.physics.objects.GameObject;
 import hu.csaszi.gameengine.render.core.Window;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class Block extends GameObject {
 

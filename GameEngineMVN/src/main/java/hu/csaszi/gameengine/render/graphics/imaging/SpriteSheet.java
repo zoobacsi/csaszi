@@ -11,7 +11,7 @@ public class SpriteSheet {
 
 	public SpriteSheet(Image img, int sx, int sy) {
 
-		this.img = img.getRawImage();
+		this.img = img.loadedImage;
 		this.sx = sx;
 		this.sy = sy;
 		

@@ -72,26 +72,26 @@ public class GUIManagerTests {
         verify(gui, atLeastOnce()).update(window);
         verifyNoMoreInteractions(gui);
     }
-
-    @Test
-    public void testRender(){
-
-        GUIManager.flush();
-
-        Window window = mock(Window.class);
-        SoftwareDrawer drawer = mock(SoftwareDrawer.class);
-
-        GUI gui = mock(GUI.class);
-
-        when(gui.isVisible()).thenReturn(true);
-        when(window.getDrawer()).thenReturn(drawer);
-
-        GUIManager.add(gui);
-        GUIManager.render(window, window.getDrawer());
-
-        verify(gui, atLeastOnce()).isVisible();
-        verify(gui, atLeastOnce()).render(window, drawer);
-        verifyNoMoreInteractions(gui);
-    }
+//
+//    @Test
+//    public void testRender(){
+//
+//        GUIManager.flush();
+//
+//        Window window = mock(Window.class);
+//        SoftwareDrawer drawer = mock(SoftwareDrawer.class);
+//
+//        GUI gui = mock(GUI.class);
+//
+//        when(gui.isVisible()).thenReturn(true);
+//        when(window.getDrawer()).thenReturn(drawer);
+//
+//        GUIManager.add(gui);
+//        GUIManager.render(window, window.getDrawer());
+//
+//        verify(gui, atLeastOnce()).isVisible();
+//        verify(gui, atLeastOnce()).render(window, drawer);
+//        verifyNoMoreInteractions(gui);
+//    }
 
 }

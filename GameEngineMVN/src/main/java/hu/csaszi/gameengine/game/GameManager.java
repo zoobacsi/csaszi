@@ -11,6 +11,8 @@ import java.util.Set;
 
 public class GameManager {
 
+	private static Set<Window> windowPool = new HashSet<>();
+
 	private Set<GameState> states = new HashSet<>();
 	private GameState currentState;
 	private Window window;
@@ -68,8 +70,12 @@ public class GameManager {
 		if(softwareRender){
 			window = new SoftwareWindow(title, width, height, 2, this);
 		} else {
+
 			window = new GLFWWindow(title, width, height, this);
 		}
+
+		windowPool.add(window);
+
 		return window;
 	}
 
@@ -83,17 +89,17 @@ public class GameManager {
 
 	public void render() {
 		if (isStateOpen()) {
-			if (!pause) {
-				window.clear();
-
-				currentState.render(window, window.getDrawer(), this);
-
-				ObjectManager.render(window, window.getDrawer());
-
-				GUIManager.render(window, window.getDrawer());
-			}
+//			if (!pause) {
+//				window.clear();
+//
+//				currentState.render(window, window.getDrawer(), this);
+//
+//				ObjectManager.render(window, window.getDrawer());
+//
+//				GUIManager.render(window, window.getDrawer());
+//			}
 			window.update();
-			window.increaseFrames();
+//			window.increaseFrames();
 		}
 	}
 
@@ -107,7 +113,7 @@ public class GameManager {
 
 				GUIManager.update(window);
 			}
-			window.increaseTicks();
+//			window.increaseTicks();
 		}
 	}
 
@@ -121,6 +127,16 @@ public class GameManager {
 	}
 
 	public Window getWindow(){
+
 		return window;
+	}
+
+	public static Window getWindowFromPool(){
+
+		if(windowPool != null && !windowPool.isEmpty()){
+			return  windowPool.iterator().next();
+		}
+
+		return null;
 	}
 }
