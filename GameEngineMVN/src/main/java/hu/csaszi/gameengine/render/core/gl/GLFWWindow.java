@@ -3,6 +3,7 @@ package hu.csaszi.gameengine.render.core.gl;
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.physics.world.Tile;
 import hu.csaszi.gameengine.physics.world.TileRenderer;
+import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
@@ -236,13 +237,19 @@ public class GLFWWindow implements Window {
 //        Matrix4f projection = new Matrix4f()
 //                .ortho2D(-640 / 2, 640 / 2, -480 / 2, 480 / 2);
 
-        Matrix4f scale = new Matrix4f()
-                .translate(new Vector3f(0, 0, 0))
-                .scale(64);
+//        Matrix4f scale = new Matrix4f()
+//                .translate(new Vector3f(0, 0, 0))
+//                .scale(64);
 
-        Matrix4f target = new Matrix4f();
+//        Matrix4f target = new Matrix4f();
 
-        camera.setPosition(new Vector3f(-100, 0, 0));
+        World world = new World();
+
+        world.setTile(Tile.test2, 0, 0);
+
+        world.setTile(Tile.test2, 31, 31);
+
+        camera.setPosition(new Vector3f(0, 0, 0));
 
         double frameCap = 1.0 / 60.0;
 
@@ -273,10 +280,27 @@ public class GLFWWindow implements Window {
 
                 canRender = true;
 
-                target = scale;
+//                target = scale;
+
                 if (input.isKeyDown(GLFW_KEY_ESCAPE)) {
                     glfwSetWindowShouldClose(window, true);
                 }
+
+
+                if(input.isKeyDown(GLFW_KEY_A)) {
+                    camera.getPosition().sub(new Vector3f(-5,0,0));
+                }
+                if(input.isKeyDown(GLFW_KEY_D)) {
+                    camera.getPosition().sub(new Vector3f(5,0,0));
+                }
+                if(input.isKeyDown(GLFW_KEY_W)) {
+                    camera.getPosition().sub(new Vector3f(0,5,0));
+                }
+                if(input.isKeyDown(GLFW_KEY_S)) {
+                    camera.getPosition().sub(new Vector3f(0,-5,0));
+                }
+
+                world.correctCamera(camera, this);
 
                 update();
 
@@ -297,11 +321,7 @@ public class GLFWWindow implements Window {
 //                shader.setUniform("projection", camera.getProjection().mul(target));
                 //texture.bind(0);
 
-                for(int i = 0; i < 8; i++){
-                    for(int j = 0; j < 8; j++){
-                        tileRenderer.renderTile((byte)0, i, j, shader, scale, camera);
-                    }
-                }
+                world.render(tileRenderer, shader, camera);
 
                 glfwSwapBuffers(window); // swap the color buffers
                 frames++;

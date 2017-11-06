@@ -30,7 +30,7 @@ public class Texture {
             height = bufferedImage.getHeight();
 
             int[] pixels_raw = new int[width * height * 4];
-            bufferedImage.getRGB(0, 0, width, height,pixels_raw, 0 , width);
+            pixels_raw = bufferedImage.getRGB(0, 0, width, height,null, 0 , width);
 
             ByteBuffer pixels = BufferUtils.createByteBuffer(width * height * 4);
 
@@ -50,7 +50,7 @@ public class Texture {
 
             glBindTexture(GL_TEXTURE_2D, id);
 
-            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
             glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA,GL_UNSIGNED_BYTE, pixels);

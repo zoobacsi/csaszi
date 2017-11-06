@@ -33,7 +33,7 @@ public class SimpleGame extends GameManager {
         main.enterState(GAME_ID, true);
 
         ((GLFWWindow)window)
-                .setSize(1280, 960)
+                .setSize(640, 480)
                 .setFullscrean(false);
         ((GLFWWindow)window).setCallbacks();
 

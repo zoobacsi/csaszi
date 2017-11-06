@@ -20,10 +20,10 @@ public class TileRenderer {
         tileTextures = new HashMap<String, Texture>();
 
         float[] vertices = new float[]{
-                -0.5f, 0.5f, 0, // TOP LEFT      0
-                0.5f, 0.5f, 0, // TOP RIGHT     1
-                0.5f, -0.5f, 0, // BOTTOM RIGHT  2
-                -0.5f, -0.5f, 0 // BOTTOM LEFT 3
+                -1f, 1f, 0, // TOP LEFT      0
+                1f, 1f, 0, // TOP RIGHT     1
+                1f, -1f, 0, // BOTTOM RIGHT  2
+                -1f, -1f, 0 // BOTTOM LEFT 3
         };
 
         float[] texCoords = new float[]{
@@ -59,7 +59,7 @@ public class TileRenderer {
             tileTextures.get(textureKey).bind(0);
         }
 
-        Matrix4f tilePos = new Matrix4f().translate(new Vector3f(x*1, y*1, 0));
+        Matrix4f tilePos = new Matrix4f().translate(new Vector3f(x*2, y*2, 0));
         Matrix4f target = new Matrix4f();
 
         camera.getProjection().mul(world, target);
