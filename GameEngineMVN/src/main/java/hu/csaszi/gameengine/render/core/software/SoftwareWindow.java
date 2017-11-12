@@ -50,12 +50,17 @@ public class SoftwareWindow extends Canvas implements Window {
 
         setFocusable(true);
 
+        JPanel panel = new JPanel();
+        panel.add(new JButton("valami"));
+
         FRAME = new JFrame(this.title);
+        FRAME.setLayout(new BorderLayout());
         FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FRAME.setSize(size);
         FRAME.setPreferredSize(size);
         FRAME.setMinimumSize(size);
-        FRAME.add(this);
+//        FRAME.add(panel, BorderLayout.NORTH);
+        FRAME.add(this, BorderLayout.CENTER);
         FRAME.pack();
         FRAME.setResizable(false);
         FRAME.setLocationRelativeTo(null);

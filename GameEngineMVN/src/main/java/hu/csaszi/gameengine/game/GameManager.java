@@ -3,11 +3,16 @@ package hu.csaszi.gameengine.game;
 import hu.csaszi.gameengine.physics.objects.ObjectManager;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
+import hu.csaszi.gameengine.render.core.gl.Timer;
 import hu.csaszi.gameengine.render.core.software.SoftwareWindow;
 import hu.csaszi.gameengine.render.graphics.gui.GUIManager;
+import org.joml.Vector3f;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
 
 public class GameManager {
 
@@ -138,5 +143,89 @@ public class GameManager {
 		}
 
 		return null;
+	}
+
+	public GameState getCurrentState(){
+		return currentState;
+	}
+
+	public void loop(){
+		double frameCap = 1.0 / 60.0;
+
+		double frameTime = 0;
+		int frames = 0;
+
+		double time = Timer.getTime();
+		double unprocessed = 0.0;
+		// Set the clear color
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+		// Run the rendering loop until the user has attempted to close
+		// the window or has pressed the ESCAPE key.
+		while (!window.shouldClose()) {
+
+			boolean canRender = false;
+
+			double time2 = Timer.getTime();
+			double passed = time2 - time;
+			unprocessed += passed;
+
+			frameTime += passed;
+			time = time2;
+
+			while (unprocessed >= frameCap) {
+
+				unprocessed -= frameCap;
+
+				canRender = true;
+
+//                target = scale;
+
+				if (window.input.isKeyDown(GLFW_KEY_ESCAPE)) {
+					glfwSetWindowShouldClose(window, true);
+				}
+
+
+				if(input.isKeyDown(GLFW_KEY_A)) {
+					camera.getPosition().sub(new Vector3f(-5,0,0));
+				}
+				if(input.isKeyDown(GLFW_KEY_D)) {
+					camera.getPosition().sub(new Vector3f(5,0,0));
+				}
+				if(input.isKeyDown(GLFW_KEY_W)) {
+					camera.getPosition().sub(new Vector3f(0,5,0));
+				}
+				if(input.isKeyDown(GLFW_KEY_S)) {
+					camera.getPosition().sub(new Vector3f(0,-5,0));
+				}
+
+				world.correctCamera(camera, this);
+
+				update();
+
+				if (frameTime >= 1.0) {
+					frameTime = 0.0;
+					currentFPS = frames;
+					System.out.println("FPS: " + currentFPS);
+					frames = 0;
+				}
+			}
+
+			if (canRender) {
+
+				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+
+//                shader.bind();
+//                shader.setUniform("sampler", 0);
+//                shader.setUniform("projection", camera.getProjection().mul(target));
+				//texture.bind(0);
+
+				world.render(tileRenderer, shader, camera);
+
+				glfwSwapBuffers(window); // swap the color buffers
+				frames++;
+			}
+		}
+
 	}
 }

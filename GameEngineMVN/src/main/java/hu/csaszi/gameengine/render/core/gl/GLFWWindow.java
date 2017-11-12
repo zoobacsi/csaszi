@@ -211,7 +211,12 @@ public class GLFWWindow implements Window {
 
         // Create the window
         createWindow(title);
+
+        GL.createCapabilities();
+        glEnable(GL_TEXTURE_2D);
+
         show();
+
     }
 
     private void loop() {
@@ -221,12 +226,11 @@ public class GLFWWindow implements Window {
         // LWJGL detects the context that is current in the current thread,
         // creates the GLCapabilities instance and makes the OpenGL
         // bindings available for use.
-        GL.createCapabilities();
+
+
+        gameManager.getCurrentState().
 
         Camera camera = new Camera(width, height);
-
-        glEnable(GL_TEXTURE_2D);
-
         TileRenderer tileRenderer = new TileRenderer();
 
 
@@ -245,9 +249,9 @@ public class GLFWWindow implements Window {
 
         World world = new World();
 
-        world.setTile(Tile.test2, 0, 0);
+        world.setTile(Tile.getTile("desert"), 0, 0);
 
-        world.setTile(Tile.test2, 31, 31);
+        world.setTile(Tile.getTile("water0"), 31, 31);
 
         camera.setPosition(new Vector3f(0, 0, 0));
 

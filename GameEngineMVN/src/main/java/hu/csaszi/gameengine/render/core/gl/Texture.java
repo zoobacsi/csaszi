@@ -19,8 +19,18 @@ public class Texture {
     private int id;
     private int width;
     private int height;
+    private int xIndex = 1;
+    private int yIndex = 1;
 
-    public Texture(String fileName) {
+    public Texture(String fileName){
+        this(fileName, 1, 1);
+    }
+
+    public Texture(String fileName, int x, int y) {
+
+        this.xIndex = x;
+        this.yIndex = y;
+
         BufferedImage bufferedImage;
 
         try{
@@ -28,6 +38,9 @@ public class Texture {
             bufferedImage = ImageIO.read(new File("src/main/resources/textures/" + fileName + ".png"));
             width = bufferedImage.getWidth();
             height = bufferedImage.getHeight();
+
+            int tileWidth = width;
+            int tileHeight;
 
             int[] pixels_raw = new int[width * height * 4];
             pixels_raw = bufferedImage.getRGB(0, 0, width, height,null, 0 , width);
