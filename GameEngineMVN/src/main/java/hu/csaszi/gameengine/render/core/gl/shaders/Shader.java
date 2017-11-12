@@ -100,6 +100,7 @@ public class Shader {
             }
         } catch(IOException e){
             logger.error(e.getMessage(), e);
+            e.printStackTrace();
         }
 
         return string.toString();

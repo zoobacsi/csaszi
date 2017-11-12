@@ -47,7 +47,10 @@ public class GLInput implements Input {
     }
 
     public boolean isKeyDown(int key){
-        return glfwGetKey(window, key) == GLFW_TRUE;
+        if (window != 0L){
+            return glfwGetKey(window, key) == GLFW_TRUE;
+        }
+        return false;
     }
 
     @Override
@@ -61,7 +64,10 @@ public class GLInput implements Input {
     }
 
     public boolean isMouseButtonDown(int button) {
-        return glfwGetMouseButton(window, button) == GLFW_TRUE;
+        if (window != 0L){
+            return glfwGetMouseButton(window, button) == GLFW_TRUE;
+        }
+        return false;
     }
 
     @Override
@@ -89,10 +95,11 @@ public class GLInput implements Input {
             mouse[i] = isMouseButtonDown(i);
         }
 
-
-        glfwGetCursorPos(window, xBuffer, yBuffer);
-        mouseX = (int)xBuffer.get(0);
-        mouseY = (int)yBuffer.get(0);
+        if(window != 0L) {
+            glfwGetCursorPos(window, xBuffer, yBuffer);
+            mouseX = (int) xBuffer.get(0);
+            mouseY = (int) yBuffer.get(0);
+        }
     }
 
 }

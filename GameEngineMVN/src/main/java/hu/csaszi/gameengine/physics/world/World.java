@@ -8,6 +8,7 @@ import org.joml.Vector3f;
 
 public class World {
 
+    private final int view = 32;
     private byte[] tiles;
     private int width;
     private int height;
@@ -16,8 +17,8 @@ public class World {
     private Matrix4f world;
 
     public World(){
-        width = 32;
-        height = 32;
+        width = 128;
+        height = 128;
         scale = 32;
         tiles = new byte[width * height];
 
@@ -32,6 +33,18 @@ public class World {
                 render.renderTile(tiles[j + i * width], j, -i, shader, world, camera);
             }
         }
+//       int posX = ((int)camera.getPosition().x + (camera.getWindow().getWidth()/2)) / (scale * 2);
+//       int posY = ((int)camera.getPosition().x + (camera.getWindow().getHeight()/2)) / (scale * 2);
+//
+//       for(int i = 0; i < view; i++){
+//           for(int j = 0; j < view; j++){
+//               Tile tile = getTile(i - posX, j + posY);
+//               if(tile != null){
+//                   render.renderTile(tile.getId(),i-posX, -j-posY, shader, world, camera);
+//               }
+//           }
+//       }
+
     }
 
     public void correctCamera(Camera camera){
@@ -58,5 +71,14 @@ public class World {
 
     public void setTile(Tile tile, int x, int y) {
         tiles[x + y * width] = tile.getId();
+    }
+
+    public Tile getTile(int x, int y){
+
+        try {
+            return Tile.tiles[tiles[x + y * width]];
+        } catch (ArrayIndexOutOfBoundsException e){
+            return null;
+        }
     }
 }

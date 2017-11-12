@@ -69,4 +69,5 @@ public class TileRenderer {
         shader.setUniform("projection", target);
         model.render();
     }
+
 }

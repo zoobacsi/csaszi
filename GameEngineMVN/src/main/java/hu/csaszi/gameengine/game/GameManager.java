@@ -65,7 +65,9 @@ public class GameManager {
 			if (state.getStateId() == stateId) {
 				currentState = state;
 				stateFound = true;
-				currentState.init(window, this);
+				if(doInit){
+					currentState.init(window, this);
+				}
 				break;
 			}
 		}

@@ -152,7 +152,7 @@ public class GLFWWindow implements Window {
         gameManager.getInput().update();
         glfwPollEvents();
 
-        gameManager.update();
+//        gameManager.update();
     }
 
     @Override
@@ -204,8 +204,6 @@ public class GLFWWindow implements Window {
         // Create the window
         createWindow(title);
 
-        GL.createCapabilities();
-        glEnable(GL_TEXTURE_2D);
 
         show();
 
@@ -218,6 +216,9 @@ public class GLFWWindow implements Window {
         // LWJGL detects the context that is current in the current thread,
         // creates the GLCapabilities instance and makes the OpenGL
         // bindings available for use.
+
+        GL.createCapabilities();
+        glEnable(GL_TEXTURE_2D);
 
         double frameCap = 1.0 / 60.0;
 
@@ -251,7 +252,7 @@ public class GLFWWindow implements Window {
                 if (gameManager.getInput().isKeyDown(GLFW_KEY_ESCAPE)) {
                     glfwSetWindowShouldClose(window, true);
                 }
-
+                glfwPollEvents();
                 update();
 
                 if (frameTime >= 1.0) {
@@ -266,7 +267,7 @@ public class GLFWWindow implements Window {
 
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
-                gameManager.render();
+//                gameManager.render();
 
                 glfwSwapBuffers(window); // swap the color buffers
                 frames++;

@@ -10,3 +10,7 @@ GameEngineMVN/.idea/libraries/Maven__org_lwjgl_lwjgl_stb_natives_windows_3_1_3.x
 GameEngineMVN/\.idea/workspace\.xml
 
 GameEngineMVN/target/
+GameEngineMVN/.idea/compiler.xml
+GameEngineMVN/GameEngineMVN.iml
+*.log
+GameEngineMVN/.idea/compiler.xml
