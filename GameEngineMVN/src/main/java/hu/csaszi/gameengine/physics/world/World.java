@@ -34,8 +34,9 @@ public class World {
         }
     }
 
-    public void correctCamera(Camera camera, Window window){
+    public void correctCamera(Camera camera){
         Vector3f pos = camera.getPosition();
+        Window window = camera.getWindow();
 
         int w = -width * scale * 2;
         int h = height * scale * 2;

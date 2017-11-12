@@ -1,14 +1,9 @@
 package hu.csaszi.gameengine.render.core.gl;
 
 import hu.csaszi.gameengine.game.GameManager;
-import hu.csaszi.gameengine.physics.world.Tile;
-import hu.csaszi.gameengine.physics.world.TileRenderer;
-import hu.csaszi.gameengine.physics.world.World;
+import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
-import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -30,12 +25,9 @@ public class GLFWWindow implements Window {
     private int width;
     private int height;
 
-    private boolean fullscrean;
+    private boolean fullscreen;
     private GameManager gameManager;
-
-    private GLInput input;
-    private Thread loop;
-    private Camera camera = new Camera(width, height);
+    private Drawer drawer;
 
     private int currentFPS;
 
@@ -44,11 +36,9 @@ public class GLFWWindow implements Window {
         setSize(width, height);
         this.title = title;
         this.gameManager = gameManager;
-        setFullscrean(false);
-    }
+        setFullscreen(false);
 
-    public void setCamera(Camera camera) {
-        this.camera = camera;
+        this.drawer = new GLDrawer(this);
     }
 
     public int getWidth() {
@@ -59,20 +49,21 @@ public class GLFWWindow implements Window {
         return height;
     }
 
-    public boolean isFullscrean() {
-        return fullscrean;
+    public boolean isFullscreen() {
+        return fullscreen;
     }
 
-    public void setFullscrean(boolean fullscrean) {
-        this.fullscrean = fullscrean;
+    public void setFullscreen(boolean fullscreen) {
+        this.fullscreen = fullscreen;
+    }
+
+    @Override
+    public Drawer getDrawer() {
+        return drawer;
     }
 
     public GameManager getGameManager() {
         return gameManager;
-    }
-
-    public GLInput getInput() {
-        return input;
     }
 
     public void createWindow(String title) {
@@ -94,7 +85,7 @@ public class GLFWWindow implements Window {
                 width,
                 height,
                 title,
-                fullscrean ? glfwGetPrimaryMonitor() : 0,
+                fullscreen ? glfwGetPrimaryMonitor() : 0,
                 0);
 
         if (window == 0) {
@@ -116,7 +107,7 @@ public class GLFWWindow implements Window {
             // Get the window size passed to glfwCreateWindow
             glfwGetWindowSize(window, pWidth, pHeight);
 
-            if(!fullscrean){
+            if(!fullscreen){
             // Get the resolution of the primary monitor
             GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
@@ -133,8 +124,6 @@ public class GLFWWindow implements Window {
         glfwMakeContextCurrent(window);
         // Enable v-sync
         glfwSwapInterval(1);
-
-        input = new GLInput(window);
     }
 
     public static void setCallbacks(){
@@ -159,8 +148,11 @@ public class GLFWWindow implements Window {
 
     @Override
     public synchronized void update() {
-        input.update();
+
+        gameManager.getInput().update();
         glfwPollEvents();
+
+        gameManager.update();
     }
 
     @Override
@@ -227,34 +219,6 @@ public class GLFWWindow implements Window {
         // creates the GLCapabilities instance and makes the OpenGL
         // bindings available for use.
 
-
-        gameManager.getCurrentState().
-
-        Camera camera = new Camera(width, height);
-        TileRenderer tileRenderer = new TileRenderer();
-
-
-        Shader shader = new Shader("shader");
-
-        Texture texture = new Texture("grass");
-
-//        Matrix4f projection = new Matrix4f()
-//                .ortho2D(-640 / 2, 640 / 2, -480 / 2, 480 / 2);
-
-//        Matrix4f scale = new Matrix4f()
-//                .translate(new Vector3f(0, 0, 0))
-//                .scale(64);
-
-//        Matrix4f target = new Matrix4f();
-
-        World world = new World();
-
-        world.setTile(Tile.getTile("desert"), 0, 0);
-
-        world.setTile(Tile.getTile("water0"), 31, 31);
-
-        camera.setPosition(new Vector3f(0, 0, 0));
-
         double frameCap = 1.0 / 60.0;
 
         double frameTime = 0;
@@ -284,27 +248,9 @@ public class GLFWWindow implements Window {
 
                 canRender = true;
 
-//                target = scale;
-
-                if (input.isKeyDown(GLFW_KEY_ESCAPE)) {
+                if (gameManager.getInput().isKeyDown(GLFW_KEY_ESCAPE)) {
                     glfwSetWindowShouldClose(window, true);
                 }
-
-
-                if(input.isKeyDown(GLFW_KEY_A)) {
-                    camera.getPosition().sub(new Vector3f(-5,0,0));
-                }
-                if(input.isKeyDown(GLFW_KEY_D)) {
-                    camera.getPosition().sub(new Vector3f(5,0,0));
-                }
-                if(input.isKeyDown(GLFW_KEY_W)) {
-                    camera.getPosition().sub(new Vector3f(0,5,0));
-                }
-                if(input.isKeyDown(GLFW_KEY_S)) {
-                    camera.getPosition().sub(new Vector3f(0,-5,0));
-                }
-
-                world.correctCamera(camera, this);
 
                 update();
 
@@ -320,12 +266,7 @@ public class GLFWWindow implements Window {
 
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
-//                shader.bind();
-//                shader.setUniform("sampler", 0);
-//                shader.setUniform("projection", camera.getProjection().mul(target));
-                //texture.bind(0);
-
-                world.render(tileRenderer, shader, camera);
+                gameManager.render();
 
                 glfwSwapBuffers(window); // swap the color buffers
                 frames++;

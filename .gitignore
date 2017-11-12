@@ -6,3 +6,7 @@ GameEngineMVN/target/surefire-reports/
 GameEngineMVN/target/maven-status/maven-compiler-plugin/compile/default-compile/
 GameEngineMVN/.idea/libraries/Maven__org_lwjgl_lwjgl_xxhash_natives_windows_3_1_3.xml
 GameEngineMVN/.idea/libraries/Maven__org_lwjgl_lwjgl_stb_natives_windows_3_1_3.xml
+
+GameEngineMVN/\.idea/workspace\.xml
+
+GameEngineMVN/target/

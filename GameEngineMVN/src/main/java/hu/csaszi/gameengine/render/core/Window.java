@@ -1,5 +1,7 @@
 package hu.csaszi.gameengine.render.core;
 
+import hu.csaszi.gameengine.game.GameManager;
+
 public interface Window  {
 
 	public void show();
@@ -19,7 +21,7 @@ public interface Window  {
 
 	public boolean shouldClose();
 	
-//	public void setFullscreen(boolean fullscreen);
+	public void setFullscreen(boolean fullscreen);
 //
 //	public boolean isRunning();
 //
@@ -29,7 +31,9 @@ public interface Window  {
 //
 //	public void increaseTime();
 //
-//	public Drawer getDrawer();
+	public Drawer getDrawer();
 //
 //	public AWTInput getInput();
+
+	public GameManager getGameManager();
 }

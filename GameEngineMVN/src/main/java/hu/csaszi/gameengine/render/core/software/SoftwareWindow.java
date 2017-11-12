@@ -78,6 +78,16 @@ public class SoftwareWindow extends Canvas implements Window {
         HEIGHT = FRAME.getHeight();
     }
 
+    @Override
+    public Drawer getDrawer() {
+        return null;
+    }
+
+    @Override
+    public GameManager getGameManager() {
+        return null;
+    }
+
     public void close() {
         shouldClose = true;
         System.out.println("Closing");

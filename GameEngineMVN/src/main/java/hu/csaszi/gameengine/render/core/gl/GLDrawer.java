@@ -7,9 +7,9 @@ import java.awt.*;
 
 public class GLDrawer implements Drawer {
 
-    private Window window;
+    private GLFWWindow window;
 
-    public GLDrawer(Window window) {
+    public GLDrawer(GLFWWindow window) {
 
         this.window = window;
     }

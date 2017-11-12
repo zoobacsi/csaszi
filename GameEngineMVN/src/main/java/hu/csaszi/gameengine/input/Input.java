@@ -12,4 +12,6 @@ public interface Input {
 
     public int getMouseX();
     public int getMouseY();
+
+    public void update();
 }

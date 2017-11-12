@@ -19,6 +19,10 @@ public class GLInput implements Input {
     private DoubleBuffer xBuffer;
     private DoubleBuffer yBuffer;
 
+    public GLInput(GLFWWindow window) {
+        this(window.getWindow());
+    }
+
     public GLInput(long window) {
 
         this.window = window;

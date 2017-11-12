@@ -150,4 +150,9 @@ public class AWTInput implements KeyListener, Input, MouseListener, MouseMotionL
 	public int getMouseY(){
 		return y;
 	}
+
+	@Override
+	public void update() {
+
+	}
 }
