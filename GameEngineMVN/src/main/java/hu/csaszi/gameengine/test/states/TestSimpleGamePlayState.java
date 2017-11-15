@@ -11,6 +11,7 @@ import hu.csaszi.gameengine.render.core.gl.Texture;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import org.joml.Vector3f;
+import org.lwjgl.opengl.GL;
 
 public class TestSimpleGamePlayState extends GameState {
 
@@ -36,18 +37,19 @@ public class TestSimpleGamePlayState extends GameState {
 //
 //		ObjectManager.addObject(new Player(window, "playerHit"));
 
-		camera = new Camera(window);
+		if(GL.getCapabilities() != null) {
+			camera = new Camera(window);
 
-		world = new World();
-		tileRenderer = new TileRenderer();
-		shader = new Shader("shader");
+			world = new World();
+			tileRenderer = new TileRenderer();
+			shader = new Shader("shader");
 
-		world.setTile(Tile.getTile("desert"), 0, 0);
+			world.setTile(Tile.getTile("desert"), 0, 0);
 
-		world.setTile(Tile.getTile("water0"), 31, 31);
+			world.setTile(Tile.getTile("water0"), 31, 31);
 
-		camera.setPosition(new Vector3f(0, 0, 0));
-
+			camera.setPosition(new Vector3f(0, 0, 0));
+		}
 
 	}
 

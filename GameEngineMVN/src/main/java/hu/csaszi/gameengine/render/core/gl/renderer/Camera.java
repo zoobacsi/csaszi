@@ -25,7 +25,7 @@ public class Camera {
         int height = window.getHeight();
 
         this.window = window;
-        this.input = window.getGameManager().getInput();
+        this.input = window.getInput();
 
         position = new Vector3f(0, 0, 0);
         setProjection(width, height);
@@ -40,6 +40,7 @@ public class Camera {
     public void setProjection(int width, int height) {
         projection = new Matrix4f().setOrtho2D(-width/2, width/2, -height/2, height/2);
     }
+
     public void setPosition(Vector3f position) {
         this.position = position;
     }
@@ -61,17 +62,21 @@ public class Camera {
     }
 
     public void update(){
-        if(input.isKeyDown(GLFW_KEY_A)) {
-            position.sub(new Vector3f(-5,0,0));
-        }
-        if(input.isKeyDown(GLFW_KEY_D)) {
-            position.sub(new Vector3f(5,0,0));
-        }
-        if(input.isKeyDown(GLFW_KEY_W)) {
-            position.sub(new Vector3f(0,5,0));
-        }
-        if(input.isKeyDown(GLFW_KEY_S)) {
-            position.sub(new Vector3f(0,-5,0));
+
+        if(input != null){
+
+            if(input.isKeyDown(GLFW_KEY_A)) {
+                position.sub(new Vector3f(-5,0,0));
+            }
+            if(input.isKeyDown(GLFW_KEY_D)) {
+                position.sub(new Vector3f(5,0,0));
+            }
+            if(input.isKeyDown(GLFW_KEY_W)) {
+                position.sub(new Vector3f(0,5,0));
+            }
+            if(input.isKeyDown(GLFW_KEY_S)) {
+                position.sub(new Vector3f(0,-5,0));
+            }
         }
     }
 }

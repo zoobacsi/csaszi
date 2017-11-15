@@ -1,6 +1,7 @@
 package hu.csaszi.gameengine.render.core;
 
 import hu.csaszi.gameengine.game.GameManager;
+import hu.csaszi.gameengine.input.Input;
 
 public interface Window  {
 
@@ -32,6 +33,8 @@ public interface Window  {
 //	public void increaseTime();
 //
 	public Drawer getDrawer();
+
+	public Input getInput();
 //
 //	public AWTInput getInput();
 

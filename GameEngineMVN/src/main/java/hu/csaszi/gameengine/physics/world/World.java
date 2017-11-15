@@ -8,7 +8,7 @@ import org.joml.Vector3f;
 
 public class World {
 
-    private final int view = 32;
+    private final int view = 6;
     private byte[] tiles;
     private int width;
     private int height;
@@ -17,8 +17,8 @@ public class World {
     private Matrix4f world;
 
     public World(){
-        width = 128;
-        height = 128;
+        width = 64;
+        height = 64;
         scale = 32;
         tiles = new byte[width * height];
 
@@ -28,22 +28,22 @@ public class World {
     }
 
     public  void render(TileRenderer render, Shader shader, Camera camera){
-        for (int i = 0; i < height; i++){
-            for(int j = 0; j < width; j++){
-                render.renderTile(tiles[j + i * width], j, -i, shader, world, camera);
-            }
-        }
-//       int posX = ((int)camera.getPosition().x + (camera.getWindow().getWidth()/2)) / (scale * 2);
-//       int posY = ((int)camera.getPosition().x + (camera.getWindow().getHeight()/2)) / (scale * 2);
-//
-//       for(int i = 0; i < view; i++){
-//           for(int j = 0; j < view; j++){
-//               Tile tile = getTile(i - posX, j + posY);
-//               if(tile != null){
-//                   render.renderTile(tile.getId(),i-posX, -j-posY, shader, world, camera);
-//               }
-//           }
-//       }
+//        for (int i = 0; i < height; i++){
+//            for(int j = 0; j < width; j++){
+//                render.renderTile(tiles[j + i * width], j, -i, shader, world, camera);
+//            }
+//        }
+       int posX = ((int)camera.getPosition().x + (camera.getWindow().getWidth()/2)) / (scale * 2);
+       int posY = ((int)camera.getPosition().x + (camera.getWindow().getHeight()/2)) / (scale * 2);
+
+       for(int i = 0; i < view; i++){
+           for(int j = 0; j < view; j++){
+               Tile tile = getTile(i - posX, j + posY);
+               if(tile != null){
+                   render.renderTile(tile.getId(),i-posX, -j-posY, shader, world, camera);
+               }
+           }
+       }
 
     }
 

@@ -20,12 +20,6 @@ public class SimpleGame extends GameManager {
 
     public SimpleGame() {
         window = createWindow(TITLE, WIDTH, HEIGHT, false);
-
-        ((GLFWWindow)window)
-                .setSize(640, 480)
-                .setFullscreen(false);
-        ((GLFWWindow)window).setCallbacks();
-        window.run();
     }
 
     public static void main(String[] args) {
@@ -35,10 +29,15 @@ public class SimpleGame extends GameManager {
         final SimpleGame main = new SimpleGame();
 
         main.addState(new TestSimpleGamePlayState(GAME_ID));
-        main.enterState(GAME_ID, true);
+        main.enterState(GAME_ID, false);
 
 
+        ((GLFWWindow)window)
+                .setSize(640, 480)
+                .setFullscreen(false);
+        ((GLFWWindow)window).setCallbacks();
 
+        window.run();
 
     }
 

@@ -27,7 +27,6 @@ public class GameManager {
 	private Window window;
 	private boolean pause;
 	private boolean softwareRender;
-	private Input input;
 
 	public GameManager(){
 		this.softwareRender = true;
@@ -80,14 +79,9 @@ public class GameManager {
 			boolean softwareRender) {
 
 		if(softwareRender){
-
 			window = new SoftwareWindow(title, width, height, 2, this);
-			input = new AWTInput();
-
 		} else {
-
 			window = new GLFWWindow(title, width, height, this);
-			input = new GLInput((GLFWWindow)window);
 		}
 
 		windowPool.add(window);
@@ -157,10 +151,6 @@ public class GameManager {
 
 	public GameState getCurrentState(){
 		return currentState;
-	}
-
-	public Input getInput() {
-		return input;
 	}
 
 }

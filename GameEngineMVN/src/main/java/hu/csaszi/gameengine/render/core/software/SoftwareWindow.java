@@ -2,6 +2,7 @@ package hu.csaszi.gameengine.render.core.software;
 
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.input.AWTInput;
+import hu.csaszi.gameengine.input.Input;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
 
@@ -81,6 +82,11 @@ public class SoftwareWindow extends Canvas implements Window {
     @Override
     public Drawer getDrawer() {
         return null;
+    }
+
+    @Override
+    public Input getInput() {
+        return AWTInput;
     }
 
     @Override

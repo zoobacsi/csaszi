@@ -47,10 +47,8 @@ public class GLInput implements Input {
     }
 
     public boolean isKeyDown(int key){
-        if (window != 0L){
-            return glfwGetKey(window, key) == GLFW_TRUE;
-        }
-        return false;
+
+        return glfwGetKey(window, key) == GLFW_TRUE;
     }
 
     @Override
@@ -64,10 +62,8 @@ public class GLInput implements Input {
     }
 
     public boolean isMouseButtonDown(int button) {
-        if (window != 0L){
-            return glfwGetMouseButton(window, button) == GLFW_TRUE;
-        }
-        return false;
+
+        return glfwGetMouseButton(window, button) == GLFW_TRUE;
     }
 
     @Override

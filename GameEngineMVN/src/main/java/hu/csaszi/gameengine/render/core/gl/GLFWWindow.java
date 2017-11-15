@@ -1,9 +1,9 @@
 package hu.csaszi.gameengine.render.core.gl;
 
 import hu.csaszi.gameengine.game.GameManager;
+import hu.csaszi.gameengine.input.Input;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
-import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -28,6 +28,12 @@ public class GLFWWindow implements Window {
     private boolean fullscreen;
     private GameManager gameManager;
     private Drawer drawer;
+
+    public Input getInput() {
+        return input;
+    }
+
+    private Input input;
 
     private int currentFPS;
 
@@ -149,10 +155,14 @@ public class GLFWWindow implements Window {
     @Override
     public synchronized void update() {
 
-        gameManager.getInput().update();
+
         glfwPollEvents();
 
-//        gameManager.update();
+        gameManager.update();
+
+        if(input != null){
+            input.update();
+        }
     }
 
     @Override
@@ -204,9 +214,7 @@ public class GLFWWindow implements Window {
         // Create the window
         createWindow(title);
 
-
         show();
-
     }
 
     private void loop() {
@@ -227,8 +235,13 @@ public class GLFWWindow implements Window {
 
         double time = Timer.getTime();
         double unprocessed = 0.0;
+
+        input = new GLInput(this);
+
         // Set the clear color
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+        gameManager.getCurrentState().init(this, gameManager);
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
@@ -249,11 +262,11 @@ public class GLFWWindow implements Window {
 
                 canRender = true;
 
-                if (gameManager.getInput().isKeyDown(GLFW_KEY_ESCAPE)) {
+                update();
+
+                if (input.isKeyDown(GLFW_KEY_ESCAPE)) {
                     glfwSetWindowShouldClose(window, true);
                 }
-                glfwPollEvents();
-                update();
 
                 if (frameTime >= 1.0) {
                     frameTime = 0.0;
@@ -267,7 +280,7 @@ public class GLFWWindow implements Window {
 
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
-//                gameManager.render();
+                gameManager.render();
 
                 glfwSwapBuffers(window); // swap the color buffers
                 frames++;
