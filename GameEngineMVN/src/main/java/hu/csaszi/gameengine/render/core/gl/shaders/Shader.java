@@ -72,6 +72,15 @@ public class Shader {
         }
     }
 
+    protected void finalize() throws Throwable {
+        glDetachShader(program, vertexShader);
+        glDetachShader(program, fragmentShader);
+        glDeleteShader(vertexShader);
+        glDeleteShader(fragmentShader);
+        glDeleteProgram(program);
+        super.finalize();
+    }
+
     public void setUniform(String name, Matrix4f value) {
 
         int location = glGetUniformLocation(program, name);

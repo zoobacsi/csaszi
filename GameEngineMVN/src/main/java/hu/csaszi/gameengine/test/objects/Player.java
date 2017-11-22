@@ -5,7 +5,11 @@ import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.physics.collission.Collission;
 import hu.csaszi.gameengine.physics.objects.GameObject;
 import hu.csaszi.gameengine.physics.objects.ObjectManager;
+import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.Window;
+import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
+import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
+import hu.csaszi.gameengine.test.states.TestSimpleGamePlayState;
 
 public class Player extends GameObject {
 
@@ -26,8 +30,17 @@ public class Player extends GameObject {
 	}
 
 	@Override
-	public void update(Window window, GameManager gameManager) {
-		
+	public void update(float delta, GameManager gameManager) {
+
+		if(gameManager.isSoftwareRender()) {
+
+		} else {
+			GLFWWindow window = (GLFWWindow)gameManager.getWindow();
+			Camera camera = ((TestSimpleGamePlayState)gameManager.getCurrentState()).getCamera();
+			World world = ((TestSimpleGamePlayState)gameManager.getCurrentState()).getWorld();
+		}
+
+
 //		AWTInput AWTInput = window.getInput();
 //
 //		if(!isAlive){

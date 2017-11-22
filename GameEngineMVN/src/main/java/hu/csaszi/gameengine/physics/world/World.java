@@ -8,7 +8,7 @@ import org.joml.Vector3f;
 
 public class World {
 
-    private final int view = 6;
+    private final int view = 24;
     private byte[] tiles;
     private int width;
     private int height;
@@ -28,13 +28,9 @@ public class World {
     }
 
     public  void render(TileRenderer render, Shader shader, Camera camera){
-//        for (int i = 0; i < height; i++){
-//            for(int j = 0; j < width; j++){
-//                render.renderTile(tiles[j + i * width], j, -i, shader, world, camera);
-//            }
-//        }
+
        int posX = ((int)camera.getPosition().x + (camera.getWindow().getWidth()/2)) / (scale * 2);
-       int posY = ((int)camera.getPosition().x + (camera.getWindow().getHeight()/2)) / (scale * 2);
+       int posY = ((int)camera.getPosition().y - (camera.getWindow().getHeight()/2)) / (scale * 2);
 
        for(int i = 0; i < view; i++){
            for(int j = 0; j < view; j++){

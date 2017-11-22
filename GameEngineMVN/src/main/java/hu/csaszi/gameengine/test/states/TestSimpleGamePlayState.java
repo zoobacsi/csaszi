@@ -10,6 +10,7 @@ import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.Texture;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
+import hu.csaszi.gameengine.test.objects.Player;
 import org.joml.Vector3f;
 import org.lwjgl.opengl.GL;
 
@@ -24,7 +25,18 @@ public class TestSimpleGamePlayState extends GameState {
 	private World world;
 	private TileRenderer tileRenderer;
 	private Shader shader;
+
+	public World getWorld() {
+		return world;
+	}
+
+	public Camera getCamera() {
+		return camera;
+	}
+
 	private Camera camera;
+
+	private Player player;
 
 	@Override
 	public void init(Window window, GameManager gameManager) {
@@ -49,6 +61,8 @@ public class TestSimpleGamePlayState extends GameState {
 			world.setTile(Tile.getTile("water0"), 31, 31);
 
 			camera.setPosition(new Vector3f(0, 0, 0));
+
+			player = new Player(window, "hit");
 		}
 
 	}

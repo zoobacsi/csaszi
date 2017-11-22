@@ -30,4 +30,8 @@ public class EnemyBlock extends GameObject {
 		}
 	}
 
+	@Override
+	public void update(float delta, GameManager gameManager) {
+
+	}
 }

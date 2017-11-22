@@ -37,6 +37,12 @@ public class Model {
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 
+    protected void finalize() throws Throwable{
+        glDeleteBuffers(vId);
+        glDeleteBuffers(tId);
+        glDeleteBuffers(iId);
+        super.finalize();
+    }
     public void render(){
 
         glEnableVertexAttribArray(0);

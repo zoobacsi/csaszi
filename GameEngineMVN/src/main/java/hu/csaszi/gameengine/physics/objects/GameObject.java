@@ -1,11 +1,17 @@
 package hu.csaszi.gameengine.physics.objects;
 
 import hu.csaszi.gameengine.game.GameManager;
+import hu.csaszi.gameengine.physics.world.Tile;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
+import hu.csaszi.gameengine.render.core.gl.Texture;
+import hu.csaszi.gameengine.render.core.gl.models.Model;
+import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
+import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import hu.csaszi.gameengine.render.graphics.imaging.Image;
 
 import java.awt.*;
+import java.util.HashMap;
 
 public abstract class GameObject {
 
@@ -23,18 +29,50 @@ public abstract class GameObject {
 	protected String tag;
 	
 	protected Image image;
-	
-	public void render(Window window, Drawer drawer){
-		
-		if(doDraw){
-			if(hasImage){
-				drawer.drawImage(image.getLoadedImage(), x, y);
-			} else {
-				
-				drawer.fillRect(x, y, sx, sy, color);
-			}
-			didDraw = true;
-		}
+	protected Model model;
+	protected Texture texture;
+
+	public GameObject(){
+
+		float[] vertices = new float[]{
+				-1f, 1f, 0, // TOP LEFT      0
+				1f, 1f, 0, // TOP RIGHT     1
+				1f, -1f, 0, // BOTTOM RIGHT  2
+				-1f, -1f, 0 // BOTTOM LEFT 3
+		};
+
+		float[] texCoords = new float[]{
+				0, 0,
+				1, 0,
+				1, 1,
+				0, 1
+		};
+
+		int[] indices = new int[]{
+				0, 1, 2,
+				2, 3, 0
+		};
+
+		model = new Model(vertices, texCoords, indices);
+		this.texture = new Texture("checker");
+	}
+	public void render(Shader shader, Camera camera){
+
+		shader.bind();
+		shader.setUniform("sampler",0);
+		shader.setUniform("projection", camera.getProjection());
+		texture.bind(0);
+		model.render();
+//		if(doDraw){
+//
+//			if(hasImage){
+//				drawer.drawImage(image.getLoadedImage(), x, y);
+//			} else {
+//
+//				drawer.fillRect(x, y, sx, sy, color);
+//			}
+//			didDraw = true;
+//		}
 	}
 	
 	public boolean isDestroyed() {
@@ -45,7 +83,7 @@ public abstract class GameObject {
 		this.isDestroyed = isDestroyed;
 	}
 
-	public abstract void update(Window window, GameManager gameManager);
+	public abstract void update(float delta, GameManager gameManager);
 
 	public int getX(){
 		return x;

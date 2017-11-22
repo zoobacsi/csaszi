@@ -60,4 +60,8 @@ public class BlockSpawner extends GameObject {
 		}
 	}
 
+	@Override
+	public void update(float delta, GameManager gameManager) {
+
+	}
 }
