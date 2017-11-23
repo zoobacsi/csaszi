@@ -59,7 +59,7 @@ public class GameManagerTests {
         }
 
         @Override
-        public void update(Window window, GameManager gameManager) {
+        public void update(float delta, GameManager gameManager) {
 
         }
     }

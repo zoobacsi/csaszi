@@ -9,6 +9,7 @@ import hu.csaszi.gameengine.render.core.gl.models.Model;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import hu.csaszi.gameengine.render.graphics.imaging.Image;
+import org.joml.Vector3f;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -31,8 +32,9 @@ public abstract class GameObject {
 	protected Image image;
 	protected Model model;
 	protected Texture texture;
+	protected Transform transform;
 
-	public GameObject(){
+	public GameObject(Texture texture){
 
 		float[] vertices = new float[]{
 				-1f, 1f, 0, // TOP LEFT      0
@@ -54,13 +56,16 @@ public abstract class GameObject {
 		};
 
 		model = new Model(vertices, texCoords, indices);
-		this.texture = new Texture("checker");
+		this.texture = texture;
+
+		transform = new Transform();
+		transform.scale = new Vector3f(16, 16, 1);
 	}
 	public void render(Shader shader, Camera camera){
 
 		shader.bind();
 		shader.setUniform("sampler",0);
-		shader.setUniform("projection", camera.getProjection());
+		shader.setUniform("projection", transform.getProjection(camera.getProjection()));
 		texture.bind(0);
 		model.render();
 //		if(doDraw){

@@ -11,7 +11,7 @@ public abstract class GameState {
 	
 	public abstract void render(Window window, Drawer drawer, GameManager gameManager);
 
-	public abstract void update(Window window, GameManager gameManager);
+	public abstract void update(float delta, GameManager gameManager);
 	
 	public int getStateId(){
 		return stateId;

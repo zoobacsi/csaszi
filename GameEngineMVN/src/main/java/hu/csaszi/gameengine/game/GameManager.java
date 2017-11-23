@@ -2,7 +2,6 @@ package hu.csaszi.gameengine.game;
 
 import hu.csaszi.gameengine.input.AWTInput;
 import hu.csaszi.gameengine.input.Input;
-import hu.csaszi.gameengine.physics.objects.ObjectManager;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
@@ -102,8 +101,6 @@ public class GameManager {
 			if (!pause) {
 
 				currentState.render(window, window.getDrawer(), this);
-
-//				ObjectManager.render(window, window.getDrawer());
 //
 //				GUIManager.render(window, window.getDrawer());
 			}
@@ -112,15 +109,13 @@ public class GameManager {
 		}
 	}
 
-	public void update() {
+	public void update(float delta) {
 
 		if (isStateOpen()) {
 			if (!pause) {
-				currentState.update(window, this);
+				currentState.update(delta, this);
 
-				ObjectManager.update(window, this);
-
-				GUIManager.update(window);
+//				GUIManager.update(window);
 			}
 //			window.increaseTicks();
 		}

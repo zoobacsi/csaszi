@@ -155,7 +155,7 @@ public class SoftwareWindow extends Canvas implements Window {
 
     }
 
-    public void update() {
+    public void update(float delta) {
         if (!isRunning) {
             System.out.println("WINDOW NOT INITIALIZED!");
         }
@@ -199,7 +199,7 @@ public class SoftwareWindow extends Canvas implements Window {
 
                     while(delta >= 1){
 
-                        gameManager.update();
+                        gameManager.update((float)delta);
 
                         gameManager.render();
                         delta--;

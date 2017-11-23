@@ -3,11 +3,12 @@ package hu.csaszi.gameengine.test.objects;
 import hu.csaszi.gameengine.audio.AudioPlayer;
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.physics.collission.Collission;
+import hu.csaszi.gameengine.physics.objects.EntityManager;
 import hu.csaszi.gameengine.physics.objects.GameObject;
-import hu.csaszi.gameengine.physics.objects.ObjectManager;
 import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
+import hu.csaszi.gameengine.render.core.gl.Texture;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.test.states.TestSimpleGamePlayState;
 
@@ -18,7 +19,7 @@ public class Player extends GameObject {
 	private String hitSound;
 	
 	public Player(Window window, String hitSound){
-		
+		super(new Texture("checker"));
 		this.sx = 32;
 		this.sy = sx;
 		
@@ -76,7 +77,7 @@ public class Player extends GameObject {
 
 	private void checkCollission(GameManager gameManager) {
 		
-		for(GameObject gameObject : ObjectManager.getObjects()){
+		for(GameObject gameObject : EntityManager.getEntityManager(gameManager.getCurrentState()).getObjects()){
 			if("block".equals(gameObject.getTag())){
 				if(Collission.isColliding(this, gameObject)){
 

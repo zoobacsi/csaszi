@@ -2,12 +2,12 @@ package hu.csaszi.gameengine.test.states;
 
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.game.GameState;
+import hu.csaszi.gameengine.physics.objects.EntityManager;
 import hu.csaszi.gameengine.physics.world.Tile;
 import hu.csaszi.gameengine.physics.world.TileRenderer;
 import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
-import hu.csaszi.gameengine.render.core.gl.Texture;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import hu.csaszi.gameengine.test.objects.Player;
@@ -38,8 +38,12 @@ public class TestSimpleGamePlayState extends GameState {
 
 	private Player player;
 
+	private EntityManager entityManager;
+
 	@Override
 	public void init(Window window, GameManager gameManager) {
+
+		entityManager = EntityManager.createEntityManager(this);
 //
 //		AudioPlayer.addClip("playerHit", new AudioClip("src/main/resources/phit.wav"));
 //
@@ -63,6 +67,7 @@ public class TestSimpleGamePlayState extends GameState {
 			camera.setPosition(new Vector3f(0, 0, 0));
 
 			player = new Player(window, "hit");
+			entityManager.addObject(player);
 		}
 
 	}
@@ -74,15 +79,18 @@ public class TestSimpleGamePlayState extends GameState {
 //		if(!Player.isPlayerAlive()){
 //			drawer.drawString("Press Space To Restart, Score: " + Player.getScore(), window.getWidth()/2-34, window.getHeight()/2 - 30);
 //		}
+		entityManager.render(shader, camera);
 
 		world.render(tileRenderer, shader, camera);
 
 	}
 
 	@Override
-	public void update(Window window, GameManager gameManager) {
+	public void update(float delta, GameManager gameManager) {
 
 		camera.update();
+
+		entityManager.update(delta, gameManager);
 
 		world.correctCamera(camera);
 //		AWTInput AWTInput = window.getInput();

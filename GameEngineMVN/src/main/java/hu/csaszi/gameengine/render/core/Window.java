@@ -7,7 +7,7 @@ public interface Window  {
 
 	public void show();
 
-	public void update();
+	public void update(float delta);
 
 	public void clear();
 

@@ -153,12 +153,12 @@ public class GLFWWindow implements Window {
     }
 
     @Override
-    public synchronized void update() {
+    public synchronized void update(float delta) {
 
 
         glfwPollEvents();
 
-        gameManager.update();
+        gameManager.update(delta);
 
         if(input != null){
             input.update();
@@ -262,7 +262,7 @@ public class GLFWWindow implements Window {
 
                 canRender = true;
 
-                update();
+                update((float)frameCap);
 
                 if (input.isKeyDown(GLFW_KEY_ESCAPE)) {
                     glfwSetWindowShouldClose(window, true);
