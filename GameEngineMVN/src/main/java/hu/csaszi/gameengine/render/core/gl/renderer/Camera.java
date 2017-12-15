@@ -63,20 +63,20 @@ public class Camera {
 
     public void update(){
 
-        if(input != null){
-
-            if(input.isKeyDown(GLFW_KEY_A)) {
-                position.sub(new Vector3f(-5,0,0));
-            }
-            if(input.isKeyDown(GLFW_KEY_D)) {
-                position.sub(new Vector3f(5,0,0));
-            }
-            if(input.isKeyDown(GLFW_KEY_W)) {
-                position.sub(new Vector3f(0,5,0));
-            }
-            if(input.isKeyDown(GLFW_KEY_S)) {
-                position.sub(new Vector3f(0,-5,0));
-            }
-        }
+//        if(input != null){
+//
+//            if(input.isKeyDown(GLFW_KEY_A)) {
+//                position.sub(new Vector3f(-5,0,0));
+//            }
+//            if(input.isKeyDown(GLFW_KEY_D)) {
+//                position.sub(new Vector3f(5,0,0));
+//            }
+//            if(input.isKeyDown(GLFW_KEY_W)) {
+//                position.sub(new Vector3f(0,5,0));
+//            }
+//            if(input.isKeyDown(GLFW_KEY_S)) {
+//                position.sub(new Vector3f(0,-5,0));
+//            }
+//        }
     }
 }

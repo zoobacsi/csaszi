@@ -7,10 +7,14 @@ import hu.csaszi.gameengine.physics.objects.EntityManager;
 import hu.csaszi.gameengine.physics.objects.GameObject;
 import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.Window;
+import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.Texture;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.test.states.TestSimpleGamePlayState;
+import org.joml.Vector3f;
+
+import static org.lwjgl.glfw.GLFW.*;
 
 public class Player extends GameObject {
 
@@ -19,9 +23,9 @@ public class Player extends GameObject {
 	private String hitSound;
 	
 	public Player(Window window, String hitSound){
-		super(new Texture("checker"));
-		this.sx = 32;
-		this.sy = sx;
+		super(new Animation(2, 5,"soldier"));
+		this.sx = 16;
+		this.sy = 16;
 		
 		this.x = 100;
 		this.y = window.getHeight()/2- sy/2;
@@ -39,6 +43,24 @@ public class Player extends GameObject {
 			GLFWWindow window = (GLFWWindow)gameManager.getWindow();
 			Camera camera = ((TestSimpleGamePlayState)gameManager.getCurrentState()).getCamera();
 			World world = ((TestSimpleGamePlayState)gameManager.getCurrentState()).getWorld();
+
+			if(window.getInput() != null){
+
+				if(window.getInput().isKeyDown(GLFW_KEY_A)) {
+					transform.getPosition().add(new Vector3f(-5 * delta,0,0));
+				}
+				if(window.getInput().isKeyDown(GLFW_KEY_D)) {
+					transform.getPosition().add(new Vector3f(5 * delta,0,0));
+				}
+				if(window.getInput().isKeyDown(GLFW_KEY_W)) {
+					transform.getPosition().add(new Vector3f(0,5 * delta,0));
+				}
+				if(window.getInput().isKeyDown(GLFW_KEY_S)) {
+					transform.getPosition().add(new Vector3f(0,-5 * delta,0));
+				}
+
+				camera.setPosition(transform.getPosition().mul(-world.getScale(), new Vector3f()));
+			}
 		}
 
 

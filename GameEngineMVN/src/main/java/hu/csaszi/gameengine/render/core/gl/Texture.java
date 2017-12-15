@@ -1,5 +1,6 @@
 package hu.csaszi.gameengine.render.core.gl;
 
+import hu.csaszi.gameengine.render.graphics.imaging.SpriteSheet;
 import org.lwjgl.BufferUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,7 @@ import java.nio.ByteBuffer;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.*;
 
-public class Texture {
+public class Texture implements Sprite{
 
     private static final Logger logger = LoggerFactory.getLogger(Texture.class);
 
@@ -38,9 +39,9 @@ public class Texture {
             bufferedImage = ImageIO.read(new File("src/main/resources/textures/" + fileName + ".png"));
             width = bufferedImage.getWidth();
             height = bufferedImage.getHeight();
-
-            int tileWidth = width;
-            int tileHeight;
+System.out.println(width + " " + height);
+//            int tileWidth = width;
+//            int tileHeight;
 
             int[] pixels_raw = new int[width * height * 4];
             pixels_raw = bufferedImage.getRGB(0, 0, width, height,null, 0 , width);
@@ -78,11 +79,17 @@ public class Texture {
         super.finalize();
     }
 
+    @Override
     public void bind(int sampler) {
 
         if(sampler >= 0 && sampler <=31) {
             glActiveTexture(GL_TEXTURE0 + sampler);
             glBindTexture(GL_TEXTURE_2D, id);
         }
+    }
+
+    @Override
+    public float getRatio() {
+        return (height * 1f) / (width * 1f);
     }
 }

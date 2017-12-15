@@ -79,10 +79,9 @@ public class TestSimpleGamePlayState extends GameState {
 //		if(!Player.isPlayerAlive()){
 //			drawer.drawString("Press Space To Restart, Score: " + Player.getScore(), window.getWidth()/2-34, window.getHeight()/2 - 30);
 //		}
-		entityManager.render(shader, camera);
-
 		world.render(tileRenderer, shader, camera);
 
+		entityManager.render(shader, camera);
 	}
 
 	@Override
@@ -93,6 +92,7 @@ public class TestSimpleGamePlayState extends GameState {
 		entityManager.update(delta, gameManager);
 
 		world.correctCamera(camera);
+
 //		AWTInput AWTInput = window.getInput();
 //
 //		if(AWTInput.isKeyDown(KeyEvent.VK_Y)){

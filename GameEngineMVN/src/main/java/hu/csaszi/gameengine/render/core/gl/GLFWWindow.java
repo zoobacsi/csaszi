@@ -8,6 +8,7 @@ import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryStack;
 
 import java.nio.IntBuffer;
@@ -155,14 +156,13 @@ public class GLFWWindow implements Window {
     @Override
     public synchronized void update(float delta) {
 
-
         glfwPollEvents();
-
-        gameManager.update(delta);
 
         if(input != null){
             input.update();
         }
+
+        gameManager.update(delta);
     }
 
     @Override

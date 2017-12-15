@@ -77,6 +77,7 @@ public class GameManager {
 	public Window createWindow(String title, int width, int height,
 			boolean softwareRender) {
 
+		this.softwareRender = false;
 		if(softwareRender){
 			window = new SoftwareWindow(title, width, height, 2, this);
 		} else {

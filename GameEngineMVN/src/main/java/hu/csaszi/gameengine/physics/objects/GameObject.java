@@ -4,6 +4,8 @@ import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.physics.world.Tile;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
+import hu.csaszi.gameengine.render.core.gl.Animation;
+import hu.csaszi.gameengine.render.core.gl.Sprite;
 import hu.csaszi.gameengine.render.core.gl.Texture;
 import hu.csaszi.gameengine.render.core.gl.models.Model;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
@@ -31,14 +33,17 @@ public abstract class GameObject {
 	
 	protected Image image;
 	protected Model model;
-	protected Texture texture;
+	//protected Texture texture;
+	protected Sprite texture;
 	protected Transform transform;
 
-	public GameObject(Texture texture){
+	public GameObject(Sprite texture){
 
+		float ratio = texture.getRatio() + (texture.getRatio() - 1.0f);
+		System.out.println(ratio);
 		float[] vertices = new float[]{
-				-1f, 1f, 0, // TOP LEFT      0
-				1f, 1f, 0, // TOP RIGHT     1
+				-1f, ratio, 0, // TOP LEFT      0
+				1f, ratio, 0, // TOP RIGHT     1
 				1f, -1f, 0, // BOTTOM RIGHT  2
 				-1f, -1f, 0 // BOTTOM LEFT 3
 		};
@@ -59,7 +64,7 @@ public abstract class GameObject {
 		this.texture = texture;
 
 		transform = new Transform();
-		transform.scale = new Vector3f(16, 16, 1);
+		transform.scale = new Vector3f(32, 32, 2);
 	}
 	public void render(Shader shader, Camera camera){
 

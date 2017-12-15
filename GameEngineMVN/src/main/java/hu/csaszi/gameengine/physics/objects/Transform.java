@@ -10,12 +10,16 @@ public class Transform {
 
     public Transform() {
         this.pos = new Vector3f();
-        this.scale = new Vector3f();
+        this.scale = new Vector3f(1, 1, 1);
     }
 
     public Matrix4f getProjection(Matrix4f target) {
         target.scale(scale);
         target.translate(pos);
         return target;
+    }
+
+    public Vector3f getPosition() {
+        return pos;
     }
 }

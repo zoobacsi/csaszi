@@ -77,4 +77,8 @@ public class World {
             return null;
         }
     }
+
+    public int getScale() {
+        return scale;
+    }
 }
