@@ -2,8 +2,7 @@ package hu.csaszi.gameengine.physics.objects;
 
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.game.GameState;
-import hu.csaszi.gameengine.render.core.Drawer;
-import hu.csaszi.gameengine.render.core.Window;
+import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 
@@ -65,13 +64,13 @@ public class EntityManager {
 		}
 	}
 	
-	public void render(Shader shader, Camera camera){
+	public void render(Shader shader, Camera camera, World world){
 
 		List<GameObject> objects = new ArrayList<>();
 		objects.addAll(gameObjects);
 		
 		for(GameObject gameObject : objects){
-			gameObject.render(shader, camera);
+			gameObject.render(shader, camera, world);
 		}
 	}
 	

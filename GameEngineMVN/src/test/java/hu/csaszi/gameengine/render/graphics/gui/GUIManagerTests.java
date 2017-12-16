@@ -1,6 +1,5 @@
 package hu.csaszi.gameengine.render.graphics.gui;
 
-import hu.csaszi.gameengine.render.core.software.SoftwareDrawer;
 import hu.csaszi.gameengine.render.core.Window;
 import org.junit.Test;
 

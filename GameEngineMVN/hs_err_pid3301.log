@@ -35,9 +35,9 @@ C  [liblwjgl_opengl.dylib+0xcc6e]
 
 Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 j  org.lwjgl.opengl.GL11.glClear(I)V+0
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow.update()V+13
+j  GLFWWindow.update()V+13
 j  hu.csaszi.gameengine.game.GameManager.render()V+72
-J 825% c2 hu.csaszi.gameengine.render.core.Window$1.run()V (219 bytes) @ 0x0000000126b5d9b0 [0x0000000126b5d820+0x0000000000000190]
+J 825% c2 Window$1.run()V (219 bytes) @ 0x0000000126b5d9b0 [0x0000000126b5d820+0x0000000000000190]
 v  ~StubRoutines::call_stub
 
 siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x0000000000000370

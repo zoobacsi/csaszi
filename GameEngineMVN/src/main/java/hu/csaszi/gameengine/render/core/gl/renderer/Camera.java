@@ -5,8 +5,6 @@ import hu.csaszi.gameengine.render.core.Window;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import static org.lwjgl.glfw.GLFW.*;
-
 public class Camera {
 
     private Vector3f position;

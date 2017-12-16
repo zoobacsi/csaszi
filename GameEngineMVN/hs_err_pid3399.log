@@ -94,9 +94,9 @@ R15=0x00007f869517c800 is a thread
 Stack: [0x0000700010f0a000,0x000070001100a000],  sp=0x0000700011009778,  free space=1021k
 Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
 C  [liblwjgl_opengl.dylib+0xcc6e]
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow.update()V+13
+j  GLFWWindow.update()V+13
 j  hu.csaszi.gameengine.game.GameManager.render()V+72
-j  hu.csaszi.gameengine.render.core.Window$1.run()V+87
+j  Window$1.run()V+87
 v  ~StubRoutines::call_stub
 V  [libjvm.dylib+0x2ee70a]
 V  [libjvm.dylib+0x2eeeae]
@@ -112,9 +112,9 @@ C  0x0000000000000000
 
 Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 j  org.lwjgl.opengl.GL11.glClear(I)V+0
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow.update()V+13
+j  GLFWWindow.update()V+13
 j  hu.csaszi.gameengine.game.GameManager.render()V+72
-j  hu.csaszi.gameengine.render.core.Window$1.run()V+87
+j  Window$1.run()V+87
 v  ~StubRoutines::call_stub
 
 ---------------  P R O C E S S  ---------------
@@ -168,9 +168,9 @@ Event: 0.923 Thread 0x00007f8698002000 nmethod 615 0x00000001114bd950 code [0x00
 Event: 0.923 Thread 0x00007f869584d800 nmethod 622 0x00000001114be290 code [0x00000001114be3e0, 0x00000001114be558]
 Event: 0.923 Thread 0x00007f8698002000  624  s    3       java.util.Vector::addElement (38 bytes)
 Event: 0.923 Thread 0x00007f8698002000 nmethod 624 0x00000001114bd090 code [0x00000001114bd220, 0x00000001114bd748]
-Event: 0.925 Thread 0x00007f8698002000  625       3       hu.csaszi.gameengine.render.core.Window::isRunning (4 bytes)
+Event: 0.925 Thread 0x00007f8698002000  625       3       Window::isRunning (4 bytes)
 Event: 0.926 Thread 0x00007f8698002000 nmethod 625 0x00000001114bc990 code [0x00000001114bcb00, 0x00000001114bcc70]
-Event: 0.926 Thread 0x00007f8698002000  626       1       hu.csaszi.gameengine.render.core.Window::isRunning (4 bytes)
+Event: 0.926 Thread 0x00007f8698002000  626       1       Window::isRunning (4 bytes)
 Event: 0.926 Thread 0x00007f8698002000 nmethod 626 0x00000001114bc690 code [0x00000001114bc7e0, 0x00000001114bc910]
 Event: 0.930 Thread 0x00007f8695007000 nmethod 623 0x00000001114c0210 code [0x00000001114c0380, 0x00000001114c07d8]
 Event: 0.938 Thread 0x00007f8698002000  628       3       java.net.URLStreamHandler::parseURL (1193 bytes)

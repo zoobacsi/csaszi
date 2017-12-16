@@ -9,13 +9,14 @@ import java.util.Map;
 
 public class Tile {
 
-    public static Tile[] tiles = new Tile[16];
+    public static Tile[] tiles = new Tile[255];
 
     private static final Map<String, Tile> tileMap = new HashMap<>();
     private static final Logger logger = LoggerFactory.getLogger(Tile.class);
     private static byte numberOfTiles = 0;
 
     private byte id;
+    private boolean solid;
     private String texture;
 
     static {
@@ -29,6 +30,7 @@ public class Tile {
     public Tile(String texture) {
         this.id = numberOfTiles++;
         this.texture = texture;
+        this.solid = false;
         if(tiles[id] != null){
             throw new IllegalStateException("Tiles at "+ id+ "is already being used!");
         }
@@ -59,5 +61,14 @@ public class Tile {
 
     public static Tile getTile(String texture) {
         return tileMap.get(texture);
+    }
+
+    public Tile setSolid(){
+        this.solid = true;
+        return this;
+    }
+
+    public boolean isSolid(){
+        return solid;
     }
 }

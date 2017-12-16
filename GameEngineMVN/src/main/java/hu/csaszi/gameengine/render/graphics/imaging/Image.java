@@ -8,8 +8,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import hu.csaszi.gameengine.game.GameManager;
-import hu.csaszi.gameengine.util.ResourceLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

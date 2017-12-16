@@ -33,7 +33,7 @@ C  [libGL.dylib+0x1a07]  glGetError+0xd
 j  org.lwjgl.system.JNI.callI(J)I+0
 j  org.lwjgl.opengl.GL.createCapabilities(Z)Lorg/lwjgl/opengl/GLCapabilities;+68
 j  org.lwjgl.opengl.GL.createCapabilities()Lorg/lwjgl/opengl/GLCapabilities;+1
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow$1.run()V+0
+j  GLFWWindow$1.run()V+0
 v  ~StubRoutines::call_stub
 V  [libjvm.dylib+0x3a2e7d]  JavaCalls::call_helper(JavaValue*, methodHandle const&, JavaCallArguments*, Thread*)+0x2b5
 V  [libjvm.dylib+0x3a2395]  JavaCalls::call_virtual(JavaValue*, KlassHandle, Symbol*, Symbol*, JavaCallArguments*, Thread*)+0x13f
@@ -50,7 +50,7 @@ Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 j  org.lwjgl.system.JNI.callI(J)I+0
 j  org.lwjgl.opengl.GL.createCapabilities(Z)Lorg/lwjgl/opengl/GLCapabilities;+68
 j  org.lwjgl.opengl.GL.createCapabilities()Lorg/lwjgl/opengl/GLCapabilities;+1
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow$1.run()V+0
+j  GLFWWindow$1.run()V+0
 v  ~StubRoutines::call_stub
 
 siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x0000000000000000

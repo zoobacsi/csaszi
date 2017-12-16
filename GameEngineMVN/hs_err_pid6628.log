@@ -21,7 +21,7 @@
 Command Line: -javaagent:E:\Dev\IntelliJ IDEA 2017.2.5\lib\idea_rt.jar=62245:E:\Dev\IntelliJ IDEA 2017.2.5\bin -Dfile.encoding=UTF-8 hu.csaszi.gameengine.test.SimpleGame
 
 Host: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz, 8 cores, 7G,  Windows 10 , 64 bit Build 15063 (10.0.15063.296)
-Time: Sat Oct 28 19:51:40 2017 Közép-európai nyári ido  elapsed time: 1 seconds (0d 0h 0m 1s)
+Time: Sat Oct 28 19:51:40 2017 Kï¿½zï¿½p-eurï¿½pai nyï¿½ri ido  elapsed time: 1 seconds (0d 0h 0m 1s)
 
 ---------------  T H R E A D  ---------------
 
@@ -33,9 +33,9 @@ C  [lwjgl_opengl.dll+0xe9fa]
 
 Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 j  org.lwjgl.opengl.GL11.glClear(I)V+0
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow.update()V+13
+j  GLFWWindow.update()V+13
 j  hu.csaszi.gameengine.game.GameManager.render()V+72
-J 1012% c1 hu.csaszi.gameengine.render.core.Window$1.run()V (219 bytes) @ 0x000001a1c2082d3c [0x000001a1c2082900+0x000000000000043c]
+J 1012% c1 Window$1.run()V (219 bytes) @ 0x000001a1c2082d3c [0x000001a1c2082900+0x000000000000043c]
 v  ~StubRoutines::call_stub
 
 siginfo: EXCEPTION_ACCESS_VIOLATION (0xc0000005), reading address 0x0000000000000370
@@ -308,11 +308,11 @@ Event: 1.838 Thread 0x000001a1d964f800 nmethod 1011 0x000001a1c943ad10 code [0x0
 Event: 1.838 Thread 0x000001a1d964f800 1010       3       java.util.Vector::add (23 bytes)
 Event: 1.838 Thread 0x000001a1d964f800 nmethod 1010 0x000001a1c2081b90 code [0x000001a1c2081d80, 0x000001a1c20823a0]
 Event: 1.839 Thread 0x000001a1d964f000 nmethod 1007 0x000001a1c943b090 code [0x000001a1c943b220, 0x000001a1c943b438]
-Event: 1.844 Thread 0x000001a1d964f800 1012 %     3       hu.csaszi.gameengine.render.core.Window$1::run @ 21 (219 bytes)
+Event: 1.844 Thread 0x000001a1d964f800 1012 %     3       Window$1::run @ 21 (219 bytes)
 Event: 1.846 Thread 0x000001a1d964f800 nmethod 1012% 0x000001a1c2082610 code [0x000001a1c2082900, 0x000001a1c20837e0]
-Event: 1.846 Thread 0x000001a1d964f800 1013       3       hu.csaszi.gameengine.render.core.Window$1::run (219 bytes)
+Event: 1.846 Thread 0x000001a1d964f800 1013       3       Window$1::run (219 bytes)
 Event: 1.847 Thread 0x000001a1d964f800 nmethod 1013 0x000001a1c2083e10 code [0x000001a1c2084100, 0x000001a1c2084f00]
-Event: 1.847 Thread 0x000001a1d964c000 1014 %     4       hu.csaszi.gameengine.render.core.Window$1::run @ 21 (219 bytes)
+Event: 1.847 Thread 0x000001a1d964c000 1014 %     4       Window$1::run @ 21 (219 bytes)
 Event: 1.852 Thread 0x000001a1d964c000 nmethod 1014% 0x000001a1c943b610 code [0x000001a1c943b7e0, 0x000001a1c943b9f8]
 
 GC Heap History (0 events):

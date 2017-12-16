@@ -9,6 +9,8 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+import org.lwjgl.opengl.GL15;
 import org.lwjgl.system.MemoryStack;
 
 import java.nio.IntBuffer;
@@ -239,7 +241,7 @@ public class GLFWWindow implements Window {
         input = new GLInput(this);
 
         // Set the clear color
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
 
         gameManager.getCurrentState().init(this, gameManager);
 

@@ -21,7 +21,7 @@
 Command Line: -javaagent:E:\Dev\IntelliJ IDEA 2017.2.5\lib\idea_rt.jar=50214:E:\Dev\IntelliJ IDEA 2017.2.5\bin -Dfile.encoding=UTF-8 hu.csaszi.gameengine.test.SimpleGame
 
 Host: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz, 8 cores, 7G,  Windows 10 , 64 bit Build 15063 (10.0.15063.296)
-Time: Sat Oct 28 20:03:24 2017 Közép-európai nyári ido  elapsed time: 0 seconds (0d 0h 0m 0s)
+Time: Sat Oct 28 20:03:24 2017 Kï¿½zï¿½p-eurï¿½pai nyï¿½ri ido  elapsed time: 0 seconds (0d 0h 0m 0s)
 
 ---------------  T H R E A D  ---------------
 
@@ -33,9 +33,9 @@ C  [lwjgl_opengl.dll+0xe9fa]
 
 Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 j  org.lwjgl.opengl.GL11.glClear(I)V+0
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow.clear()V+3
+j  GLFWWindow.clear()V+3
 j  hu.csaszi.gameengine.game.GameManager.render()V+18
-j  hu.csaszi.gameengine.render.core.Window$1.run()V+87
+j  Window$1.run()V+87
 v  ~StubRoutines::call_stub
 
 siginfo: EXCEPTION_ACCESS_VIOLATION (0xc0000005), reading address 0x0000000000000370
@@ -306,12 +306,12 @@ Compilation events (10 events):
 Event: 0.752 Thread 0x0000024df286b000  979       3       java.lang.reflect.Field::getLong (29 bytes)
 Event: 0.752 Thread 0x0000024df286a800  997       4       java.util.HashMap::get (23 bytes)
 Event: 0.753 Thread 0x0000024df286b000 nmethod 979 0x0000024ddb28bf90 code [0x0000024ddb28c1a0, 0x0000024ddb28c860]
-Event: 0.756 Thread 0x0000024df286b000  998 %     3       hu.csaszi.gameengine.render.core.Window$1::run @ 21 (219 bytes)
+Event: 0.756 Thread 0x0000024df286b000  998 %     3       Window$1::run @ 21 (219 bytes)
 Event: 0.756 Thread 0x0000024df286a800 nmethod 997 0x0000024de264ad10 code [0x0000024de264aec0, 0x0000024de264b118]
 Event: 0.757 Thread 0x0000024df286b000 nmethod 998% 0x0000024ddb28ca90 code [0x0000024ddb28ce00, 0x0000024ddb28e620]
-Event: 0.758 Thread 0x0000024df286b000  999       3       hu.csaszi.gameengine.render.core.Window$1::run (219 bytes)
+Event: 0.758 Thread 0x0000024df286b000  999       3       Window$1::run (219 bytes)
 Event: 0.759 Thread 0x0000024df286b000 nmethod 999 0x0000024ddb28ee90 code [0x0000024ddb28f200, 0x0000024ddb290940]
-Event: 0.759 Thread 0x0000024df2867000 1000 %     4       hu.csaszi.gameengine.render.core.Window$1::run @ 21 (219 bytes)
+Event: 0.759 Thread 0x0000024df2867000 1000 %     4       Window$1::run @ 21 (219 bytes)
 Event: 0.762 Thread 0x0000024df2867000 nmethod 1000% 0x0000024de264b390 code [0x0000024de264b560, 0x0000024de264b778]
 
 GC Heap History (0 events):
@@ -320,7 +320,7 @@ No events
 Deoptimization events (3 events):
 Event: 0.103 Thread 0x0000024dcea55000 Uncommon trap: reason=range_check action=reinterpret pc=0x0000024de26058e8 method=java.lang.StringLatin1.indexOf([BII)I @ 13 c2
 Event: 0.171 Thread 0x0000024df2d2f000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000024de2603c98 method=java.lang.String.charAt(I)C @ 4 c2
-Event: 0.764 Thread 0x0000024df35af800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000024de264b700 method=hu.csaszi.gameengine.render.core.Window$1.run()V @ 67 c2
+Event: 0.764 Thread 0x0000024df35af800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000024de264b700 method=Window$1.run()V @ 67 c2
 
 Classes redefined (0 events):
 No events

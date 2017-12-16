@@ -94,9 +94,9 @@ R15=0x00007fb0b51be800 is a thread
 Stack: [0x000070000434e000,0x000070000444e000],  sp=0x000070000444d778,  free space=1021k
 Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
 C  [liblwjgl_opengl.dylib+0xcc6e]
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow.update()V+13
+j  GLFWWindow.update()V+13
 j  hu.csaszi.gameengine.game.GameManager.render()V+72
-j  hu.csaszi.gameengine.render.core.Window$1.run()V+87
+j  Window$1.run()V+87
 v  ~StubRoutines::call_stub
 V  [libjvm.dylib+0x2ee70a]
 V  [libjvm.dylib+0x2eeeae]
@@ -112,9 +112,9 @@ C  0x0000000000000000
 
 Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 j  org.lwjgl.opengl.GL11.glClear(I)V+0
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow.update()V+13
+j  GLFWWindow.update()V+13
 j  hu.csaszi.gameengine.game.GameManager.render()V+72
-j  hu.csaszi.gameengine.render.core.Window$1.run()V+87
+j  Window$1.run()V+87
 v  ~StubRoutines::call_stub
 
 ---------------  P R O C E S S  ---------------
@@ -169,9 +169,9 @@ Event: 1.090 Thread 0x00007fb0b509b800 nmethod 638 0x000000010dd1c910 code [0x00
 Event: 1.090 Thread 0x00007fb0b509b800  644  s    3       java.util.Vector::addElement (38 bytes)
 Event: 1.091 Thread 0x00007fb0b509b800 nmethod 644 0x000000010dd1ce10 code [0x000000010dd1cfa0, 0x000000010dd1d4c8]
 Event: 1.091 Thread 0x00007fb0b4803000 nmethod 643 0x000000010dd20450 code [0x000000010dd205a0, 0x000000010dd20718]
-Event: 1.092 Thread 0x00007fb0b509b800  645       3       hu.csaszi.gameengine.render.core.Window::isRunning (4 bytes)
+Event: 1.092 Thread 0x00007fb0b509b800  645       3       Window::isRunning (4 bytes)
 Event: 1.092 Thread 0x00007fb0b509b800 nmethod 645 0x000000010dd1fd50 code [0x000000010dd1fec0, 0x000000010dd20030]
-Event: 1.092 Thread 0x00007fb0b509b800  646       1       hu.csaszi.gameengine.render.core.Window::isRunning (4 bytes)
+Event: 1.092 Thread 0x00007fb0b509b800  646       1       Window::isRunning (4 bytes)
 Event: 1.092 Thread 0x00007fb0b509b800 nmethod 646 0x000000010dd08a90 code [0x000000010dd08be0, 0x000000010dd08d10]
 Event: 1.101 Thread 0x00007fb0b509b800  648       3       java.net.URLStreamHandler::parseURL (1193 bytes)
 

@@ -1,7 +1,6 @@
 package hu.csaszi.gameengine.render.core.software;
 
 import hu.csaszi.gameengine.render.core.Drawer;
-import hu.csaszi.gameengine.render.core.Window;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;

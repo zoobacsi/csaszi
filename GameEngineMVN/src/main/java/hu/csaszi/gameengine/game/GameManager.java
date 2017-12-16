@@ -1,21 +1,11 @@
 package hu.csaszi.gameengine.game;
 
-import hu.csaszi.gameengine.input.AWTInput;
-import hu.csaszi.gameengine.input.Input;
-import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
-import hu.csaszi.gameengine.render.core.gl.GLInput;
-import hu.csaszi.gameengine.render.core.gl.Timer;
 import hu.csaszi.gameengine.render.core.software.SoftwareWindow;
-import hu.csaszi.gameengine.render.graphics.gui.GUIManager;
-import org.joml.Vector3f;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
 
 public class GameManager {
 

@@ -2,10 +2,10 @@ package hu.csaszi.gameengine.render.core.gl.shaders;
 
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -61,6 +61,9 @@ public class Shader {
             logger.error(glGetProgramInfoLog(program));
             System.exit(1);
         }
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
     }
 
     public void setUniform(String name, int value) {

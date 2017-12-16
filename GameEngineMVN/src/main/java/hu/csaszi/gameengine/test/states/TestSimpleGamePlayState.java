@@ -3,6 +3,7 @@ package hu.csaszi.gameengine.test.states;
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.game.GameState;
 import hu.csaszi.gameengine.physics.objects.EntityManager;
+import hu.csaszi.gameengine.physics.objects.Transform;
 import hu.csaszi.gameengine.physics.world.Tile;
 import hu.csaszi.gameengine.physics.world.TileRenderer;
 import hu.csaszi.gameengine.physics.world.World;
@@ -10,7 +11,7 @@ import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
-import hu.csaszi.gameengine.test.objects.Player;
+import hu.csaszi.gameengine.physics.objects.Player;
 import org.joml.Vector3f;
 import org.lwjgl.opengl.GL;
 
@@ -56,17 +57,18 @@ public class TestSimpleGamePlayState extends GameState {
 		if(GL.getCapabilities() != null) {
 			camera = new Camera(window);
 
-			world = new World();
+			world = new World("test");
 			tileRenderer = new TileRenderer();
+
 			shader = new Shader("shader");
 
-			world.setTile(Tile.getTile("desert"), 0, 0);
+			world.setTile(Tile.getTile("desert").setSolid(), 1, 0);
 
-			world.setTile(Tile.getTile("water0"), 31, 31);
+			world.setTile(Tile.getTile("water0").setSolid(), 4, 4);
 
 			camera.setPosition(new Vector3f(0, 0, 0));
 
-			player = new Player(window, "hit");
+			player = new Player(new Transform());
 			entityManager.addObject(player);
 		}
 
@@ -81,7 +83,7 @@ public class TestSimpleGamePlayState extends GameState {
 //		}
 		world.render(tileRenderer, shader, camera);
 
-		entityManager.render(shader, camera);
+		entityManager.render(shader, camera, world);
 	}
 
 	@Override

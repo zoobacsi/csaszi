@@ -12,14 +12,34 @@ public class AABB {
         this.halfExtent = halfExtent;
     }
 
-    public boolean isIntersecting(AABB box2){
-        Vector2f distance = box2.getCenter().sub(center, new Vector2f());
-        distance.x = (float)Math.abs(distance.x);
-        distance.y = (float)Math.abs(distance.y);
+    public Collision getCollision(AABB box2){
+        Vector2f distance = box2.center.sub(center, new Vector2f());
+        distance.x = Math.abs(distance.x);
+        distance.y = Math.abs(distance.y);
 
-        distance.sub(halfExtent.add(box2.halfExtent), new Vector2f());
+        distance.sub(halfExtent.add(box2.halfExtent, new Vector2f()));
 
-        return (distance.x < 0 && distance.y < 0);
+        return new Collision(distance, distance.x < 0 && distance.y < 0);
+    }
+
+    public void correctPosition(AABB box2, Collision data){
+        Vector2f correctionDistance = box2.center.sub(center, new Vector2f());
+        if (data.distance.x > data.distance.y) {
+            if (correctionDistance.x > 0) {
+                center.add(data.distance.x, 0);
+            }
+            else {
+                center.add(-data.distance.x, 0);
+            }
+        }
+        else {
+            if (correctionDistance.y > 0) {
+                center.add(0, data.distance.y);
+            }
+            else {
+                center.add(0, -data.distance.y);
+            }
+        }
     }
 
     public Vector2f getCenter() {

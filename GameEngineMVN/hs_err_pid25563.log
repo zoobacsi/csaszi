@@ -35,7 +35,7 @@ C  [liblwjgl_opengl.dylib+0xccab]
 
 Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 j  org.lwjgl.opengl.GL11.glClearColor(FFFF)V+0
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow.show()V+24
+j  GLFWWindow.show()V+24
 j  hu.csaszi.gameengine.test.SimpleGame.<init>()V+30
 j  hu.csaszi.gameengine.test.SimpleGame.main([Ljava/lang/String;)V+33
 v  ~StubRoutines::call_stub

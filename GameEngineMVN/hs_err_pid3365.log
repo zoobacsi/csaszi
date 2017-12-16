@@ -97,9 +97,9 @@ C  [libGL.dylib+0x1a07]  glGetError+0xd
 j  org.lwjgl.system.JNI.callI(J)I+0
 j  org.lwjgl.opengl.GL.createCapabilities(Z)Lorg/lwjgl/opengl/GLCapabilities;+68
 j  org.lwjgl.opengl.GL.createCapabilities()Lorg/lwjgl/opengl/GLCapabilities;+1
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow.update()V+4
+j  GLFWWindow.update()V+4
 j  hu.csaszi.gameengine.game.GameManager.render()V+72
-j  hu.csaszi.gameengine.render.core.Window$1.run()V+87
+j  Window$1.run()V+87
 v  ~StubRoutines::call_stub
 V  [libjvm.dylib+0x2ee70a]  JavaCalls::call_helper(JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x6ae
 V  [libjvm.dylib+0x2eeeae]  JavaCalls::call_virtual(JavaValue*, KlassHandle, Symbol*, Symbol*, JavaCallArguments*, Thread*)+0x164
@@ -117,9 +117,9 @@ Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 j  org.lwjgl.system.JNI.callI(J)I+0
 j  org.lwjgl.opengl.GL.createCapabilities(Z)Lorg/lwjgl/opengl/GLCapabilities;+68
 j  org.lwjgl.opengl.GL.createCapabilities()Lorg/lwjgl/opengl/GLCapabilities;+1
-j  hu.csaszi.gameengine.render.core.gl.GLFWWindow.update()V+4
+j  GLFWWindow.update()V+4
 j  hu.csaszi.gameengine.game.GameManager.render()V+72
-j  hu.csaszi.gameengine.render.core.Window$1.run()V+87
+j  Window$1.run()V+87
 v  ~StubRoutines::call_stub
 
 ---------------  P R O C E S S  ---------------
@@ -173,9 +173,9 @@ Event: 0.740 Thread 0x00007fd524066000  627       3       org.lwjgl.system.Memor
 Event: 0.741 Thread 0x00007fd524066000 nmethod 627 0x000000011bdb2e90 code [0x000000011bdb3000, 0x000000011bdb3268]
 Event: 0.741 Thread 0x00007fd524066000  628       3       org.lwjgl.system.MemoryAccess$MemoryAccessorUnsafe::memPutAddress (9 bytes)
 Event: 0.741 Thread 0x00007fd524066000 nmethod 628 0x000000011bdb2a50 code [0x000000011bdb2bc0, 0x000000011bdb2dc8]
-Event: 0.744 Thread 0x00007fd524066000  634       3       hu.csaszi.gameengine.render.core.Window::isRunning (4 bytes)
+Event: 0.744 Thread 0x00007fd524066000  634       3       Window::isRunning (4 bytes)
 Event: 0.744 Thread 0x00007fd524066000 nmethod 634 0x000000011bdb26d0 code [0x000000011bdb2840, 0x000000011bdb29b0]
-Event: 0.744 Thread 0x00007fd524066000  635       1       hu.csaszi.gameengine.render.core.Window::isRunning (4 bytes)
+Event: 0.744 Thread 0x00007fd524066000  635       1       Window::isRunning (4 bytes)
 Event: 0.745 Thread 0x00007fd524066000 nmethod 635 0x000000011bdb23d0 code [0x000000011bdb2520, 0x000000011bdb2650]
 Event: 0.749 Thread 0x00007fd522055800 nmethod 633 0x000000011bdb1a90 code [0x000000011bdb1c00, 0x000000011bdb2058]
 Event: 0.753 Thread 0x00007fd524066000  637       3       java.net.URLStreamHandler::parseURL (1193 bytes)

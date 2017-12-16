@@ -1,13 +1,13 @@
 package hu.csaszi.gameengine.render.core.gl;
 
-import hu.csaszi.gameengine.render.graphics.imaging.SpriteSheet;
+import hu.csaszi.gameengine.render.graphics.imaging.PNGDecoder;
 import org.lwjgl.BufferUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import static org.lwjgl.opengl.GL11.*;
@@ -36,29 +36,33 @@ public class Texture implements Sprite{
 
         try{
 
-            bufferedImage = ImageIO.read(new File("src/main/resources/textures/" + fileName + ".png"));
-            width = bufferedImage.getWidth();
-            height = bufferedImage.getHeight();
-System.out.println(width + " " + height);
-//            int tileWidth = width;
-//            int tileHeight;
+//            bufferedImage = ImageIO.read(new File("src/main/resources/textures/" + fileName + ".png"));
 
-            int[] pixels_raw = new int[width * height * 4];
-            pixels_raw = bufferedImage.getRGB(0, 0, width, height,null, 0 , width);
+            PNGDecoder decoder = new PNGDecoder(new FileInputStream(new File("src/main/resources/textures/" + fileName + ".png")));
+            width = decoder.getWidth();
+            height = decoder.getHeight();
 
             ByteBuffer pixels = BufferUtils.createByteBuffer(width * height * 4);
-
-            for(int i = 0; i < width; i++){
-                for(int j = 0; j < height; j++){
-                    int pixel = pixels_raw[i*width + j];
-                    pixels.put((byte)((pixel >> 16) & 0xFF)); // RED
-                    pixels.put((byte)((pixel >> 8) & 0xFF)); // GREEN
-                    pixels.put((byte)(pixel & 0xFF)); // BLUE
-                    pixels.put((byte)((pixel >> 24) & 0xFF)); // ALPHA
-                }
-            }
-
-            pixels.flip();
+            decoder.decode(pixels, width * 4, PNGDecoder.Format.RGBA);
+//            width = bufferedImage.getWidth();
+//            height = bufferedImage.getHeight();
+//
+//            int[] pixels_raw = new int[width * height * 4];
+//            bufferedImage.getRGB(0, 0, width, height, pixels_raw, 0 , width);
+//
+//            ByteBuffer pixels = BufferUtils.createByteBuffer(width * height * 4);
+//
+//            for(int i = 0; i < width; i++){
+//                for(int j = 0; j < height; j++){
+//                    int pixel = pixels_raw[i*width + j];
+//                    pixels.put((byte)((pixel >> 16) & 0xFF)); // RED
+//                    pixels.put((byte)((pixel >> 8) & 0xFF)); // GREEN
+//                    pixels.put((byte)(pixel & 0xFF)); // BLUE
+//                    pixels.put((byte)((pixel >> 24) & 0xFF)); // ALPHA
+//                }
+//            }
+//
+           pixels.flip();
 
             id = glGenTextures();
 
