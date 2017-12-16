@@ -4,6 +4,7 @@ import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.physics.collission.AABB;
 import hu.csaszi.gameengine.physics.collission.Collision;
 import hu.csaszi.gameengine.physics.world.World;
+import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.Sprite;
 import hu.csaszi.gameengine.render.core.gl.models.Model;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
@@ -17,30 +18,20 @@ import java.awt.*;
 
 public abstract class GameObject {
 
-	protected int x;
-	protected int y;
-	protected int sx;
-	protected int sy;
-	
-	protected boolean doDraw = true;
-	protected boolean didDraw;
-	protected boolean hasImage;
 	protected boolean isDestroyed;
 	
-	protected Color color = Color.white;
 	protected String tag;
 
 	protected AABB boundingBox;
 	protected Image image;
 	protected Model model;
-	//protected Texture texture;
 	protected Sprite texture;
 	protected Transform transform;
 
 	public GameObject(Sprite texture, Transform transform){
 
 		float ratio = texture.getRatio() + (texture.getRatio() - 1.0f);
-		System.out.println(ratio);
+
 		float[] vertices = new float[]{
 				-1f, ratio, 0, // TOP LEFT      0
 				1f, ratio, 0, // TOP RIGHT     1
@@ -118,28 +109,8 @@ public abstract class GameObject {
 		this.isDestroyed = isDestroyed;
 	}
 
-	public abstract void update(float delta, GameManager gameManager);
+	public abstract void update(float delta, GLFWWindow window, Camera camera, World world);
 
-	public int getX(){
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public int getSx() {
-		return sx;
-	}
-
-	public int getSy() {
-		return sy;
-	}
-
-	public boolean isDidDraw() {
-		return didDraw;
-	}
-	
 	public String getTag(){
 		return tag;
 	}

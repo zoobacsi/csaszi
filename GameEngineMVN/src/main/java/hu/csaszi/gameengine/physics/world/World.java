@@ -1,7 +1,13 @@
 package hu.csaszi.gameengine.physics.world;
 
+import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.physics.collission.AABB;
+import hu.csaszi.gameengine.physics.objects.Entity;
+import hu.csaszi.gameengine.physics.objects.EntityManager;
+import hu.csaszi.gameengine.physics.objects.Transform;
 import hu.csaszi.gameengine.render.core.Window;
+import hu.csaszi.gameengine.render.core.gl.Animation;
+import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import org.joml.Matrix4f;
@@ -57,7 +63,6 @@ public class World {
                     }
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

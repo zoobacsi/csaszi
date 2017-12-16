@@ -3,8 +3,10 @@ package hu.csaszi.gameengine.physics.objects;
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.game.GameState;
 import hu.csaszi.gameengine.physics.world.World;
+import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
+import hu.csaszi.gameengine.test.states.TestSimpleGamePlayState;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,19 +51,29 @@ public class EntityManager {
 	
 	//Update Methods
 	public void update(float delta, GameManager gameManager){
-		
+
+		GLFWWindow window = (GLFWWindow) gameManager.getWindow();
+        Camera camera = ((TestSimpleGamePlayState) gameManager.getCurrentState()).getCamera();
+        World world = ((TestSimpleGamePlayState) gameManager.getCurrentState()).getWorld();
+
 		List<GameObject> objects = new ArrayList<>();
 		objects.addAll(gameObjects);
-		
+
+		int i = 0;
 		for(GameObject gameObject : objects) {
 			if(gameObject != null ){
 				if(gameObject.isDestroyed()){
 					gameObjects.remove(gameObject);
 				} else {
-					gameObject.update(delta, gameManager);
+					gameObject.update(delta, window, camera, world);
 				}
 			}
+			for(int j = i + 1; j < objects.size(); j++){
+				gameObject.collideWithEntity(objects.get(j));
+			}
+			i++;
 		}
+
 	}
 	
 	public void render(Shader shader, Camera camera, World world){

@@ -21,7 +21,7 @@ public class Tile {
 
     static {
         addTile("grass");
-        addTile("desert");
+        addTile("desert").setSolid();
         for(int i = 0; i < 16; i++){
             addTile("water" + i);
         }
@@ -51,8 +51,12 @@ public class Tile {
         return id;
     }
 
-    public static void addTile(String texture){
-        tileMap.put(texture, new Tile(texture));
+    public static Tile addTile(String texture){
+
+        Tile tile = new Tile(texture);
+        tileMap.put(texture, tile);
+
+        return tile;
     }
 
 //    public void clearTileMap(){

@@ -16,12 +16,13 @@ public class GameManager {
 	private Window window;
 	private boolean pause;
 	private boolean softwareRender;
+	private static GameManager instance;
 
-	public GameManager(){
-		this.softwareRender = true;
+	protected GameManager(){
+		this.softwareRender = false;
 	}
 
-	public GameManager(boolean softwareRender){
+	protected GameManager(boolean softwareRender){
 		this.softwareRender = softwareRender;
 	}
 
@@ -35,6 +36,13 @@ public class GameManager {
 
 	public void setPause(boolean pause) {
 		this.pause = pause;
+	}
+
+	public static GameManager getInstance(){
+		if(instance == null){
+			instance = new GameManager();
+		}
+		return instance;
 	}
 
 	// Game Access
