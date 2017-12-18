@@ -1,7 +1,11 @@
 package hu.csaszi.gameengine.game;
 
+import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
+import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
+import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
+import hu.csaszi.gameengine.render.graphics.gui.GUI;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +25,7 @@ public class GameManagerTests {
     @Test
     public void testCreateWindow(){
 
-        gameManager.createWindow("test", 700,500,true);
+        gameManager.createWindow("test", 700,500);
 
         assertNotNull(gameManager.getWindow());
         assertEquals(682, gameManager.getWindow().getWidth());
@@ -33,7 +37,7 @@ public class GameManagerTests {
     public void testAddAndEnterState(){
 
         GameManager gameManager = new GameManager();//mock(GameManager.class);
-        gameManager.createWindow("test", 0,0,true);
+        gameManager.createWindow("test", 0,0);
 
         GameStateImpl state = spy(new GameStateImpl());
         when(state.getStateId()).thenReturn(1);
@@ -49,13 +53,28 @@ public class GameManagerTests {
     class GameStateImpl extends GameState{
 
         @Override
-        public void init(Window window, GameManager gameManager) {
+        public void init(GLFWWindow window, GameManager gameManager) {
 
         }
 
         @Override
-        public void render(Window window, Drawer drawer, GameManager gameManager) {
+        public GUI getGUI() {
+            return null;
+        }
 
+        @Override
+        public void render(GLFWWindow window, Drawer drawer, GameManager gameManager) {
+
+        }
+
+        @Override
+        public World getWorld() {
+            return null;
+        }
+
+        @Override
+        public Camera getCamera() {
+            return null;
         }
 
         @Override

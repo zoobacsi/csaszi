@@ -4,9 +4,12 @@ import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.input.Input;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
+import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
+import hu.csaszi.gameengine.render.graphics.gui.GUI;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -29,6 +32,8 @@ public class GLFWWindow implements Window {
     private int height;
 
     private boolean fullscreen;
+    private boolean hasResized;
+    private GLFWWindowSizeCallback windowSizeCallback;
     private GameManager gameManager;
     private Drawer drawer;
 
@@ -42,11 +47,13 @@ public class GLFWWindow implements Window {
 
     public GLFWWindow(String title, int width, int height, GameManager gameManager) {
 
-        setSize(width, height);
         this.title = title;
         this.gameManager = gameManager;
+
+        setSize(width, height);
         setFullscreen(false);
 
+        this.hasResized = false;
         this.drawer = new GLDrawer(this);
     }
 
@@ -58,6 +65,9 @@ public class GLFWWindow implements Window {
         return height;
     }
 
+    public boolean isHasResized(){
+        return hasResized;
+    }
     public boolean isFullscreen() {
         return fullscreen;
     }
@@ -116,9 +126,9 @@ public class GLFWWindow implements Window {
             // Get the window size passed to glfwCreateWindow
             glfwGetWindowSize(window, pWidth, pHeight);
 
-            if(!fullscreen){
-            // Get the resolution of the primary monitor
-            GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+            if (!fullscreen) {
+                // Get the resolution of the primary monitor
+                GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
                 // Center the window
                 glfwSetWindowPos(
@@ -133,9 +143,15 @@ public class GLFWWindow implements Window {
         glfwMakeContextCurrent(window);
         // Enable v-sync
         glfwSwapInterval(1);
+
+        setLocalCallbacks();
     }
 
-    public static void setCallbacks(){
+    public void cleanUp(){
+        glfwFreeCallbacks(window);
+    }
+
+    public static void setCallbacks() {
         glfwSetErrorCallback(new GLFWErrorCallback() {
             @Override
             public void invoke(int error, long description) {
@@ -143,6 +159,23 @@ public class GLFWWindow implements Window {
             }
         });
     }
+
+    private void setLocalCallbacks(){
+        windowSizeCallback = new GLFWWindowSizeCallback() {
+            @Override
+            public void invoke(long argWindow, int argWidth, int argHeight) {
+
+//                if(window == argWindow) {
+                    width = argWidth;
+                    height = argHeight;
+                    hasResized = true;
+//                }
+            }
+        };
+
+        glfwSetWindowSizeCallback(window, windowSizeCallback);
+    }
+
     public GLFWWindow setSize(int width, int height) {
         this.width = width;
         this.height = height;
@@ -158,12 +191,12 @@ public class GLFWWindow implements Window {
     @Override
     public synchronized void update(float delta) {
 
-        glfwPollEvents();
+        hasResized = false;
 
-        if(input != null){
+        if (input != null) {
             input.update();
         }
-
+        glfwPollEvents();
         gameManager.update(delta);
     }
 
@@ -260,11 +293,17 @@ public class GLFWWindow implements Window {
 
             while (unprocessed >= frameCap) {
 
+                if (hasResized) {
+                    glViewport(0,0,width,height);
+                    gameManager.getCurrentState().getGUI().resizeCamera(this);
+                    gameManager.getCurrentState().getCamera().setProjection(width, height);
+                    gameManager.getCurrentState().getWorld().calculateView(this);
+                }
                 unprocessed -= frameCap;
 
                 canRender = true;
 
-                update((float)frameCap);
+                update((float) frameCap);
 
                 if (input.isKeyDown(GLFW_KEY_ESCAPE)) {
                     glfwSetWindowShouldClose(window, true);
@@ -284,6 +323,10 @@ public class GLFWWindow implements Window {
 
                 gameManager.render();
 
+                GUI gui = gameManager.getCurrentState().getGUI();
+                if(gui != null){
+                    gui.render();
+                }
                 glfwSwapBuffers(window); // swap the color buffers
                 frames++;
             }
@@ -294,7 +337,7 @@ public class GLFWWindow implements Window {
         return currentFPS;
     }
 
-    public long getWindow(){
+    public long getWindow() {
         return window;
     }
 }

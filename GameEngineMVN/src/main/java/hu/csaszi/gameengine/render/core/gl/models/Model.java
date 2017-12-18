@@ -38,9 +38,9 @@ public class Model {
     }
 
     protected void finalize() throws Throwable{
-        glDeleteBuffers(vId);
-        glDeleteBuffers(tId);
-        glDeleteBuffers(iId);
+//        glDeleteBuffers(vId);
+//        glDeleteBuffers(tId);
+//        glDeleteBuffers(iId);
         super.finalize();
     }
     public void render(){

@@ -34,7 +34,8 @@ public class Animation implements Sprite{
         this.elapsedTime += currentTime - lastTime;
 
         if(elapsedTime >= fps) {
-            elapsedTime -= fps;
+//            elapsedTime -= fps;
+            elapsedTime = 0;
             pointer++;
         }
 

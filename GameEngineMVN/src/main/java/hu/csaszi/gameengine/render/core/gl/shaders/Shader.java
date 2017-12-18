@@ -1,6 +1,7 @@
 package hu.csaszi.gameengine.render.core.gl.shaders;
 
 import org.joml.Matrix4f;
+import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.slf4j.Logger;
@@ -30,7 +31,7 @@ public class Shader {
         glShaderSource(vertexShader, readFile(fileName + ".vs"));
         glCompileShader(vertexShader);
 
-        if(glGetShaderi(vertexShader, GL_COMPILE_STATUS) != 1){
+        if (glGetShaderi(vertexShader, GL_COMPILE_STATUS) != 1) {
             logger.error(glGetShaderInfoLog(vertexShader));
             System.exit(1);
         }
@@ -39,7 +40,7 @@ public class Shader {
         glShaderSource(fragmentShader, readFile(fileName + ".fs"));
         glCompileShader(fragmentShader);
 
-        if(glGetShaderi(fragmentShader, GL_COMPILE_STATUS) != 1){
+        if (glGetShaderi(fragmentShader, GL_COMPILE_STATUS) != 1) {
             logger.error(glGetShaderInfoLog(fragmentShader));
             System.exit(1);
         }
@@ -51,13 +52,13 @@ public class Shader {
         glBindAttribLocation(program, 1, "textures");
 
         glLinkProgram(program);
-        if(glGetProgrami(program, GL_LINK_STATUS) != 1){
+        if (glGetProgrami(program, GL_LINK_STATUS) != 1) {
             logger.error(glGetProgramInfoLog(program));
             System.exit(1);
         }
         glValidateProgram(program);
 
-        if(glGetProgrami(program, GL_VALIDATE_STATUS) != 1){
+        if (glGetProgrami(program, GL_VALIDATE_STATUS) != 1) {
             logger.error(glGetProgramInfoLog(program));
             System.exit(1);
         }
@@ -70,8 +71,17 @@ public class Shader {
 
         int location = glGetUniformLocation(program, name);
 
-        if(location != -1){
+        if (location != -1) {
             glUniform1i(location, value);
+        }
+    }
+
+    public void setUniform(String uniform, Vector4f value) {
+
+        int location = glGetUniformLocation(program, uniform);
+
+        if (location != -1) {
+            glUniform4f(location,value.x, value.y, value.z, value.w);
         }
     }
 
@@ -90,27 +100,27 @@ public class Shader {
 
         FloatBuffer buffer = BufferUtils.createFloatBuffer(16);
         value.get(buffer);
-        if(location != -1){
+        if (location != -1) {
             glUniformMatrix4fv(location, false, buffer);
         }
     }
 
-    public  void bind() {
+    public void bind() {
         glUseProgram(program);
     }
 
-    private String readFile(String fileName){
+    private String readFile(String fileName) {
 
         StringBuilder string = new StringBuilder();
-        try(BufferedReader br = new BufferedReader(new FileReader(new File("src/main/resources/shaders/" + fileName)))){
+        try (BufferedReader br = new BufferedReader(new FileReader(new File("src/main/resources/shaders/" + fileName)))) {
 
             String line;
 
-            while ((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 string.append(line);
                 string.append("\n");
             }
-        } catch(IOException e){
+        } catch (IOException e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();
         }

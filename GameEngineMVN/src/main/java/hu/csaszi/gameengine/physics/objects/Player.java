@@ -1,13 +1,10 @@
 package hu.csaszi.gameengine.physics.objects;
 
-import hu.csaszi.gameengine.game.GameManager;
-import hu.csaszi.gameengine.physics.collission.AABB;
-import hu.csaszi.gameengine.physics.collission.Collision;
 import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
+import hu.csaszi.gameengine.render.core.gl.Texture;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
-import hu.csaszi.gameengine.test.states.TestSimpleGamePlayState;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
@@ -15,9 +12,15 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public class Player extends Entity {
 
+    public static final int ANIM_IDLE = 0;
+    public static final int ANIM_WALK = 1;
+    public static final int ANIM_SIZE = 2;
+
     public Player(Transform transform) {
-        super(new Animation(4, 5, "soldier"), transform);
+        super(ANIM_SIZE, transform, "tall");
         this.tag = "player";
+        this.setSprite(ANIM_IDLE, new Texture("anim/soldier_0"));
+        this.setSprite(ANIM_WALK, new Animation(4, 5, "soldier"));
     }
 
     @Override
@@ -41,6 +44,11 @@ public class Player extends Entity {
         }
 
         move(movement);
+        if(movement.x != 0 || movement.y != 0){
+            useAnimation(ANIM_WALK);
+        } else {
+            useAnimation(ANIM_IDLE);
+        }
 
         super.update(delta, window, camera, world);
 

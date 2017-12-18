@@ -15,9 +15,15 @@ import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import hu.csaszi.gameengine.physics.objects.Player;
+import hu.csaszi.gameengine.render.graphics.gui.GUI;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.lwjgl.opengl.GL;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class TestSimpleGamePlayState extends GameState {
 
@@ -30,6 +36,7 @@ public class TestSimpleGamePlayState extends GameState {
 	private World world;
 	private TileRenderer tileRenderer;
 	private Shader shader;
+	private GUI gui;
 
 	public World getWorld() {
 		return world;
@@ -46,7 +53,7 @@ public class TestSimpleGamePlayState extends GameState {
 	private EntityManager entityManager;
 
 	@Override
-	public void init(Window window, GameManager gameManager) {
+	public void init(GLFWWindow window, GameManager gameManager) {
 
 		entityManager = EntityManager.createEntityManager(this);
 //
@@ -63,6 +70,8 @@ public class TestSimpleGamePlayState extends GameState {
 
 			world = new World("test");
 			tileRenderer = new TileRenderer();
+
+			gui = new GUI(window);
 
 			shader = new Shader("shader");
 
@@ -85,22 +94,66 @@ public class TestSimpleGamePlayState extends GameState {
 			transformEnemy.pos.x = 0;
 			transformEnemy.pos.y = -4;
 
-			entityManager.addObject(new Entity(new Animation(1, 1, "soldier"), transformEnemy){
-				@Override
-				public void update(float delta, GLFWWindow window, Camera camera, World world) {
-					move(new Vector2f(5*delta, 0));
-					super.update(delta, window, camera, world);
-				}
-			});
+//			entityManager.addObject(new Entity(new Animation(1, 1, "soldier"), transformEnemy){
+//				@Override
+//				public void update(float delta, GLFWWindow window, Camera camera, World world) {
+//					move(new Vector2f(5*delta, 0));
+//					super.update(delta, window, camera, world);
+//				}
+//			});
+			try {
+				readEntitesMap(entityManager);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
 
+	private void readEntitesMap(EntityManager entityManager)throws IOException{
+		BufferedImage entitySheet = ImageIO.read(new File("src/main/resources/levels/" + world.getTag() + "_entities.png"));
+
+		int width = entitySheet.getWidth();
+		int height = entitySheet.getHeight();
+
+		int[] colorEntitySheet = entitySheet.getRGB(0, 0, width, height, null, 0,width);
+		Transform transform;
+
+		for(int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				int entityIndex = (colorEntitySheet[x + y * width] >> 16) & 0xFF;
+				int entityAlpha = (colorEntitySheet[x + y * width] >> 24) & 0xFF;
+				System.out.println(entityAlpha + " " + entityIndex);
+				if(entityAlpha > 0){
+
+					transform = new Transform();
+					transform.pos.x = x*2;
+					transform.pos.y = -y*2;
+					switch (entityIndex){
+						case 1:
+							Entity entity = new Entity(1, transform, "tall");
+							entity.setSprite(0, new Animation(4, 5, "soldier"));
+
+							entityManager.addObject(entity);
+							break;
+						default:
+							break;
+					}
+				}
+			}
+		}
+	}
+
 	@Override
-	public void render(Window window, Drawer drawer, GameManager gameManager) {
+	public GUI getGUI(){
+		return gui;
+	}
+
+	@Override
+	public void render(GLFWWindow window, Drawer drawer, GameManager gameManager) {
 //		drawer.drawString("Score: " + Player.getScore(), window.getWidth()/2 - 34, 10);
 //
-//		if(!Player.isPlayerAlive()){
+//		if(!.isPlayerAlive()){
 //			drawer.drawString("Press Space To Restart, Score: " + Player.getScore(), window.getWidth()/2-34, window.getHeight()/2 - 30);
 //		}
 		world.render(tileRenderer, shader, camera);
@@ -112,24 +165,7 @@ public class TestSimpleGamePlayState extends GameState {
 	public void update(float delta, GameManager gameManager) {
 
 		camera.update();
-
 		entityManager.update(delta, gameManager);
-
 		world.correctCamera(camera);
-
-//		AWTInput AWTInput = window.getInput();
-//
-//		if(AWTInput.isKeyDown(KeyEvent.VK_Y)){
-//			AudioPlayer.decreaseVolume();
-//			GUIManager.getObjects().get(0).setLabelText("Volume: " + Math.round(AudioPlayer.getVolume() * 100f));
-//		}
-//		if(AWTInput.isKeyDown(KeyEvent.VK_X)){
-//			AudioPlayer.increaseVolume();
-//			GUIManager.getObjects().get(0).setLabelText("Volume: " + Math.round(AudioPlayer.getVolume() * 100f));
-//		}
-//
-//		if(AWTInput.isKeyDown(KeyEvent.VK_ESCAPE)){
-//			window.close();
-//		}
 	}
 }

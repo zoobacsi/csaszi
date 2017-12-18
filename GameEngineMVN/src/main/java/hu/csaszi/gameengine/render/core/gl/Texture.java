@@ -79,7 +79,7 @@ public class Texture implements Sprite{
     }
 
     protected void finalize() throws Throwable{
-        glDeleteTextures(id);
+        //glDeleteTextures(id);
         super.finalize();
     }
 

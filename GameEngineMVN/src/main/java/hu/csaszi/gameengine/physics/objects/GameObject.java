@@ -4,11 +4,13 @@ import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.physics.collission.AABB;
 import hu.csaszi.gameengine.physics.collission.Collision;
 import hu.csaszi.gameengine.physics.world.World;
+import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.Sprite;
 import hu.csaszi.gameengine.render.core.gl.models.Model;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
+import hu.csaszi.gameengine.render.graphics.assets.Assets;
 import hu.csaszi.gameengine.render.graphics.imaging.Image;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
@@ -21,44 +23,26 @@ public abstract class GameObject {
 	protected boolean isDestroyed;
 	
 	protected String tag;
-
+	protected final Model model;
 	protected AABB boundingBox;
 	protected Image image;
-	protected Model model;
-	protected Sprite texture;
+
+	protected Sprite[] sprites;
 	protected Transform transform;
+	protected int useSprite;
 
-	public GameObject(Sprite texture, Transform transform){
+	public GameObject(Sprite[] sprites, Transform transform, String model){
 
-		float ratio = texture.getRatio() + (texture.getRatio() - 1.0f);
-
-		float[] vertices = new float[]{
-				-1f, ratio, 0, // TOP LEFT      0
-				1f, ratio, 0, // TOP RIGHT     1
-				1f, -1f, 0, // BOTTOM RIGHT  2
-				-1f, -1f, 0 // BOTTOM LEFT 3
-		};
-
-		float[] texCoords = new float[]{
-				0, 0,
-				1, 0,
-				1, 1,
-				0, 1
-		};
-
-		int[] indices = new int[]{
-				0, 1, 2,
-				2, 3, 0
-		};
-
-		model = new Model(vertices, texCoords, indices);
-
-		this.texture = texture;
+		this.sprites = sprites;
+		this.model = Assets.getModel(model);
 		this.transform = transform;
-//		this.transform.scale = new Vector3f(32, 32, 1);
-
-		boundingBox = new AABB(new Vector2f(transform.pos.x, transform.pos.y), new Vector2f(transform.scale.x, transform.scale.y));
+		this.boundingBox = new AABB(new Vector2f(transform.pos.x, transform.pos.y), new Vector2f(transform.scale.x, transform.scale.y));
 	}
+
+	public GameObject(Sprite sprite, Transform transform, String model){
+		this(new Sprite[]{ sprite}, transform, model);
+	}
+
 	public void render(Shader shader, Camera camera, World world){
 
 		Matrix4f target = camera.getProjection();
@@ -66,18 +50,10 @@ public abstract class GameObject {
 		shader.bind();
 		shader.setUniform("sampler",0);
 		shader.setUniform("projection", transform.getProjection(target));
-		texture.bind(0);
+		if(sprites != null && sprites.length > useSprite){
+			sprites[useSprite].bind(0);
+		}
 		model.render();
-//		if(doDraw){
-//
-//			if(hasImage){
-//				drawer.drawImage(image.getLoadedImage(), x, y);
-//			} else {
-//
-//				drawer.fillRect(x, y, sx, sy, color);
-//			}
-//			didDraw = true;
-//		}
 	}
 
 	public void collideWithEntity(GameObject entity) {
@@ -107,9 +83,19 @@ public abstract class GameObject {
 
 	public void setDestroyed(boolean isDestroyed) {
 		this.isDestroyed = isDestroyed;
+		this.transform = null;
+		this.sprites = null;
 	}
 
 	public abstract void update(float delta, GLFWWindow window, Camera camera, World world);
+
+	public void setSprite(int index, Sprite sprite){
+		sprites[index] = sprite;
+	}
+
+	public void useAnimation(int index){
+		this.useSprite = index;
+	}
 
 	public String getTag(){
 		return tag;

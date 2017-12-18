@@ -3,6 +3,7 @@ package hu.csaszi.gameengine.physics.objects;
 import hu.csaszi.gameengine.physics.collission.AABB;
 import hu.csaszi.gameengine.physics.collission.Collision;
 import hu.csaszi.gameengine.physics.world.World;
+import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.Sprite;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
@@ -16,8 +17,15 @@ public class Entity extends GameObject {
     private boolean isAlive = true;
     private long entityId = 0;
 
+    public Entity(int maxAnimations, Transform transform, String model) {
+        super(new Sprite[maxAnimations], transform, model);
+        entityId = maxEntityId++;
+
+        this.tag = "entity_" + entityId;
+    }
+
     public Entity(Sprite sprite, Transform transform) {
-        super(sprite, transform);
+        super(sprite, transform, "tall");
         entityId = maxEntityId++;
 
         this.tag = "entity_" + entityId;
@@ -78,9 +86,17 @@ public class Entity extends GameObject {
         }
     }
 
+//    @Override
+//    public void update(float delta, GLFWWindow window, Camera camera, World world) {
+//
+//        collideWithTile(world);
+//    }
+
     @Override
     public void update(float delta, GLFWWindow window, Camera camera, World world) {
-
+        if(!"player".equalsIgnoreCase(tag)){
+            move(new Vector2f(5*delta, 0));
+        }
         collideWithTile(world);
     }
 

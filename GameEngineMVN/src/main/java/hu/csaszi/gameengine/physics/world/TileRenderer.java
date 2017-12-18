@@ -4,6 +4,7 @@ import hu.csaszi.gameengine.render.core.gl.Texture;
 import hu.csaszi.gameengine.render.core.gl.models.Model;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
+import hu.csaszi.gameengine.render.graphics.assets.Assets;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
@@ -19,26 +20,7 @@ public class TileRenderer {
 
         tileTextures = new HashMap<String, Texture>();
 
-        float[] vertices = new float[]{
-                -1f, 1f, 0, // TOP LEFT      0
-                1f, 1f, 0, // TOP RIGHT     1
-                1f, -1f, 0, // BOTTOM RIGHT  2
-                -1f, -1f, 0 // BOTTOM LEFT 3
-        };
-
-        float[] texCoords = new float[]{
-                0, 0,
-                1, 0,
-                1, 1,
-                0, 1
-        };
-
-        int[] indices = new int[]{
-                0, 1, 2,
-                2, 3, 0
-        };
-
-        model = new Model(vertices, texCoords, indices);
+        model = Assets.getModel("box");
 
         for(int i = 0; i < Tile.tiles.length; i++){
             if(Tile.tiles[i] != null){
