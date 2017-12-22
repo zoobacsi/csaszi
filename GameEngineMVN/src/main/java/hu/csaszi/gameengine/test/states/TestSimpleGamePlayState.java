@@ -116,6 +116,8 @@ public class TestSimpleGamePlayState extends GameState {
 		int width = entitySheet.getWidth();
 		int height = entitySheet.getHeight();
 
+		Transform.setWorldBoundaries(width, height);
+
 		int[] colorEntitySheet = entitySheet.getRGB(0, 0, width, height, null, 0,width);
 		Transform transform;
 
@@ -123,12 +125,12 @@ public class TestSimpleGamePlayState extends GameState {
 			for (int x = 0; x < width; x++) {
 				int entityIndex = (colorEntitySheet[x + y * width] >> 16) & 0xFF;
 				int entityAlpha = (colorEntitySheet[x + y * width] >> 24) & 0xFF;
-				System.out.println(entityAlpha + " " + entityIndex);
+
 				if(entityAlpha > 0){
 
 					transform = new Transform();
-					transform.pos.x = x*2;
-					transform.pos.y = -y*2;
+					transform.pos.x = x * 2;
+					transform.pos.y = -y * 2;
 					switch (entityIndex){
 						case 1:
 							Entity entity = new Entity(1, transform, "tall");

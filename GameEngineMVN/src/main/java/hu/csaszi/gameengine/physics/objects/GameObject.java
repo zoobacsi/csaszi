@@ -73,6 +73,25 @@ public abstract class GameObject {
 
 	public void move(Vector2f direction) {
 
+		if( this instanceof Player){
+			System.out.println(transform.pos.x + " " + transform.pos.y);
+		}
+
+		if (transform.pos.x + direction.x < 0){
+			transform.pos.x = 0 - direction.x;
+			//direction.set(0, direction.y);
+		} else if (transform.pos.x + direction.x > Transform.getMaxWidth()){
+			//direction.set(Transform.getMaxWidth(), direction.y);
+			transform.pos.x = Transform.getMaxWidth() - direction.x;
+		}
+		if (transform.pos.y + direction.y > 0){
+			transform.pos.y = 0 - direction.y;
+			//direction.set(direction.x, 0);
+		} else if (transform.pos.y + direction.y < -Transform.getMaxHeigth()){
+			//direction.set(direction.x, -Transform.getMaxHeigth());
+			transform.pos.y = -Transform.getMaxHeigth() - direction.y;
+		}
+
 		transform.pos.add(new Vector3f(direction, 0));
 		boundingBox.getCenter().set(transform.pos.x, transform.pos.y);
 	}

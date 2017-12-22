@@ -24,7 +24,7 @@ public class GUI {
     public GUI(GLFWWindow window){
         shader = new Shader("gui");
         camera = new Camera(window);
-        sheet = new TileSheet("celianna_farmnature_tileset", 16, 16);
+        sheet = new TileSheet("Soldier3", 4, 4);
     }
 
     public void resizeCamera(Window window){
@@ -33,11 +33,11 @@ public class GUI {
 
     public void render(){
         Matrix4f mat = new Matrix4f();
-        camera.getUntransformedProjection().scale(64, mat);
+        camera.getUntransformedProjection().scale(16, mat);
         mat.translate(-2.6f, -2f, 0);
         shader.bind();
         shader.setUniform("projection", mat);
-        sheet.bindTile(shader, 4);
+        sheet.bindTile(shader, 1);
         //shader.setUniform("color", new Vector4f(0,0,0,0.4f));
 
 
