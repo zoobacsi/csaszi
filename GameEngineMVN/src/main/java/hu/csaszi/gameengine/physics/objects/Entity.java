@@ -6,11 +6,16 @@ import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.Sprite;
+import hu.csaszi.gameengine.render.core.gl.TextureSheet;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
+import hu.csaszi.gameengine.render.graphics.AnimationKeys;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 public class Entity extends GameObject {
+
+    public static final int ANIM_IDLE = 0;
+    public static final int ANIM_WALK = 1;
 
     private static long maxEntityId = 0;
 
@@ -32,7 +37,7 @@ public class Entity extends GameObject {
     }
 
 
-    public void collideWithTile(World world){
+    public boolean collideWithTile(World world){
 
         AABB[] boxes = new AABB[25];
         for (int i = 0; i < 5; i++) {
@@ -82,15 +87,11 @@ public class Entity extends GameObject {
             if (data.intersects) {
                 boundingBox.correctPosition(box, data);
                 transform.pos.set(boundingBox.getCenter(), 0);
+                return true;
             }
         }
+        return false;
     }
-
-//    @Override
-//    public void update(float delta, GLFWWindow window, Camera camera, World world) {
-//
-//        collideWithTile(world);
-//    }
 
     @Override
     public void update(float delta, GLFWWindow window, Camera camera, World world) {

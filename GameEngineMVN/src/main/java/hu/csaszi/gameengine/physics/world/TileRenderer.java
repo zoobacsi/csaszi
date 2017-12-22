@@ -38,7 +38,7 @@ public class TileRenderer {
         String textureKey = Tile.tiles[id].getTexture();
 
         if(tileTextures.containsKey(textureKey)){
-            tileTextures.get(textureKey).bind(0);
+            tileTextures.get(textureKey).bind(0, 0);
         }
 
         Matrix4f tilePos = new Matrix4f().translate(new Vector3f(x*2, y*2, 0));

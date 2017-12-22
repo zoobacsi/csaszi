@@ -1,12 +1,14 @@
 package hu.csaszi.gameengine.physics.objects;
 
 import hu.csaszi.gameengine.game.GameManager;
+import hu.csaszi.gameengine.physics.Direction;
 import hu.csaszi.gameengine.physics.collission.AABB;
 import hu.csaszi.gameengine.physics.collission.Collision;
 import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.Sprite;
+import hu.csaszi.gameengine.render.core.gl.TileSheet;
 import hu.csaszi.gameengine.render.core.gl.models.Model;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
@@ -17,8 +19,10 @@ import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import java.awt.*;
+import java.nio.FloatBuffer;
+import java.util.Comparator;
 
-public abstract class GameObject {
+public abstract class GameObject implements Comparable<GameObject>{
 
 	protected boolean isDestroyed;
 	
@@ -30,6 +34,7 @@ public abstract class GameObject {
 	protected Sprite[] sprites;
 	protected Transform transform;
 	protected int useSprite;
+	protected Direction direction = Direction.NORTH;
 
 	public GameObject(Sprite[] sprites, Transform transform, String model){
 
@@ -43,6 +48,11 @@ public abstract class GameObject {
 		this(new Sprite[]{ sprite}, transform, model);
 	}
 
+	@Override
+	public int compareTo(GameObject o) {
+		return Float.compare(this.getTransform().pos.y, o.getTransform().pos.y);
+	}
+
 	public void render(Shader shader, Camera camera, World world){
 
 		Matrix4f target = camera.getProjection();
@@ -51,7 +61,7 @@ public abstract class GameObject {
 		shader.setUniform("sampler",0);
 		shader.setUniform("projection", transform.getProjection(target));
 		if(sprites != null && sprites.length > useSprite){
-			sprites[useSprite].bind(0);
+			sprites[useSprite].bind(direction.getId(), 0);
 		}
 		model.render();
 	}
@@ -73,22 +83,20 @@ public abstract class GameObject {
 
 	public void move(Vector2f direction) {
 
-		if( this instanceof Player){
-			System.out.println(transform.pos.x + " " + transform.pos.y);
+		Direction moveDir = Direction.getByVector(direction);
+		if(moveDir != null){
+			this.direction = moveDir;
 		}
 
 		if (transform.pos.x + direction.x < 0){
 			transform.pos.x = 0 - direction.x;
-			//direction.set(0, direction.y);
 		} else if (transform.pos.x + direction.x > Transform.getMaxWidth()){
-			//direction.set(Transform.getMaxWidth(), direction.y);
 			transform.pos.x = Transform.getMaxWidth() - direction.x;
 		}
+
 		if (transform.pos.y + direction.y > 0){
 			transform.pos.y = 0 - direction.y;
-			//direction.set(direction.x, 0);
 		} else if (transform.pos.y + direction.y < -Transform.getMaxHeigth()){
-			//direction.set(direction.x, -Transform.getMaxHeigth());
 			transform.pos.y = -Transform.getMaxHeigth() - direction.y;
 		}
 
@@ -114,6 +122,14 @@ public abstract class GameObject {
 
 	public void useAnimation(int index){
 		this.useSprite = index;
+	}
+
+	public Direction getDirection() {
+		return direction;
+	}
+
+	public Transform getTransform() {
+		return transform;
 	}
 
 	public String getTag(){

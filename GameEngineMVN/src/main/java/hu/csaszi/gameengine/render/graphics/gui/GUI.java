@@ -24,7 +24,7 @@ public class GUI {
     public GUI(GLFWWindow window){
         shader = new Shader("gui");
         camera = new Camera(window);
-        sheet = new TileSheet("Soldier3", 4, 4);
+        sheet = new TileSheet("Soldier3", 4);
     }
 
     public void resizeCamera(Window window){

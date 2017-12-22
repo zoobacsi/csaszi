@@ -12,9 +12,11 @@ import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
+import hu.csaszi.gameengine.render.core.gl.TextureSheet;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import hu.csaszi.gameengine.physics.objects.Player;
+import hu.csaszi.gameengine.render.graphics.AnimationKeys;
 import hu.csaszi.gameengine.render.graphics.gui.GUI;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -86,7 +88,7 @@ public class TestSimpleGamePlayState extends GameState {
 			transform.scale.x = 1;
 			transform.scale.y = 1;
 			transform.pos.x = 2;
-			transform.pos.y = -4;
+			transform.pos.y = -6;
 			player = new Player(transform);
 			entityManager.addObject(player);
 
@@ -125,7 +127,7 @@ public class TestSimpleGamePlayState extends GameState {
 			for (int x = 0; x < width; x++) {
 				int entityIndex = (colorEntitySheet[x + y * width] >> 16) & 0xFF;
 				int entityAlpha = (colorEntitySheet[x + y * width] >> 24) & 0xFF;
-
+				int dir = x - y > 0 ? 1 : -1;
 				if(entityAlpha > 0){
 
 					transform = new Transform();
@@ -133,9 +135,21 @@ public class TestSimpleGamePlayState extends GameState {
 					transform.pos.y = -y * 2;
 					switch (entityIndex){
 						case 1:
-							Entity entity = new Entity(1, transform, "tall");
-							entity.setSprite(0, new Animation(4, 5, "soldier"));
+							Entity entity = new Entity(2, transform, "tall"){
+								@Override
+								public void update(float delta, GLFWWindow window, Camera camera, World world) {
+									move(new Vector2f(dir * 5*delta, 0));
 
+									if( collideWithTile(world)){
+										useAnimation(ANIM_IDLE);
+									} else {
+										useAnimation(ANIM_WALK);
+									}
+								}
+							};
+							TextureSheet sheet = new TextureSheet("sheets/Soldier3", 32, 48);
+							entity.setSprite(Entity.ANIM_IDLE, new Animation(5, sheet, AnimationKeys.DEFAULT_CHARSET_IDLE_FRAMES));
+							entity.setSprite(Entity.ANIM_WALK, new Animation(5, sheet, AnimationKeys.DEFAULT_CHARSET_WALKING_FRAMES));
 							entityManager.addObject(entity);
 							break;
 						default:

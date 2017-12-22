@@ -8,10 +8,7 @@ import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import hu.csaszi.gameengine.test.states.TestSimpleGamePlayState;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class EntityManager {
 
@@ -59,6 +56,13 @@ public class EntityManager {
 		List<GameObject> objects = new ArrayList<>();
 		objects.addAll(gameObjects);
 
+		objects.sort(new Comparator<GameObject>() {
+			@Override
+			public int compare(GameObject o1, GameObject o2) {
+				return Float.compare(o2.getTransform().pos.y, o1.getTransform().pos.y);
+			}
+		});
+
 		int i = 0;
 		for(GameObject gameObject : objects) {
 			if(gameObject != null ){
@@ -80,7 +84,14 @@ public class EntityManager {
 
 		List<GameObject> objects = new ArrayList<>();
 		objects.addAll(gameObjects);
-		
+
+		objects.sort(new Comparator<GameObject>() {
+			@Override
+			public int compare(GameObject o1, GameObject o2) {
+				return Float.compare(o2.getTransform().pos.y, o1.getTransform().pos.y);
+			}
+		});
+
 		for(GameObject gameObject : objects){
 			gameObject.render(shader, camera, world);
 		}
