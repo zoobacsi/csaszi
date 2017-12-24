@@ -101,6 +101,13 @@ public class Entity extends GameObject {
         collideWithTile(world);
     }
 
+    @Override
+    public void onInteract(GameObject actor) {
+        System.out.println("elotte "+this.useSprite);
+        this.useAnimation(Entity.ANIM_IDLE);
+        System.out.println("interract " + this.tag + " "+ this.useSprite);
+    }
+
     public boolean isAlive() {
         return isAlive;
     }

@@ -16,6 +16,8 @@ public class EntityManager {
 
 	private GameState gameState;
 	private List<GameObject> gameObjects = new ArrayList<>();
+	private static
+	Set<GameObject> nearestObjects = new HashSet<>();
 
 	private EntityManager(GameState gameState){
 
@@ -59,6 +61,27 @@ public class EntityManager {
 		objects.sort(new Comparator<GameObject>() {
 			@Override
 			public int compare(GameObject o1, GameObject o2) {
+				if(o1 instanceof Player){
+					float x = o1.getTransform().pos.x + o1.getDirection().getX();
+					float y = o1.getTransform().pos.y + o1.getDirection().getY();
+
+					if(Math.abs(x - o2.getPositionX()) < 2f && Math.abs(y - o2.getPositionY()) < 2f){
+						nearestObjects.add(o2);
+						//System.out.println(o2 + " added");
+					} else {
+						nearestObjects.remove(o2);
+					}
+				} else if(o2 instanceof Player){
+					float x = o2.getTransform().pos.x + o2.getDirection().getX();
+					float y = o2.getTransform().pos.y + o2.getDirection().getY();
+
+					if(Math.abs(x - o1.getPositionX()) < 2f && Math.abs(y - o1.getPositionY()) < 2f){
+						nearestObjects.add(o1);
+						//System.out.println(o1 + " added");
+					} else {
+						nearestObjects.remove(o1);
+					}
+				}
 				return Float.compare(o2.getTransform().pos.y, o1.getTransform().pos.y);
 			}
 		});
@@ -104,6 +127,12 @@ public class EntityManager {
 		results.addAll(gameObjects);
 		
 		return results;
-		
+	}
+
+	public static GameObject getFrontObject(){
+		if(nearestObjects.iterator().hasNext()){
+			return nearestObjects.iterator().next();
+		}
+		return null;
 	}
 }

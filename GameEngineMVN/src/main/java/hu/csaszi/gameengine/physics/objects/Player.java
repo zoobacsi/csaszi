@@ -1,5 +1,7 @@
 package hu.csaszi.gameengine.physics.objects;
 
+import hu.csaszi.gameengine.game.GameManager;
+import hu.csaszi.gameengine.physics.Direction;
 import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.gl.*;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
@@ -42,6 +44,13 @@ public class Player extends Entity {
             }
             if (window.getInput().isKeyDown(GLFW_KEY_S)) {
                 movement.add(0, -5 * delta);
+            }
+
+            if(window.getInput().isKeyReleased(GLFW_KEY_ENTER)) {
+                GameObject gameObject = EntityManager.getFrontObject();
+                if(gameObject != null) {
+                    gameObject.onInteract(this);
+                }
             }
         }
 

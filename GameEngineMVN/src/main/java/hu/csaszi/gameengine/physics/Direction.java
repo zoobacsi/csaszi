@@ -7,19 +7,23 @@ import java.util.Map;
 
 public enum Direction {
 
-    NORTH(0),
-    NORTH_EAST(1),
-    EAST(2),
-    SOUTH_EAST(3),
-    SOUTH(4),
-    SOUTH_WEST(5),
-    WEST(6),
-    NORTH_WEST(7);
+    NORTH(0, 0f, 1f),
+    NORTH_EAST(1, 1f, 1f),
+    EAST(2, 1f, 0f),
+    SOUTH_EAST(3, 1f, -1f),
+    SOUTH(4, 0f, -1f),
+    SOUTH_WEST(5, -1f, -1f),
+    WEST(6, -1f, 0f),
+    NORTH_WEST(7, -1f, 1f);
 
     private int id;
+    private float x;
+    private float y;
 
-    private Direction(int id) {
+    private Direction(int id, float x, float y) {
         this.id = id;
+        this.x = x;
+        this.y = y;
     }
 
     public int getId() {
@@ -37,6 +41,14 @@ public enum Direction {
 
     public static Direction getById(int id) {
         return mapById.get(id);
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
     }
 
     public static Direction getByVector(Vector2f direction){

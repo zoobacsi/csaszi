@@ -28,8 +28,8 @@ public class GameManagerTests {
         gameManager.createWindow("test", 700,500);
 
         assertNotNull(gameManager.getWindow());
-        assertEquals(682, gameManager.getWindow().getWidth());
-        assertEquals(453, gameManager.getWindow().getHeight());
+        assertEquals(700, gameManager.getWindow().getWidth());
+        assertEquals(500, gameManager.getWindow().getHeight());
         assertEquals("test", gameManager.getWindow().getTitle());
     }
 

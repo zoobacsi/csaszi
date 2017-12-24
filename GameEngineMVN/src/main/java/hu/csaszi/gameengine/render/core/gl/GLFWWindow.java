@@ -10,10 +10,8 @@ import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
-import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GL15;
+import org.lwjgl.opengl.*;
+import org.lwjgl.system.Callback;
 import org.lwjgl.system.MemoryStack;
 
 import java.nio.IntBuffer;
@@ -36,6 +34,7 @@ public class GLFWWindow implements Window {
     private GLFWWindowSizeCallback windowSizeCallback;
     private GameManager gameManager;
     private Drawer drawer;
+    private Callback debugProc;
 
     public Input getInput() {
         return input;
@@ -54,7 +53,7 @@ public class GLFWWindow implements Window {
         setFullscreen(false);
 
         this.hasResized = false;
-        this.drawer = new GLDrawer(this);
+//        this.drawer = new GLDrawer(this);
     }
 
     public int getWidth() {
@@ -262,6 +261,7 @@ public class GLFWWindow implements Window {
 
         GL.createCapabilities();
         glEnable(GL_TEXTURE_2D);
+        debugProc = GLUtil.setupDebugMessageCallback();
 
         double frameCap = 1.0 / 60.0;
 

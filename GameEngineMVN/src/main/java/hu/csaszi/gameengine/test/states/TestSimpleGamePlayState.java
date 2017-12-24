@@ -167,11 +167,7 @@ public class TestSimpleGamePlayState extends GameState {
 
 	@Override
 	public void render(GLFWWindow window, Drawer drawer, GameManager gameManager) {
-//		drawer.drawString("Score: " + Player.getScore(), window.getWidth()/2 - 34, 10);
-//
-//		if(!.isPlayerAlive()){
-//			drawer.drawString("Press Space To Restart, Score: " + Player.getScore(), window.getWidth()/2-34, window.getHeight()/2 - 30);
-//		}
+
 		world.render(tileRenderer, shader, camera);
 
 		entityManager.render(shader, camera, world);

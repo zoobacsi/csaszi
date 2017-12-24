@@ -132,6 +132,16 @@ public abstract class GameObject implements Comparable<GameObject>{
 		return transform;
 	}
 
+	public float getPositionX(){
+		return transform.pos.x;
+	}
+
+	public float getPositionY(){
+		return transform.pos.y;
+	}
+
+	public abstract void onInteract(GameObject actor);
+
 	public String getTag(){
 		return tag;
 	}

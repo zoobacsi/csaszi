@@ -1,11 +1,9 @@
 package hu.csaszi.gameengine.physics.world;
 
 import hu.csaszi.gameengine.game.GameManager;
+import hu.csaszi.gameengine.physics.Direction;
 import hu.csaszi.gameengine.physics.collission.AABB;
-import hu.csaszi.gameengine.physics.objects.Entity;
-import hu.csaszi.gameengine.physics.objects.EntityManager;
-import hu.csaszi.gameengine.physics.objects.Player;
-import hu.csaszi.gameengine.physics.objects.Transform;
+import hu.csaszi.gameengine.physics.objects.*;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
