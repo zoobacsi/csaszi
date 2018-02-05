@@ -86,11 +86,11 @@ public class Shader {
     }
 
     protected void finalize() throws Throwable {
-        glDetachShader(program, vertexShader);
-        glDetachShader(program, fragmentShader);
-        glDeleteShader(vertexShader);
-        glDeleteShader(fragmentShader);
-        glDeleteProgram(program);
+//        glDetachShader(program, vertexShader);
+//        glDetachShader(program, fragmentShader);
+//        glDeleteShader(vertexShader);
+//        glDeleteShader(fragmentShader);
+//        glDeleteProgram(program);
         super.finalize();
     }
 

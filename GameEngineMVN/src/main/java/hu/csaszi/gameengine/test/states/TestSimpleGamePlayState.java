@@ -11,6 +11,7 @@ import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.Animation;
+import hu.csaszi.gameengine.render.core.gl.GLDrawer;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.TextureSheet;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
@@ -19,13 +20,26 @@ import hu.csaszi.gameengine.physics.objects.Player;
 import hu.csaszi.gameengine.render.graphics.AnimationKeys;
 import hu.csaszi.gameengine.render.graphics.gui.GUI;
 import org.joml.Vector2f;
+import org.joml.Vector2i;
 import org.joml.Vector3f;
+import org.liquidengine.legui.border.SimpleLineBorder;
+import org.liquidengine.legui.color.ColorConstants;
+import org.liquidengine.legui.component.*;
+import org.liquidengine.legui.event.CursorEnterEvent;
+import org.liquidengine.legui.event.MouseClickEvent;
+import org.liquidengine.legui.listener.CursorEnterEventListener;
+import org.liquidengine.legui.listener.MouseClickEventListener;
+import org.liquidengine.legui.system.context.Context;
+import org.liquidengine.legui.system.renderer.Renderer;
+import org.liquidengine.legui.system.renderer.nvg.NvgRenderer;
 import org.lwjgl.opengl.GL;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestSimpleGamePlayState extends GameState {
 
@@ -39,20 +53,17 @@ public class TestSimpleGamePlayState extends GameState {
 	private TileRenderer tileRenderer;
 	private Shader shader;
 	private GUI gui;
+	private Camera camera;
+	private Player player;
+	private EntityManager entityManager;
+	private GLDrawer glDrawer;
 
 	public World getWorld() {
 		return world;
 	}
-
 	public Camera getCamera() {
 		return camera;
 	}
-
-	private Camera camera;
-
-	private Player player;
-
-	private EntityManager entityManager;
 
 	@Override
 	public void init(GLFWWindow window, GameManager gameManager) {
@@ -73,7 +84,7 @@ public class TestSimpleGamePlayState extends GameState {
 			world = new World("test");
 			tileRenderer = new TileRenderer();
 
-			gui = new GUI(window);
+//			gui = new GUI(window);
 
 			shader = new Shader("shader");
 
@@ -84,7 +95,6 @@ public class TestSimpleGamePlayState extends GameState {
 			camera.setPosition(new Vector3f(0, 0, 0));
 
 			Transform transform = new Transform();
-//			transform.scale.set(2, 2);
 			transform.scale.x = 1;
 			transform.scale.y = 1;
 			transform.pos.x = 2;
@@ -96,13 +106,13 @@ public class TestSimpleGamePlayState extends GameState {
 			transformEnemy.pos.x = 0;
 			transformEnemy.pos.y = -4;
 
-//			entityManager.addObject(new Entity(new Animation(1, 1, "soldier"), transformEnemy){
-//				@Override
-//				public void update(float delta, GLFWWindow window, Camera camera, World world) {
-//					move(new Vector2f(5*delta, 0));
-//					super.update(delta, window, camera, world);
-//				}
-//			});
+			entityManager.addObject(new Entity(new Animation(1, 1, "soldier"), transformEnemy){
+				@Override
+				public void update(float delta, GLFWWindow window, Camera camera, World world) {
+					move(new Vector2f(5*delta, 0));
+					super.update(delta, window, camera, world);
+				}
+			});
 			try {
 				readEntitesMap(entityManager);
 			} catch (IOException e) {
@@ -110,7 +120,11 @@ public class TestSimpleGamePlayState extends GameState {
 			}
 		}
 
+		glDrawer = new GLDrawer(window, camera);
+		glDrawer.init();
 	}
+
+
 
 	private void readEntitesMap(EntityManager entityManager)throws IOException{
 		BufferedImage entitySheet = ImageIO.read(new File("src/main/resources/levels/" + world.getTag() + "_entities.png"));
@@ -168,9 +182,12 @@ public class TestSimpleGamePlayState extends GameState {
 	@Override
 	public void render(GLFWWindow window, Drawer drawer, GameManager gameManager) {
 
-		world.render(tileRenderer, shader, camera);
 
-		entityManager.render(shader, camera, world);
+
+//		world.render(tileRenderer, shader, camera);
+//		entityManager.render(shader, camera, world);
+
+		glDrawer.draw();
 	}
 
 	@Override

@@ -293,12 +293,12 @@ public class GLFWWindow implements Window {
 
             while (unprocessed >= frameCap) {
 
-                if (hasResized) {
-                    glViewport(0,0,width,height);
-                    gameManager.getCurrentState().getGUI().resizeCamera(this);
-                    gameManager.getCurrentState().getCamera().setProjection(width, height);
-                    gameManager.getCurrentState().getWorld().calculateView(this);
-                }
+//                if (hasResized) {
+//                    glViewport(0,0,width,height);
+//                    gameManager.getCurrentState().getGUI().resizeCamera(this);
+//                    gameManager.getCurrentState().getCamera().setProjection(width, height);
+//                    gameManager.getCurrentState().getWorld().calculateView(this);
+//                }
                 unprocessed -= frameCap;
 
                 canRender = true;
@@ -323,10 +323,10 @@ public class GLFWWindow implements Window {
 
                 gameManager.render();
 
-                GUI gui = gameManager.getCurrentState().getGUI();
-                if(gui != null){
-                    gui.render();
-                }
+//                GUI gui = gameManager.getCurrentState().getGUI();
+//                if(gui != null){
+//                    gui.render();
+//                }
                 glfwSwapBuffers(window); // swap the color buffers
                 frames++;
             }

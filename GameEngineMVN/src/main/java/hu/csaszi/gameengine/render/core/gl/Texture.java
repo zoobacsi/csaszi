@@ -2,6 +2,8 @@ package hu.csaszi.gameengine.render.core.gl;
 
 import hu.csaszi.gameengine.render.graphics.imaging.PNGDecoder;
 import org.lwjgl.BufferUtils;
+import org.lwjgl.stb.STBTTPackContext;
+import org.lwjgl.stb.STBTTPackedchar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,9 +13,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
+import static hu.csaszi.gameengine.test.IOUtil.ioResourceToByteBuffer;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.*;
 import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.stb.STBTruetype.*;
+import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Texture implements Sprite {
 
@@ -24,6 +29,15 @@ public class Texture implements Sprite {
     private int height;
     private int xIndex = 1;
     private int yIndex = 1;
+
+    private int font_tex;
+    private static final int BITMAP_W = 512;
+    private static final int BITMAP_H = 512;
+    private STBTTPackedchar.Buffer chardata;
+    private static final float[] scale = {
+            24.0f,
+            14.0f
+    };
 
     public Texture(String fileName) {
         this(fileName, 1, 1);
@@ -38,36 +52,16 @@ public class Texture implements Sprite {
 
         try {
 
-//            bufferedImage = ImageIO.read(new File("src/main/resources/textures/" + fileName + ".png"));
-
             PNGDecoder decoder = new PNGDecoder(new FileInputStream(new File("src/main/resources/textures/" + fileName + ".png")));
             width = decoder.getWidth();
             height = decoder.getHeight();
 
             ByteBuffer pixels = BufferUtils.createByteBuffer(width * height * 4);
             decoder.decode(pixels, width * 4, PNGDecoder.Format.RGBA);
-//            width = bufferedImage.getWidth();
-//            height = bufferedImage.getHeight();
-//
-//            int[] pixels_raw = new int[width * height * 4];
-//            bufferedImage.getRGB(0, 0, width, height, pixels_raw, 0 , width);
-//
-//            ByteBuffer pixels = BufferUtils.createByteBuffer(width * height * 4);
-//
-//            for(int i = 0; i < width; i++){
-//                for(int j = 0; j < height; j++){
-//                    int pixel = pixels_raw[i*width + j];
-//                    pixels.put((byte)((pixel >> 16) & 0xFF)); // RED
-//                    pixels.put((byte)((pixel >> 8) & 0xFF)); // GREEN
-//                    pixels.put((byte)(pixel & 0xFF)); // BLUE
-//                    pixels.put((byte)((pixel >> 24) & 0xFF)); // ALPHA
-//                }
-//            }
-//
+
             pixels.flip();
 
             id = glGenTextures();
-
             glBindTexture(GL_TEXTURE_2D, id);
 
             glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -78,6 +72,47 @@ public class Texture implements Sprite {
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         }
+
+//        id = glGenTextures();
+//        chardata = STBTTPackedchar.malloc(6 * 128);
+//
+//        try (STBTTPackContext pc = STBTTPackContext.malloc()) {
+//            ByteBuffer ttf = ioResourceToByteBuffer("src/main/resources/fonts/arial.ttf", 512 * 1024);
+//
+//            ByteBuffer bitmap = BufferUtils.createByteBuffer(BITMAP_W * BITMAP_H);
+//
+//            stbtt_PackBegin(pc, bitmap, BITMAP_W, BITMAP_H, 0, 1, NULL);
+//            for (int i = 0; i < 2; i++) {
+//                int p = (i * 3 + 0) * 128 + 32;
+//                chardata.limit(p + 95);
+//                chardata.position(p);
+//                stbtt_PackSetOversampling(pc, 1, 1);
+//                stbtt_PackFontRange(pc, ttf, 0, scale[i], 32, chardata);
+//
+//                p = (i * 3 + 1) * 128 + 32;
+//                chardata.limit(p + 95);
+//                chardata.position(p);
+//                stbtt_PackSetOversampling(pc, 2, 2);
+//                stbtt_PackFontRange(pc, ttf, 0, scale[i], 32, chardata);
+//
+//                p = (i * 3 + 2) * 128 + 32;
+//                chardata.limit(p + 95);
+//                chardata.position(p);
+//                stbtt_PackSetOversampling(pc, 3, 1);
+//                stbtt_PackFontRange(pc, ttf, 0, scale[i], 32, chardata);
+//            }
+//            chardata.clear();
+//            stbtt_PackEnd(pc);
+//
+//
+//            glBindTexture(GL_TEXTURE_2D, id);
+//            glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, BITMAP_W, BITMAP_H, 0, GL_ALPHA, GL_UNSIGNED_BYTE, bitmap);
+//            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//            glActiveTexture(GL_TEXTURE0 + 0);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     public Texture(BufferedImage bufferedImage) {

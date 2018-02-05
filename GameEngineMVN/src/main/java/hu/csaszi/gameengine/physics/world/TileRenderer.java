@@ -33,7 +33,6 @@ public class TileRenderer {
     }
 
     public void renderTile(byte id, int x, int y, Shader shader, Matrix4f world, Camera camera){
-
         shader.bind();
         String textureKey = Tile.tiles[id].getTexture();
 
