@@ -4,6 +4,8 @@ package hu.csaszi.gameengine.test;
  * Copyright LWJGL. All rights reserved.
  * License terms: https://www.lwjgl.org/license
  */
+    import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
+    import org.joml.Matrix4f;
     import org.lwjgl.*;
         import org.lwjgl.glfw.*;
         import org.lwjgl.opengl.*;
@@ -52,6 +54,7 @@ public final class TruetypeOversample {
     private long window;
 
     private Callback debugProc;
+    private Shader shader = new Shader("gui");
 
     // ----
 
@@ -122,6 +125,7 @@ public final class TruetypeOversample {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, BITMAP_W, BITMAP_H, 0, GL_ALPHA, GL_UNSIGNED_BYTE, bitmap);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -228,6 +232,12 @@ public final class TruetypeOversample {
         } else {
             print(100, 325, sfont, "1:1 text, one texel = one pixel");
         }
+
+        Matrix4f mat = new Matrix4f();
+        //camera.getUntransformedProjection().scale(16, mat);
+        mat.translate(-2.6f, -2f, 0);
+        shader.bind();
+        shader.setUniform("projection", mat);
 
         if (show_tex) {
             glBegin(GL_QUADS);

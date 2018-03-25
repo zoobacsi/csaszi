@@ -11,6 +11,7 @@ import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.Animation;
+import hu.csaszi.gameengine.render.core.gl.FontTexture;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.TextureSheet;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
@@ -53,6 +54,8 @@ public class TestSimpleGamePlayState extends GameState {
 	private Player player;
 
 	private EntityManager entityManager;
+
+	private FontTexture fontTexture;
 
 	@Override
 	public void init(GLFWWindow window, GameManager gameManager) {

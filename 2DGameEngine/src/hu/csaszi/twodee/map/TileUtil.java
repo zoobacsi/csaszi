@@ -37,20 +37,20 @@ public class TileUtil {
 		}
 	}
 
-	private static void loadTilesetXml(File file){
-		 try {
-
-				
-				JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
-
-				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-				Customer customer = (Customer) jaxbUnmarshaller.unmarshal(file);
-				System.out.println(customer);
-
-			  } catch (JAXBException e) {
-				e.printStackTrace();
-			  }
-	}
+//	private static void loadTilesetXml(File file){
+//		 try {
+//
+//
+//				JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
+//
+//				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+//				Customer customer = (Customer) jaxbUnmarshaller.unmarshal(file);
+//				System.out.println(customer);
+//
+//			  } catch (JAXBException e) {
+//				e.printStackTrace();
+//			  }
+//	}
 	
 	private static void initIsometricTiles() throws SlickException, IOException {
 		

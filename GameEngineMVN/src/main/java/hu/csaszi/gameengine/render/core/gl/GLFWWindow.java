@@ -1,12 +1,27 @@
 package hu.csaszi.gameengine.render.core.gl;
 
+import cuchaz.jfxgl.CalledByEventsThread;
+import cuchaz.jfxgl.JFXGL;
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.input.Input;
 import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.graphics.gui.GUI;
+import hu.csaszi.gameengine.test.HelloWorld;
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import org.lwjgl.Version;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
@@ -14,6 +29,7 @@ import org.lwjgl.opengl.*;
 import org.lwjgl.system.Callback;
 import org.lwjgl.system.MemoryStack;
 
+import java.io.IOException;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
@@ -98,6 +114,11 @@ public class GLFWWindow implements Window {
         glfwDefaultWindowHints(); // optional, the current window hints are already the default
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the window will stay hidden after creation
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
+
+        glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW.GLFW_OPENGL_FORWARD_COMPAT, GLFW.GLFW_TRUE);
+        glfwWindowHint(GLFW.GLFW_OPENGL_PROFILE, GLFW.GLFW_OPENGL_CORE_PROFILE);
 
         window = glfwCreateWindow(
                 width,
@@ -206,7 +227,7 @@ public class GLFWWindow implements Window {
 
     @Override
     public void close() {
-
+        JFXGL.terminate();
         glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
 
         glfwFreeCallbacks(window);
@@ -260,6 +281,8 @@ public class GLFWWindow implements Window {
         // bindings available for use.
 
         GL.createCapabilities();
+
+
         glEnable(GL_TEXTURE_2D);
         debugProc = GLUtil.setupDebugMessageCallback();
 
@@ -277,6 +300,9 @@ public class GLFWWindow implements Window {
         glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
 
         gameManager.getCurrentState().init(this, gameManager);
+
+//        JFXGL.start(window, null, new HelloWorldApp());
+
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
@@ -323,10 +349,12 @@ public class GLFWWindow implements Window {
 
                 gameManager.render();
 
-                GUI gui = gameManager.getCurrentState().getGUI();
-                if(gui != null){
-                    gui.render();
-                }
+                JFXGL.render();
+
+//                GUI gui = gameManager.getCurrentState().getGUI();
+//                if(gui != null){
+//                    gui.render();
+//                }
                 glfwSwapBuffers(window); // swap the color buffers
                 frames++;
             }
@@ -339,5 +367,30 @@ public class GLFWWindow implements Window {
 
     public long getWindow() {
         return window;
+    }
+
+    public static class HelloWorldApp extends Application {
+
+        @Override
+        @CalledByEventsThread
+        public void start(Stage stage)
+                throws IOException {
+
+            // create the UI
+            Label label = new Label("Hello World!");
+            TextField textField = new TextField("valami");
+            label.setFont(new Font("Helvetica", 70));
+            label.setTooltip(new Tooltip("Geci"));
+            label.setAlignment(Pos.CENTER);
+            Pane pane = new Pane();
+            pane.getChildren().add(label);
+            pane.getChildren().add(textField);
+
+            Scene scene = new Scene(pane);
+
+            Paint paint = new Color(0,1,1,0.7);
+            scene.setFill(paint);
+            stage.setScene(scene);
+        }
     }
 }
