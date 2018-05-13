@@ -454,6 +454,24 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.nifty-gui/nifty -->
+        <dependency>
+            <groupId>com.github.nifty-gui</groupId>
+            <artifactId>nifty</artifactId>
+            <version>1.4.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.nifty-gui/nifty-default-controls -->
+        <dependency>
+            <groupId>com.github.nifty-gui</groupId>
+            <artifactId>nifty-default-controls</artifactId>
+            <version>1.4.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.nifty-gui/nifty-lwjgl-renderer -->
+        <dependency>
+            <groupId>com.github.nifty-gui</groupId>
+            <artifactId>nifty-lwjgl-renderer</artifactId>
+            <version>1.4.2</version>
+        </dependency>
 
     </dependencies>
     <build>

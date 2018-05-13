@@ -14,6 +14,8 @@ import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLDrawer;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.TextureSheet;
+import hu.csaszi.gameengine.render.core.gl.graphic.Color;
+import hu.csaszi.gameengine.render.core.gl.graphic.Renderer;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import hu.csaszi.gameengine.physics.objects.Player;
@@ -22,16 +24,6 @@ import hu.csaszi.gameengine.render.graphics.gui.GUI;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.joml.Vector3f;
-import org.liquidengine.legui.border.SimpleLineBorder;
-import org.liquidengine.legui.color.ColorConstants;
-import org.liquidengine.legui.component.*;
-import org.liquidengine.legui.event.CursorEnterEvent;
-import org.liquidengine.legui.event.MouseClickEvent;
-import org.liquidengine.legui.listener.CursorEnterEventListener;
-import org.liquidengine.legui.listener.MouseClickEventListener;
-import org.liquidengine.legui.system.context.Context;
-import org.liquidengine.legui.system.renderer.Renderer;
-import org.liquidengine.legui.system.renderer.nvg.NvgRenderer;
 import org.lwjgl.opengl.GL;
 
 import javax.imageio.ImageIO;
@@ -56,7 +48,9 @@ public class TestSimpleGamePlayState extends GameState {
 	private Camera camera;
 	private Player player;
 	private EntityManager entityManager;
-	private GLDrawer glDrawer;
+//	private GLDrawer glDrawer;
+
+	private Renderer renderer;
 
 	public World getWorld() {
 		return world;
@@ -67,6 +61,7 @@ public class TestSimpleGamePlayState extends GameState {
 
 	@Override
 	public void init(GLFWWindow window, GameManager gameManager) {
+
 
 		entityManager = EntityManager.createEntityManager(this);
 //
@@ -80,9 +75,10 @@ public class TestSimpleGamePlayState extends GameState {
 
 		if(GL.getCapabilities() != null) {
 			camera = new Camera(window);
-
+			renderer = new Renderer();
 			world = new World("test");
 			tileRenderer = new TileRenderer();
+
 
 //			gui = new GUI(window);
 
@@ -122,6 +118,7 @@ public class TestSimpleGamePlayState extends GameState {
 
 		glDrawer = new GLDrawer(window, camera);
 		glDrawer.init();
+		renderer.init();
 	}
 
 
@@ -182,10 +179,20 @@ public class TestSimpleGamePlayState extends GameState {
 	@Override
 	public void render(GLFWWindow window, Drawer drawer, GameManager gameManager) {
 
-
-
+		renderer.clear();
+		renderer.begin();
 //		world.render(tileRenderer, shader, camera);
-//		entityManager.render(shader, camera, world);
+		entityManager.render(shader, camera, world);
+
+
+		renderer.end();
+
+		String scoreText = "Score";
+		int scoreTextWidth = renderer.getTextWidth(scoreText);
+		int scoreTextHeight = renderer.getTextHeight(scoreText);
+		float scoreTextX = (window.getWidth() - scoreTextWidth) / 2f;
+		float scoreTextY = window.getHeight() - scoreTextHeight - 5;
+		renderer.drawText(scoreText, scoreTextX, scoreTextY, Color.WHITE);
 
 		glDrawer.draw();
 	}
