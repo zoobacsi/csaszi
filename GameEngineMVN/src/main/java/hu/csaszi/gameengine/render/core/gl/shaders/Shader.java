@@ -13,15 +13,48 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.FloatBuffer;
 
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
+import static org.lwjgl.opengl.GL14.GL_FUNC_ADD;
+import static org.lwjgl.opengl.GL14.glBlendEquation;
 import static org.lwjgl.opengl.GL20.*;
 
 public class Shader {
 
     private static final Logger logger = LoggerFactory.getLogger(Shader.class);
 
+    public int getProgram() {
+        return program;
+    }
+
     private int program;
     private int vertexShader;
     private int fragmentShader;
+
+    public Shader(String vertFile, String fragFile) {
+
+        program = glCreateProgram();
+
+        vertexShader = glCreateShader(GL_VERTEX_SHADER);
+        glShaderSource(vertexShader, readFile(vertFile));
+        glCompileShader(vertexShader);
+
+        if (glGetShaderi(vertexShader, GL_COMPILE_STATUS) != 1) {
+            logger.error(glGetShaderInfoLog(vertexShader));
+            System.exit(1);
+        }
+
+        fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+        glShaderSource(fragmentShader, readFile(fragFile));
+        glCompileShader(fragmentShader);
+
+        if (glGetShaderi(fragmentShader, GL_COMPILE_STATUS) != 1) {
+            logger.error(glGetShaderInfoLog(fragmentShader));
+            System.exit(1);
+        }
+
+        init();
+    }
 
     public Shader(String fileName) {
 
@@ -45,6 +78,10 @@ public class Shader {
             System.exit(1);
         }
 
+        init();
+    }
+
+    private void init() {
         glAttachShader(program, vertexShader);
         glAttachShader(program, fragmentShader);
 
@@ -106,6 +143,8 @@ public class Shader {
     }
 
     public void bind() {
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glUseProgram(program);
     }
 

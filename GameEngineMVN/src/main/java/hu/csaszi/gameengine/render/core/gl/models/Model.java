@@ -8,6 +8,8 @@ import java.nio.IntBuffer;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL30.glBindVertexArray;
+import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public class Model {
 
@@ -15,6 +17,7 @@ public class Model {
     private int vId;
     private int tId;
     private int iId;
+    private int vao;
 
     public Model(float[] vertices, float[] texCoords, int[] indices) {
 
@@ -35,6 +38,8 @@ public class Model {
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+        vao = glGenVertexArrays();
     }
 
     protected void finalize() throws Throwable{
@@ -44,6 +49,8 @@ public class Model {
         super.finalize();
     }
     public void render(){
+
+        glBindVertexArray(vao);
 
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
