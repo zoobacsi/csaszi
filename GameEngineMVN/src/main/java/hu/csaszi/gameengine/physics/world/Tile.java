@@ -20,7 +20,7 @@ public class Tile {
     private String texture;
 
     static {
-        addTile("grass");
+        addTile("grassdirt");
         addTile("desert").setSolid();
         for(int i = 0; i < 16; i++){
             addTile("water" + i);
