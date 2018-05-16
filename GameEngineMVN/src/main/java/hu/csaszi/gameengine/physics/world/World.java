@@ -1,14 +1,13 @@
 package hu.csaszi.gameengine.physics.world;
 
-import hu.csaszi.gameengine.game.GameManager;
-import hu.csaszi.gameengine.physics.Direction;
+import hu.csaszi.gameengine.physics.Point;
 import hu.csaszi.gameengine.physics.collission.AABB;
-import hu.csaszi.gameengine.physics.objects.*;
 import hu.csaszi.gameengine.render.core.Window;
-import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
+import hu.csaszi.gameengine.render.core.gl.models.Model;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
+import hu.csaszi.gameengine.render.graphics.assets.Assets;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -17,7 +16,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 
 public class World {
 
@@ -32,14 +30,19 @@ public class World {
     private String tag;
 
     private Matrix4f world;
+    private float xOff;
+    private float yOff;
 
     public World(String world) {
         this.tag = world;
         try {
-            BufferedImage tileSheet = ImageIO.read(new File("src/main/resources/levels/" + world + "_tiles.png"));
 
+            File file = new File("src/main/resources/levels/" + world + "_tiles.png");
+
+            BufferedImage tileSheet = ImageIO.read(file);
             width = tileSheet.getWidth();
             height = tileSheet.getHeight();
+
             scale = 16;
 
             this.world = new Matrix4f().setTranslation(new Vector3f());
@@ -90,22 +93,41 @@ public class World {
         return world;
     }
 
+    public Point convertCoordsToIsometric(int x, int y, float ratio) {
+        float xPoint = (x - y) * 1 /*/ 2*/;
+        float yPoint = (x + y) * ratio /*/ 2*/;
+        return new Point(xPoint, yPoint);
+    }
+
     public void render(TileRenderer render, Shader shader, Camera camera) {
+
+        Model tileModel = Assets.getModel("box");
+        xOff = width * 1f / 2 - tileModel.getRatio() / 2;
+        yOff = height *  tileModel.getRatio() / 2;
 
 //       int posX = ((int)camera.getPosition().x + (camera.getWindow().getWidth()/2)) / (scale * 2);
 //       int posY = ((int)camera.getPosition().y - (camera.getWindow().getHeight()/2)) / (scale * 2);
         int posX = (int) camera.getPosition().x / (scale * 2);
         int posY = (int) camera.getPosition().y / (scale * 2);
 
-        for (int i = 0; i < viewX; i++) {
-            for (int j = 0; j < viewY; j++) {
-                Tile tile = getTile(i - posX - (viewX / 2) + 1, j + posY - (viewY / 2));
+//        for (int i = 0; i < viewX; i++) {
+//            for (int j = 0; j < viewY; j++) {
+//                Tile tile = getTile(i - posX - (viewX / 2) + 1, j + posY - (viewY / 2));
+//                if (tile != null) {
+//                    render.renderTile(tile.getId(), i - posX - (viewX / 2) + 1, -j - posY + (viewY / 2), shader, world, camera);
+//                }
+//            }
+//        }
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                Point coords = convertCoordsToIsometric(x, y, tileModel.getRatio());
+                Tile tile = getTile(x/* - posX - (viewX / 2) + 1*/, y /*+ posY - (viewY / 2)*/);
                 if (tile != null) {
-                    render.renderTile(tile.getId(), i - posX - (viewX / 2) + 1, -j - posY + (viewY / 2), shader, world, camera);
+                    render.renderTile(tile.getId(), coords.getX() + xOff - posX - (viewX / 2) + 1, -coords.getY() - yOff - posY + (viewY / 2), shader, world, camera);
                 }
             }
         }
-
     }
 
     public void correctCamera(Camera camera) {
