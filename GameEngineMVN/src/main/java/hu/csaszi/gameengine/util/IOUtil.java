@@ -1,17 +1,18 @@
-package hu.csaszi.gameengine.test;
 /*
  * Copyright LWJGL. All rights reserved.
  * License terms: https://www.lwjgl.org/license
  */
+package hu.csaszi.gameengine.util;
 
-        import org.lwjgl.*;
 
-        import java.io.*;
-        import java.nio.*;
-        import java.nio.channels.*;
-        import java.nio.file.*;
+import org.lwjgl.*;
 
-        import static org.lwjgl.BufferUtils.*;
+import java.io.*;
+import java.nio.*;
+import java.nio.channels.*;
+import java.nio.file.*;
+
+import static org.lwjgl.BufferUtils.*;
 
 public final class IOUtil {
 
@@ -30,9 +31,7 @@ public final class IOUtil {
      *
      * @param resource   the resource to read
      * @param bufferSize the initial buffer size
-     *
      * @return the resource data
-     *
      * @throws IOException if an IO error occurs
      */
     public static ByteBuffer ioResourceToByteBuffer(String resource, int bufferSize) throws IOException {
@@ -41,7 +40,7 @@ public final class IOUtil {
         Path path = Paths.get(resource);
         if (Files.isReadable(path)) {
             try (SeekableByteChannel fc = Files.newByteChannel(path)) {
-                buffer = BufferUtils.createByteBuffer((int)fc.size() + 1);
+                buffer = BufferUtils.createByteBuffer((int) fc.size() + 1);
                 while (fc.read(buffer) != -1) {
                     ;
                 }

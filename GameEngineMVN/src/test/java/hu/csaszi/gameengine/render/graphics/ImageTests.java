@@ -11,7 +11,7 @@ public class ImageTests {
 
     @Before
     public void setup(){
-        image = new Image("src/test/resources/urgay.png");
+        image = new Image("src/example/resources/urgay.png");
     }
     @Test
     public void testImageNotNull() {

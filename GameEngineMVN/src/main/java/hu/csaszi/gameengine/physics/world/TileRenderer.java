@@ -15,12 +15,13 @@ public class TileRenderer {
 
     private Map<String, Texture> tileTextures;
     private Model model;
+    private boolean isometric;
 
-    public TileRenderer(){
+    public TileRenderer(boolean isometric){
+
+        this.isometric = isometric;
 
         tileTextures = new HashMap<String, Texture>();
-
-        model = Assets.getModel("box");
 
         for(int i = 0; i < Tile.tiles.length; i++){
             if(Tile.tiles[i] != null){
@@ -30,9 +31,16 @@ public class TileRenderer {
                 }
             }
         }
+
+        if(isometric) {
+            model = Assets.getModel("iso");
+
+        } else {
+            model = Assets.getModel("box");
+        }
     }
 
-    public void renderTile(byte id, int x, int y, Shader shader, Matrix4f world, Camera camera){
+    public void renderTile(byte id, float x, float y, Shader shader, Matrix4f world, Camera camera){
         shader.bind();
         String textureKey = Tile.tiles[id].getTexture();
 

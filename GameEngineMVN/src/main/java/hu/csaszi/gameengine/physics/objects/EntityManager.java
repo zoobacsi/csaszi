@@ -6,7 +6,7 @@ import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
-import hu.csaszi.gameengine.test.states.TestSimpleGamePlayState;
+import hu.csaszi.gameengine.example.states.TestSimpleGamePlayState;
 
 import java.util.*;
 

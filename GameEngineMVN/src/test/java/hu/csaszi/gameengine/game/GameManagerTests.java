@@ -25,19 +25,19 @@ public class GameManagerTests {
     @Test
     public void testCreateWindow(){
 
-        gameManager.createWindow("test", 700,500);
+        gameManager.createWindow("example", 700,500);
 
         assertNotNull(gameManager.getWindow());
         assertEquals(700, gameManager.getWindow().getWidth());
         assertEquals(500, gameManager.getWindow().getHeight());
-        assertEquals("test", gameManager.getWindow().getTitle());
+        assertEquals("example", gameManager.getWindow().getTitle());
     }
 
     @Test
     public void testAddAndEnterState(){
 
         GameManager gameManager = new GameManager();//mock(GameManager.class);
-        gameManager.createWindow("test", 0,0);
+        gameManager.createWindow("example", 0,0);
 
         GameStateImpl state = spy(new GameStateImpl());
         when(state.getStateId()).thenReturn(1);

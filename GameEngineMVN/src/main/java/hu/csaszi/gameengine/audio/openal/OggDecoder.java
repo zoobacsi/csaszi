@@ -208,7 +208,7 @@ public class OggDecoder {
 //							} else {
 //								// we have a packet.  Decode it
 //								int samples;
-//								if (vb.synthesis(op) == 0) { // test for success!
+//								if (vb.synthesis(op) == 0) { // example for success!
 //									vd.synthesis_blockin(vb);
 //								}
 //

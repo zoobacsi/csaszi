@@ -1,6 +1,5 @@
 package hu.csaszi.gameengine.render.core.gl;
 
-import hu.csaszi.gameengine.render.core.Drawer;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import org.joml.Matrix4f;
@@ -10,16 +9,12 @@ import org.lwjgl.stb.STBTTPackContext;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.lwjgl.system.Callback;
 
-import java.awt.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
-import static hu.csaszi.gameengine.test.IOUtil.ioResourceToByteBuffer;
-import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
+import static hu.csaszi.gameengine.util.IOUtil.ioResourceToByteBuffer;
 import static org.lwjgl.glfw.GLFW.glfwSetErrorCallback;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
-import static org.lwjgl.glfw.GLFW.glfwTerminate;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;

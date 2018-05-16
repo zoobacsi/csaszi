@@ -1,19 +1,22 @@
-package hu.csaszi.gameengine.test;
+
 
 /*
  * Copyright LWJGL. All rights reserved.
  * License terms: https://www.lwjgl.org/license
  */
+package hu.csaszi.gameengine.util;
 
-        import org.lwjgl.glfw.*;
-        import org.lwjgl.system.*;
+import org.lwjgl.glfw.*;
+import org.lwjgl.system.*;
 
-        import java.nio.*;
+import java.nio.*;
 
-        import static org.lwjgl.glfw.GLFW.*;
-        import static org.lwjgl.system.MemoryStack.*;
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.system.MemoryStack.*;
 
-/** GLFW demo utilities. */
+/**
+ * GLFW demo utilities.
+ */
 public final class GLFWUtil {
 
     private GLFWUtil() {

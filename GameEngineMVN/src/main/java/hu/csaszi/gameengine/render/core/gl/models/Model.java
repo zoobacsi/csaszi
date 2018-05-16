@@ -19,8 +19,15 @@ public class Model {
     private int iId;
     private int vao;
 
-    public Model(float[] vertices, float[] texCoords, int[] indices) {
+    public float getRatio() {
+        return ratio;
+    }
 
+    private float ratio;
+
+    public Model(float[] vertices, float[] texCoords, int[] indices, float ratio) {
+
+        this.ratio = ratio;
         drawCount = indices.length;
 
         vId = glGenBuffers();

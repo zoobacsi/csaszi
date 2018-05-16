@@ -1,6 +1,5 @@
 package hu.csaszi.gameengine.render.core.gl;
 
-import hu.csaszi.gameengine.test.SimpleGame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -19,7 +19,7 @@ import java.nio.ByteOrder;
 
 /**
  * An AWTInput stream that can extract ogg data. This class is a bit of an experiment with continuations
- * so uses thread where possibly not required. It's just a test to see if continuations make sense in 
+ * so uses thread where possibly not required. It's just a example to see if continuations make sense in
  * some cases.
  *
  * @author kevin
@@ -323,7 +323,7 @@ public class OggInputStream extends InputStream implements OAudioInputStream {
 							} else {
 								// we have a packet.  Decode it
 								int samples;
-								if (vorbisBlock.synthesis(packet) == 0) { // test for success!
+								if (vorbisBlock.synthesis(packet) == 0) { // example for success!
 									dspState.synthesis_blockin(vorbisBlock);
 								}
 

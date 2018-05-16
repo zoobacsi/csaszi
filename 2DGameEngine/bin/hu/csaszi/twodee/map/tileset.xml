@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root tileHeight="0" tileWidth="0" tilesetImage="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="tileset.xsd">
+  <tile autoTile="" collapse="" imagesNum="0" movementCost="0" name="" numOfLayers="0" tileOffset="0">
+    <images externalPath="" innerBounds="" name="">images</images>
+  </tile>
+</root>
