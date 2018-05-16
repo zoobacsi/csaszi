@@ -33,7 +33,7 @@ public class TileRenderer {
         }
 
         if(isometric) {
-            model = Assets.getModel("iso");
+            model = Assets.getModel("box");
 
         } else {
             model = Assets.getModel("box");

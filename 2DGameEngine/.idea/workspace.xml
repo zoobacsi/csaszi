@@ -16,7 +16,7 @@
         <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/isometric/IsometricTiledMap.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
-              <caret line="51" column="81" lean-forward="true" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="81" />
+              <caret line="51" column="81" lean-forward="false" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -36,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/MapBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1512">
-              <caret line="85" column="36" lean-forward="true" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
+              <caret line="85" column="36" lean-forward="false" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -106,7 +106,7 @@
         <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/camera/Camera.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="403">
-              <caret line="190" column="17" lean-forward="true" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="17" />
+              <caret line="190" column="17" lean-forward="false" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -372,12 +372,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526404289208</updated>
-      <workItem from="1526404294617" duration="3939000" />
+      <workItem from="1526404294617" duration="4514000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3939000" />
+    <option name="totallyTimeSpent" value="4514000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -467,7 +467,7 @@
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/MapBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1512">
-          <caret line="85" column="36" lean-forward="true" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
+          <caret line="85" column="36" lean-forward="false" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -483,7 +483,7 @@
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/camera/Camera.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="403">
-          <caret line="190" column="17" lean-forward="true" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="17" />
+          <caret line="190" column="17" lean-forward="false" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -531,7 +531,7 @@
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/isometric/IsometricTiledMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="51" column="81" lean-forward="true" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="81" />
+          <caret line="51" column="81" lean-forward="false" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="81" />
           <folding />
         </state>
       </provider>

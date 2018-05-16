@@ -8,6 +8,7 @@ import hu.csaszi.gameengine.render.core.gl.models.Model;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import hu.csaszi.gameengine.render.graphics.assets.Assets;
+import hu.csaszi.gameengine.util.MathUtil;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -93,11 +94,7 @@ public class World {
         return world;
     }
 
-    public Point convertCoordsToIsometric(int x, int y, float ratio) {
-        float xPoint = (x - y) * 1 /*/ 2*/;
-        float yPoint = (x + y) * ratio /*/ 2*/;
-        return new Point(xPoint, yPoint);
-    }
+
 
     public void render(TileRenderer render, Shader shader, Camera camera) {
 
@@ -121,10 +118,12 @@ public class World {
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                Point coords = convertCoordsToIsometric(x, y, tileModel.getRatio());
+                Point coords = MathUtil.convertCoordsToIsometric(x, y, tileModel.getRatio());
                 Tile tile = getTile(x/* - posX - (viewX / 2) + 1*/, y /*+ posY - (viewY / 2)*/);
                 if (tile != null) {
-                    render.renderTile(tile.getId(), coords.getX() + xOff - posX - (viewX / 2) + 1, -coords.getY() - yOff - posY + (viewY / 2), shader, world, camera);
+                    float xCoord = coords.getX() + xOff - posX - (viewX / 2) + 1;
+                    float yCoord = -coords.getY() - yOff - posY + (viewY /2);
+                    render.renderTile(tile.getId(), xCoord, yCoord, shader, world, camera);
                 }
             }
         }
