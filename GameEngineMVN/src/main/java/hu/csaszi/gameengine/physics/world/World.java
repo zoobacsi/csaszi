@@ -98,14 +98,14 @@ public class World {
 
     public void render(TileRenderer render, Shader shader, Camera camera) {
 
-        Model tileModel = Assets.getModel("box");
-        xOff = width * 1f / 2 - tileModel.getRatio() / 2;
-        yOff = height *  tileModel.getRatio() / 2;
+        Model tileModel = Assets.getModel("iso");
+        xOff = (width * 1f / 2 - tileModel.getRatio() / 2)/ 2;
+        yOff = (height *  tileModel.getRatio() / 2)/ 2;
 
 //       int posX = ((int)camera.getPosition().x + (camera.getWindow().getWidth()/2)) / (scale * 2);
 //       int posY = ((int)camera.getPosition().y - (camera.getWindow().getHeight()/2)) / (scale * 2);
-        int posX = (int) camera.getPosition().x / (scale * 2);
-        int posY = (int) camera.getPosition().y / (scale * 2);
+        int posX = (int) camera.getPosition().x / (scale * 2) + scale/2;
+        int posY = (int) camera.getPosition().y / (scale * 2) - scale/2;
 
 //        for (int i = 0; i < viewX; i++) {
 //            for (int j = 0; j < viewY; j++) {
@@ -115,18 +115,28 @@ public class World {
 //                }
 //            }
 //        }
-
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
+        for (int y = 0; y < viewY; y++) {
+            for (int x = 0; x < viewX; x++) {
                 Point coords = MathUtil.convertCoordsToIsometric(x, y, tileModel.getRatio());
-                Tile tile = getTile(x/* - posX - (viewX / 2) + 1*/, y /*+ posY - (viewY / 2)*/);
+//                int tileX = x - posX - (viewX / 2) + 1;
+//                int tileY = y + posY - (viewY / 2);
+//                Tile tile = getTile(tileX, tileY);
+                Tile tile = getTile(x, y);
                 if (tile != null) {
-                    float xCoord = coords.getX() + xOff - posX - (viewX / 2) + 1;
-                    float yCoord = -coords.getY() - yOff - posY + (viewY /2);
+                    //System.out.println("coords.x: " + coords.getX() + " coords.y: " + coords.getY());
+                    float xCoord = coords.getX() + xOff /*- posX*/ - (viewX / 2) + 1 + 24;
+                    float yCoord = -coords.getY() - yOff /*- posY*/ + (viewY /2) - 8;
+                    if(x < 6 && y < 2) {
+
+                        System.out.print(x + "-" + y + ":  xCoord: " + xCoord + " yCoord: " + yCoord + " xOff: " + xOff + " yOff: " + yOff + " posX: " + posX + " posY: " + posY + " ");
+                        System.out.println("coords.x: " + coords.getX() + " coords.y: " + coords.getY());
+
+                    }
                     render.renderTile(tile.getId(), xCoord, yCoord, shader, world, camera);
                 }
             }
         }
+        System.out.println("\n");
     }
 
     public void correctCamera(Camera camera) {
