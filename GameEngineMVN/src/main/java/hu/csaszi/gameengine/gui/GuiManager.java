@@ -24,7 +24,6 @@ import java.util.TreeSet;
 
 import static hu.csaszi.gameengine.util.IOUtil.ioResourceToByteBuffer;
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.glfw.GLFW.GLFW_CURSOR_NORMAL;
 import static org.lwjgl.nuklear.Nuklear.*;
 import static org.lwjgl.opengl.ARBDebugOutput.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -34,19 +33,13 @@ import static org.lwjgl.opengl.GL13.glActiveTexture;
 import static org.lwjgl.opengl.GL14.GL_FUNC_ADD;
 import static org.lwjgl.opengl.GL14.glBlendEquation;
 import static org.lwjgl.opengl.GL15.*;
-import static org.lwjgl.opengl.GL15.GL_ELEMENT_ARRAY_BUFFER;
-import static org.lwjgl.opengl.GL15.glBindBuffer;
 import static org.lwjgl.opengl.GL20.*;
-import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 import static org.lwjgl.opengl.GL43.*;
 import static org.lwjgl.stb.STBTruetype.*;
-import static org.lwjgl.stb.STBTruetype.stbtt_GetCodepointHMetrics;
-import static org.lwjgl.stb.STBTruetype.stbtt_GetPackedQuad;
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.*;
-import static org.lwjgl.system.MemoryUtil.memAddress;
 
 public class GuiManager {
 
@@ -115,7 +108,7 @@ public class GuiManager {
     private GuiManager(long window) {
         this.window = window;
         try {
-            this.ttf = ioResourceToByteBuffer("src/main/resources/fonts/FiraSans-Regular.ttf", 512 * 1024);
+            this.ttf = ioResourceToByteBuffer("fonts/FiraSans-Regular.ttf", 512 * 1024);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

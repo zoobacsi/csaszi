@@ -1,5 +1,6 @@
 package hu.csaszi.gameengine.render.core.gl.shaders;
 
+import hu.csaszi.gameengine.util.IOUtil;
 import org.joml.Matrix4f;
 import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
@@ -11,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.FloatBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -151,7 +153,9 @@ public class Shader {
     private String readFile(String fileName) {
 
         StringBuilder string = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(new File("src/main/resources/shaders/" + fileName)))) {
+
+        File file = IOUtil.getFile(fileName, "shaders/");
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
             String line;
 

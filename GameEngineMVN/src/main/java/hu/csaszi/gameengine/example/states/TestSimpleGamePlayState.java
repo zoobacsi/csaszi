@@ -20,6 +20,7 @@ import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import hu.csaszi.gameengine.render.graphics.AnimationKeys;
 import hu.csaszi.gameengine.render.graphics.gui.GUI;
+import hu.csaszi.gameengine.util.IOUtil;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.lwjgl.opengl.GL;
@@ -28,6 +29,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class TestSimpleGamePlayState extends GameState {
 
@@ -103,21 +105,22 @@ public class TestSimpleGamePlayState extends GameState {
 				readEntitesMap(entityManager);
 			} catch (IOException e) {
 				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
 			}
 
-//            gui = new GUI(window);
-
-			Calculator calc = new Calculator(300, 50);
-			Demo demo = new Demo(50, 50);
-
-			GuiManager.addGuiNode(calc);
-			GuiManager.addGuiNode(demo);
+//			Calculator calc = new Calculator(300, 50);
+//			Demo demo = new Demo(50, 50);
+//
+//			GuiManager.addGuiNode(calc);
+//			GuiManager.addGuiNode(demo);
         }
 
 	}
 
-	private void readEntitesMap(EntityManager entityManager)throws IOException{
-		BufferedImage entitySheet = ImageIO.read(new File("src/main/resources/levels/" + world.getTag() + "_entities.png"));
+	private void readEntitesMap(EntityManager entityManager) throws IOException, URISyntaxException {
+		File file = IOUtil.getFile(world.getTag() + "_entities.png", "levels/");
+		BufferedImage entitySheet = ImageIO.read(file);
 
 		int width = entitySheet.getWidth();
 		int height = entitySheet.getHeight();

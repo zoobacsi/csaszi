@@ -1,12 +1,16 @@
 package hu.csaszi.gameengine.render.core.gl;
 
+import hu.csaszi.gameengine.util.IOUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class TextureSheet {
 
@@ -20,7 +24,8 @@ public class TextureSheet {
     public TextureSheet(String fileName, int tileWidth, int tileHeight){
 
         try{
-            bufferedImage = ImageIO.read(new File("src/main/resources/textures/" + fileName + ".png"));
+            File file = IOUtil.getFile(fileName + ".png", "textures/");
+            bufferedImage = ImageIO.read(file);
 
             int width = bufferedImage.getWidth();
             int height = bufferedImage.getHeight();

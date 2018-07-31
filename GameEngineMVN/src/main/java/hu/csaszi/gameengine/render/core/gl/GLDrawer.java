@@ -91,7 +91,7 @@ public class GLDrawer {
         shader = new Shader("fontshader");
 
         try (STBTTPackContext pc = STBTTPackContext.malloc()) {
-            ByteBuffer ttf = ioResourceToByteBuffer("src/main/resources/fonts/arial.ttf", 512 * 1024);
+            ByteBuffer ttf = ioResourceToByteBuffer("fonts/arial.ttf", 512 * 1024);
 
             ByteBuffer bitmap = BufferUtils.createByteBuffer(BITMAP_W * BITMAP_H);
 

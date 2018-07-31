@@ -9,6 +9,7 @@ import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
+import hu.csaszi.gameengine.util.IOUtil;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -17,6 +18,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.Buffer;
 
 public class World {
@@ -36,13 +38,24 @@ public class World {
     public World(String world) {
         this.tag = world;
         try {
-            BufferedImage tileSheet = ImageIO.read(new File("src/main/resources/levels/" + world + "_tiles.png"));
+            File file = IOUtil.getFile(world + "_tiles.png", "levels/");
+            BufferedImage tileSheet = ImageIO.read(file);
 
             width = tileSheet.getWidth();
             height = tileSheet.getHeight();
             scale = 16;
 
             this.world = new Matrix4f().setTranslation(new Vector3f());
+
+//            float matIso[] = {
+//                    0.7071f,    0.4082f,    0.0f,   0.0f,
+//                    0.0f,       0.8166f,    0.0f,   0.0f,
+//                    0.7071f,    -0.4082f,   0.0f,   0.0f,
+//                    0.0f,       0.0f,       0.0f,   1.0f
+//            };
+//
+//            this.world.set(matIso);
+//
             this.world.scale(scale);
 
             int[] colorTileSheet = tileSheet.getRGB(0, 0, width, height, null, 0, width);

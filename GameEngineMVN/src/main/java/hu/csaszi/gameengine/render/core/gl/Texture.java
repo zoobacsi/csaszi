@@ -1,6 +1,7 @@
 package hu.csaszi.gameengine.render.core.gl;
 
 import hu.csaszi.gameengine.render.graphics.imaging.PNGDecoder;
+import hu.csaszi.gameengine.util.IOUtil;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.stb.STBTTPackedchar;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -47,8 +49,8 @@ public class Texture implements Sprite {
         BufferedImage bufferedImage;
 
         try {
-
-            PNGDecoder decoder = new PNGDecoder(new FileInputStream(new File("src/main/resources/textures/" + fileName + ".png")));
+            File file = IOUtil.getFile(fileName + ".png", "textures/");
+            PNGDecoder decoder = new PNGDecoder(new FileInputStream(file));
             width = decoder.getWidth();
             height = decoder.getHeight();
 

@@ -5,9 +5,12 @@
 package hu.csaszi.gameengine.util;
 
 
+import hu.csaszi.gameengine.example.SimpleGame;
 import org.lwjgl.*;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.*;
 import java.nio.channels.*;
 import java.nio.file.*;
@@ -68,4 +71,54 @@ public final class IOUtil {
         return buffer.slice();
     }
 
+    public static File getFile(String fileName, String directory) {
+
+        File fsFile = new File(directory + fileName);
+
+        if(fsFile.exists()) {
+            return fsFile;
+        }
+
+        String current = null;
+        try {
+            current = new File( "." ).getCanonicalPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Current dir:"+current);
+        String currentDir = System.getProperty("user.dir");
+        System.out.println("Current dir using System:" +currentDir);
+
+        InputStream is = SimpleGame.class.getClassLoader().getResourceAsStream(fileName);
+
+        if (is == null) {
+            is = SimpleGame.class.getClassLoader().getResourceAsStream(directory + fileName);
+        }
+        if (is == null) {
+            is = SimpleGame.class.getClassLoader().getResourceAsStream("src/main/resources/" + directory + fileName);
+        }
+
+        File file = null;
+        try {
+
+            byte[] buffer = new byte[is.available()];
+            is.read(buffer);
+
+            File targetFile = File.createTempFile("temp","temp");
+            OutputStream outStream = new FileOutputStream(targetFile);
+            outStream.write(buffer);
+
+//            file = new File(url.getFile());
+//            System.out.println(file);
+//            if (file == null) {
+//                throw new Error("Missing file " + directory + fileName);
+//            }
+            file = targetFile;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return file;
+    }
 }

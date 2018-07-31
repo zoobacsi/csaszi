@@ -32,12 +32,7 @@ public class TileRenderer {
             }
         }
 
-        if(isometric) {
-            model = Assets.getModel("iso");
-
-        } else {
-            model = Assets.getModel("box");
-        }
+        model = Assets.getModel("box");
     }
 
     public void renderTile(byte id, float x, float y, Shader shader, Matrix4f world, Camera camera){

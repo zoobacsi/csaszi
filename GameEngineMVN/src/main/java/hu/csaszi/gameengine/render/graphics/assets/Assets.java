@@ -12,7 +12,7 @@ public class Assets {
         models = new HashMap<>();
         models.put("tall", createRectangleModel(2f));
         models.put("box", createRectangleModel(1f));
-        models.put("iso", createRectangleModel(0.421875f));
+        //models.put("iso", createRectangleModel(0.421875f));
     }
 
     public static Model getModel(String model){

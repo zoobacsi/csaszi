@@ -1,128 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ebc3135-b385-4740-a4ec-848327e4457b" name="Default" comment="" />
+    <list default="true" id="8ebc3135-b385-4740-a4ec-848327e4457b" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/hu/csaszi/twodee/map/tileset.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/bin/hu/csaszi/twodee/map/tileset.xsd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/hu/csaszi/twodee/runtime/ui/Eforen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/hu/csaszi/twodee/runtime/ui/Eforen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/hu/csaszi/twodee/runtime/ui/Eforen_red.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/hu/csaszi/twodee/runtime/ui/Eforen_red.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/hu/csaszi/twodee/runtime/ui/buttonFont.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/hu/csaszi/twodee/runtime/ui/buttonFont.fnt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/hu/csaszi/twodee/runtime/ui/font4.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/hu/csaszi/twodee/runtime/ui/font4.fnt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/hu/csaszi/twodee/runtime/ui/gui.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/hu/csaszi/twodee/runtime/ui/gui.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/themer.jnlp" beforeDir="false" afterPath="$PROJECT_DIR$/bin/themer.jnlp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hu/csaszi/twodee/map/TileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hu/csaszi/twodee/map/TileUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngine/bin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/.idea/libraries/cbchain_0_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/.idea/libraries/legui_1_4_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/.idea/libraries/leutil_0_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/lib/cbchain-0.1.2-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/lib/cbchain-0.1.2-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/lib/cbchain-0.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/lib/legui-1.4.0-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/lib/legui-1.4.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/lib/legui-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/lib/leutil-0.0.1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/lib/leutil-0.0.1-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/lib/leutil-0.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/alienhit.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/ashoot.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/birth.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/bonus.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/clang.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/elim10.wav.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/fire.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/gate.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/hbeat.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/hu/csaszi/gameengine/audio/openal/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/hu/csaszi/gameengine/data/defaultfont.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/hu/csaszi/gameengine/data/defaultfont.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/hu/csaszi/gameengine/data/helvetica_svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/hu/csaszi/gameengine/data/particle.tga" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/hu/csaszi/gameengine/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/key.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/movmaze.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/phit.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/pshoot.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/sizzle.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/spritesheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/checker.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/selectbox.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/textures/water9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/production/GameEngineMVN/urgay.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/out/test/GameEngineMVN/urgay.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/example/states/TestSimpleGamePlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/example/states/TestSimpleGamePlayState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/gui/GuiManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/gui/GuiManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/world/TileRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/world/TileRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/world/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/world/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/GLDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/GLDrawer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/TextureSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/TextureSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/shaders/Shader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/shaders/Shader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/graphics/assets/Assets.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/graphics/assets/Assets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/test/java/hu/csaszi/gameengine/game/GameManagerTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/test/java/hu/csaszi/gameengine/render/graphics/ImageTests.java" beforeDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1907482015">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.37" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="IsometricTiledMap.java" pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/isometric/IsometricTiledMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="51" column="81" lean-forward="true" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="81" />
-              <folding />
+            <state relative-caret-position="289">
+              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractTiledMap.java" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/AbstractTiledMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="35" />
-              <folding />
+            <state relative-caret-position="153">
+              <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapBuilder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/MapBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1512">
-              <caret line="85" column="36" lean-forward="true" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/MapType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-104">
-              <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TileUtil.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/TileUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="43" column="82" lean-forward="false" selection-start-line="43" selection-start-column="82" selection-end-line="43" selection-end-column="82" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IsoTileObject.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/isometric/IsoTileObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractTileObject.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/AbstractTileObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="51" column="5" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="83" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DefaultPlay.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/gamestates/DefaultPlay.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5754">
-              <caret line="440" column="25" lean-forward="false" selection-start-line="440" selection-start-column="25" selection-end-line="440" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CharGraphicsUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/graphics/CharGraphicsUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-231">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Camera.java" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/camera/Camera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="190" column="17" lean-forward="true" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="2363">
+              <caret line="151" column="17" selection-start-line="151" selection-start-column="17" selection-end-line="151" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/TileUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="34" column="36" lean-forward="true" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+              <folding>
+                <marker date="1530643675114" expanded="true" signature="972:1315" ph="//..." />
+                <marker date="1530643675114" expanded="true" signature="1309:1315" ph="//..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/isometric/IsoTileObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="867">
+              <caret line="62" column="28" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
-  <component name="GradleLocalSettings">
-    <option name="externalProjectsViewState">
-      <projects_view />
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/hu/csaszi/twodee/map/isometric/IsometricTiledMap.java" />
+        <option value="$PROJECT_DIR$/src/hu/csaszi/twodee/map/TileUtil.java" />
       </list>
     </option>
   </component>
@@ -133,28 +169,16 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="607" />
-    <option name="width" value="1316" />
-    <option name="height" value="1038" />
+    <option name="x" value="606" />
+    <option name="width" value="1317" />
+    <option name="height" value="1039" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -243,7 +267,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -266,104 +292,62 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
-    <configuration name="Unnamed" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="hu.csaszi.twodee.runtime.Application" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="2DGameEngine" />
-      <envs />
-    </configuration>
+  <component name="RunManager" selected="Application.2DGameEngine">
     <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <module />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="2DGameEngine" type="Application" factoryName="Application" singleton="true">
+      <option name="MAIN_CLASS_NAME" value="hu.csaszi.twodee.runtime.Application" />
+      <module name="2DGameEngine" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="JarApplication" factoryName="JAR Application">
+      <option name="WORKING_DIRECTORY" value="E:\Dev\GIT\csaszi\2DGameEngine" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-    </configuration>
+    <list>
+      <item itemvalue="Application.2DGameEngine" />
+      <item itemvalue="JAR Application.Unnamed" />
+    </list>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -372,45 +356,49 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526404289208</updated>
-      <workItem from="1526404294617" duration="3939000" />
+      <workItem from="1526404294617" duration="4514000" />
+      <workItem from="1526498920793" duration="2100000" />
+      <workItem from="1530643581292" duration="1406000" />
+      <workItem from="1533055311473" duration="445000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3939000" />
+    <option name="totallyTimeSpent" value="8465000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3257403" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1387808" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29139072" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900944" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1659506" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" x="843" y="62" width="234" height="906" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39950064" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="760" y="123" width="820" height="747" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278302" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info x="843" y="62" width="234" height="906" id="Project" order="0" side_tool="true" visible="true" weight="0.17248322" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32687926" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.28936172" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39863327" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.3257403" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32900944" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven Projects" order="4" weight="0.1387808" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" x="760" y="123" width="820" height="747" id="Documentation" order="7" type="FLOATING" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,127 +408,172 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/isometric/IsometricTiledMap.java</url>
+          <line>51</line>
+          <properties />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/isometric/IsoTileObject.java</url>
+          <line>62</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/gamestates/DefaultMenu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/beans/MapTile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/interfaces/TiledMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
-          <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/interfaces/TileObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding />
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/orthogonal/OrthogonalTiledMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1302">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/MapBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1512">
-          <caret line="85" column="36" lean-forward="true" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
-          <folding />
+          <caret line="85" column="36" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/MapType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-104">
-          <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/camera/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="190" column="17" lean-forward="true" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="17" />
-          <folding />
+        <state relative-caret-position="84">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/gamestates/DefaultPlay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5754">
-          <caret line="440" column="25" lean-forward="false" selection-start-line="440" selection-start-column="25" selection-end-line="440" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="7896">
+          <caret line="440" column="25" selection-start-line="440" selection-start-column="25" selection-end-line="440" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/graphics/CharGraphicsUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-231">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/AbstractTiledMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="84">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/AbstractTileObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="51" column="5" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="83" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="966">
+          <caret line="51" column="5" selection-start-line="9" selection-start-column="4" selection-end-line="83" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/isometric/IsoTileObject.java">
+    <entry file="file://$PROJECT_DIR$/../../../slickuj/src/org/newdawn/slick/Graphics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
-          <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
-          <folding />
+          <caret line="235" column="17" selection-start-line="235" selection-start-column="17" selection-end-line="235" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/tilesets/testTileset.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/dirt.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/grass.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/grass2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/grass4.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/grass5.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/grass6.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/grassHD.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/grassLD.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/grasstest.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/grassTile.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/grassdirt.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/beans/MapTile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/interfaces/TileObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/isometric/IsometricTiledMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="51" column="81" lean-forward="true" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="81" />
-          <folding />
+        <state relative-caret-position="289">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/AbstractTiledMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/camera/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2363">
+          <caret line="151" column="17" selection-start-line="151" selection-start-column="17" selection-end-line="151" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/isometric/IsoTileObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="62" column="28" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hu/csaszi/twodee/map/TileUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="43" column="82" lean-forward="false" selection-start-line="43" selection-start-column="82" selection-end-line="43" selection-end-column="82" />
-          <folding />
+        <state relative-caret-position="272">
+          <caret line="34" column="36" lean-forward="true" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+          <folding>
+            <marker date="1530643675114" expanded="true" signature="972:1315" ph="//..." />
+            <marker date="1530643675114" expanded="true" signature="1309:1315" ph="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
