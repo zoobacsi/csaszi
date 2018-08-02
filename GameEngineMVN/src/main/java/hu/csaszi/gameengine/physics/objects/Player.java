@@ -39,11 +39,14 @@ public class Player extends Entity {
             if (window.getInput().isKeyDown(GLFW_KEY_D)) {
                 movement.add(5 * delta, 0);
             }
-            if (window.getInput().isKeyDown(GLFW_KEY_W)) {
-                movement.add(0, 5 * delta);
-            }
-            if (window.getInput().isKeyDown(GLFW_KEY_S)) {
-                movement.add(0, -5 * delta);
+//            if (window.getInput().isKeyDown(GLFW_KEY_W)) {
+//                movement.add(0, 5 * delta);
+//            }
+//            if (window.getInput().isKeyDown(GLFW_KEY_S)) {
+//                movement.add(0, -5 * delta);
+//            }
+            if (window.getInput().isKeyReleased(GLFW_KEY_SPACE) && collideWithTile(world)) {
+                velocity.add(0, 15 * delta);
             }
 
             if(window.getInput().isKeyReleased(GLFW_KEY_ENTER)) {
@@ -54,7 +57,8 @@ public class Player extends Entity {
             }
         }
 
-        move(movement);
+        velocity.x = movement.x;
+        //move(movement);
         if(movement.x != 0 || movement.y != 0){
             useAnimation(ANIM_WALK);
         } else {

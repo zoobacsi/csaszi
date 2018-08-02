@@ -94,13 +94,13 @@ public class TestSimpleGamePlayState extends GameState {
 			transformEnemy.pos.x = 0;
 			transformEnemy.pos.y = -4;
 
-			entityManager.addObject(new Entity(new Animation(1, 1, "soldier"), transformEnemy){
-				@Override
-				public void update(float delta, GLFWWindow window, Camera camera, World world) {
-					move(new Vector2f(5*delta, 0));
-					super.update(delta, window, camera, world);
-				}
-			});
+//			entityManager.addObject(new Entity(new Animation(1, 1, "soldier"), transformEnemy){
+//				@Override
+//				public void update(float delta, GLFWWindow window, Camera camera, World world) {
+//					move(new Vector2f(5*delta, 0));
+//					super.update(delta, window, camera, world);
+//				}
+//			});
 			try {
 				readEntitesMap(entityManager);
 			} catch (IOException e) {
@@ -142,7 +142,7 @@ public class TestSimpleGamePlayState extends GameState {
 					transform.pos.y = -y * 2;
 					switch (entityIndex){
 						case 1:
-							Entity entity = new Entity(2, transform, "tall"){
+							Entity entity = new Entity(2, transform, "tall")/*{
 								@Override
 								public void update(float delta, GLFWWindow window, Camera camera, World world) {
 									move(new Vector2f(dir * 5*delta, 0));
@@ -153,7 +153,7 @@ public class TestSimpleGamePlayState extends GameState {
 										useAnimation(ANIM_WALK);
 									}
 								}
-							};
+							}*/;
 							TextureSheet sheet = new TextureSheet("sheets/Soldier3", 32, 48);
 							entity.setSprite(Entity.ANIM_IDLE, new Animation(5, sheet, AnimationKeys.DEFAULT_CHARSET_IDLE_FRAMES));
 							entity.setSprite(Entity.ANIM_WALK, new Animation(5, sheet, AnimationKeys.DEFAULT_CHARSET_WALKING_FRAMES));

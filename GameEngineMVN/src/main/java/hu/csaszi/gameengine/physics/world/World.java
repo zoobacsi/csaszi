@@ -114,11 +114,38 @@ public class World {
             for (int j = 0; j < viewY; j++) {
                 Tile tile = getTile(i - posX - (viewX / 2) + 1, j + posY - (viewY / 2));
                 if (tile != null) {
+                    int direction = getNeighbourHood(tile, i, j, 0);
                     render.renderTile(tile.getId(), i - posX - (viewX / 2) + 1, -j - posY + (viewY / 2), shader, world, camera);
                 }
             }
         }
 
+    }
+
+    protected int getNeighbourHood(Tile tile, int x, int y, int depth) {
+        int result = 0;
+
+        TileObject tile = getTile(x, y - 1, depth);
+        if ((tile != null && tile.getType().equals(type)) || y == 0) {
+            result += 1;
+        }
+
+        tile = getTile(x + 1, y, depth);
+        if ((tile != null && tile.getType().equals(type)) || x == maxX - 1) {
+            result += 2;
+        }
+
+        tile = getTile(x, y + 1, depth);
+        if ((tile != null && tile.getType().equals(type)) || y == maxY - 1) {
+            result += 4;
+        }
+
+        tile = getTile(x - 1, y, depth);
+        if ((tile != null && tile.getType().equals(type)) || x == 0) {
+            result += 8;
+        }
+
+        return result;
     }
 
     public void correctCamera(Camera camera) {

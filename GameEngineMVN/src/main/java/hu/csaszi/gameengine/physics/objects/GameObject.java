@@ -31,6 +31,9 @@ public abstract class GameObject implements Comparable<GameObject>{
 	protected AABB boundingBox;
 	protected Image image;
 
+	protected Vector2f velocity = new Vector2f();
+	protected static final Vector2f GRAVITY = new Vector2f(0, -9.81f);
+
 	protected Sprite[] sprites;
 	protected Transform transform;
 	protected int useSprite;
@@ -87,6 +90,24 @@ public abstract class GameObject implements Comparable<GameObject>{
 		if(moveDir != null){
 			this.direction = moveDir;
 		}
+
+		if (transform.pos.x + direction.x < 0){
+			transform.pos.x = 0 - direction.x;
+		} else if (transform.pos.x + direction.x > Transform.getMaxWidth()){
+			transform.pos.x = Transform.getMaxWidth() - direction.x;
+		}
+
+		if (transform.pos.y + direction.y > 0){
+			transform.pos.y = 0 - direction.y;
+		} else if (transform.pos.y + direction.y < -Transform.getMaxHeigth()){
+			transform.pos.y = -Transform.getMaxHeigth() - direction.y;
+		}
+
+		transform.pos.add(new Vector3f(direction, 0));
+		boundingBox.getCenter().set(transform.pos.x, transform.pos.y);
+	}
+
+	public void fall(Vector2f direction) {
 
 		if (transform.pos.x + direction.x < 0){
 			transform.pos.x = 0 - direction.x;

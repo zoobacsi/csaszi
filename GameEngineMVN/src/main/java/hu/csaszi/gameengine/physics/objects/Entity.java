@@ -21,6 +21,7 @@ public class Entity extends GameObject {
 
     private boolean isAlive = true;
     private long entityId = 0;
+    boolean collide = false;
 
     public Entity(int maxAnimations, Transform transform, String model) {
         super(new Sprite[maxAnimations], transform, model);
@@ -35,6 +36,7 @@ public class Entity extends GameObject {
 
         this.tag = "entity_" + entityId;
     }
+
 
 
     public boolean collideWithTile(World world){
@@ -96,9 +98,13 @@ public class Entity extends GameObject {
     @Override
     public void update(float delta, GLFWWindow window, Camera camera, World world) {
         if(!"player".equalsIgnoreCase(tag)){
-            move(new Vector2f(5*delta, 0));
+            velocity.x = 1;
         }
-        collideWithTile(world);
+        velocity.add(GRAVITY);
+
+        move(velocity.mul(delta));
+        collide = collideWithTile(world);
+        System.out.println(tag + " Collide: " + collide);
     }
 
     @Override

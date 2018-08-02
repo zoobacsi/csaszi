@@ -54,4 +54,23 @@ public class TileRenderer {
         model.render();
     }
 
+    public void renderAutoTile(byte id, float x, float y, Shader shader, Matrix4f world, Camera camera, int tileNum){
+        shader.bind();
+        String textureKey = Tile.tiles[id].getTexture() + "-" + tileNum;
+
+        if(tileTextures.containsKey(textureKey)){
+            tileTextures.get(textureKey).bind(0, 0);
+        }
+
+        Matrix4f tilePos = new Matrix4f().translate(new Vector3f(x*2, y*2, 0));
+        Matrix4f target = new Matrix4f();
+
+        camera.getProjection().mul(world, target);
+        target.mul(tilePos);
+
+        shader.setUniform("sampler", 0);
+        shader.setUniform("projection", target);
+        model.render();
+    }
+
 }
