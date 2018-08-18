@@ -1,5 +1,6 @@
 package hu.csaszi.gameengine.render.core.gl;
 
+import hu.csaszi.gameengine.audio.OggPlayer;
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.gui.GuiManager;
 import hu.csaszi.gameengine.input.Input;
@@ -272,11 +273,12 @@ public class GLFWWindow implements Window {
 
         hasResized = false;
 
+        gameManager.update(delta);
+
         if (input != null) {
             input.update();
         }
         glfwPollEvents();
-        gameManager.update(delta);
     }
 
     @Override
@@ -286,7 +288,7 @@ public class GLFWWindow implements Window {
 
     @Override
     public void close() {
-
+        OggPlayer.kill();
         glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
 
         glfwFreeCallbacks(window);
@@ -409,7 +411,7 @@ public class GLFWWindow implements Window {
                 if (frameTime >= 1.0) {
                     frameTime = 0.0;
                     currentFPS = frames;
-                    System.out.println("FPS: " + currentFPS);
+//                    System.out.println("FPS: " + currentFPS);
                     frames = 0;
                 }
             }
@@ -433,6 +435,7 @@ public class GLFWWindow implements Window {
                 frames++;
             }
         }
+
 
         GuiManager.shutdown();
         close();

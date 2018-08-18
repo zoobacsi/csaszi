@@ -10,6 +10,7 @@ import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.core.gl.shaders.Shader;
 import hu.csaszi.gameengine.util.IOUtil;
+import hu.csaszi.gameengine.util.PropsUtil;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -27,6 +28,7 @@ public class World {
     private int viewY = 24;
 
     private byte[] tiles;
+    private int[] tilesDirection;
     private AABB[] boundingBoxes;
     private int width;
     private int height;
@@ -43,7 +45,7 @@ public class World {
 
             width = tileSheet.getWidth();
             height = tileSheet.getHeight();
-            scale = 16;
+            scale = PropsUtil.getProperties().getScale();
 
             this.world = new Matrix4f().setTranslation(new Vector3f());
 
@@ -61,6 +63,8 @@ public class World {
             int[] colorTileSheet = tileSheet.getRGB(0, 0, width, height, null, 0, width);
 
             tiles = new byte[width * height];
+            tilesDirection = new int[width * height];
+
             boundingBoxes = new AABB[width * height];
 
             for (int y = 0; y < height; y++) {
@@ -76,6 +80,13 @@ public class World {
                     if (tile != null) {
                         setTile(tile, x, y);
                     }
+                }
+            }
+
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    Tile tile = getTile(x, y);
+                    tilesDirection[x + y * width] = getNeighbourHood(tile, x, y, 0);
                 }
             }
         } catch (IOException e) {
@@ -114,34 +125,41 @@ public class World {
             for (int j = 0; j < viewY; j++) {
                 Tile tile = getTile(i - posX - (viewX / 2) + 1, j + posY - (viewY / 2));
                 if (tile != null) {
-                    int direction = getNeighbourHood(tile, i, j, 0);
-                    render.renderTile(tile.getId(), i - posX - (viewX / 2) + 1, -j - posY + (viewY / 2), shader, world, camera);
+                    int tileX = i - posX - (viewX / 2) + 1;
+                    int tileY = -j - posY + (viewY / 2);
+                    //System.out.println("tilex: " + tileX +" tileY: " + tileY);
+                    int direction = getTileDirection(i - posX - (viewX / 2) + 1, j + posY - (viewY / 2));
+                    render.renderTile(tile.getId(), tileX, tileY, shader, world, camera, direction);
                 }
             }
         }
 
     }
 
-    protected int getNeighbourHood(Tile tile, int x, int y, int depth) {
+    protected int getNeighbourHood(Tile curTile, int x, int y, int depth) {
+        if(!curTile.isAutoTile()) {
+            return 0;
+        }
+
         int result = 0;
 
-        TileObject tile = getTile(x, y - 1, depth);
-        if ((tile != null && tile.getType().equals(type)) || y == 0) {
+        Tile tile = getTile(x, y - 1);
+        if ((tile != null && tile.getTexture().equals(curTile.getTexture())) || y == 0) {
             result += 1;
         }
 
-        tile = getTile(x + 1, y, depth);
-        if ((tile != null && tile.getType().equals(type)) || x == maxX - 1) {
+        tile = getTile(x + 1, y );
+        if ((tile != null && tile.getTexture().equals(curTile.getTexture())) || x == width - 1) {
             result += 2;
         }
 
-        tile = getTile(x, y + 1, depth);
-        if ((tile != null && tile.getType().equals(type)) || y == maxY - 1) {
+        tile = getTile(x, y + 1);
+        if ((tile != null && tile.getTexture().equals(curTile.getTexture())) || y == height - 1) {
             result += 4;
         }
 
-        tile = getTile(x - 1, y, depth);
-        if ((tile != null && tile.getType().equals(type)) || x == 0) {
+        tile = getTile(x - 1, y );
+        if ((tile != null && tile.getTexture().equals(curTile.getTexture())) || x == 0) {
             result += 8;
         }
 
@@ -177,6 +195,21 @@ public class World {
         } else {
             boundingBoxes[x + y * width] = null;
         }
+    }
+
+    public int getTileDirection(int x, int y) {
+        return tilesDirection[x + y * width];
+    }
+
+    public Tile getTileByPosition(float xPos, float yPos){
+
+//        System.out.println("new pos x: " + xPos + " new pos y: " + yPos);
+
+        int x = (int)Math.round(Math.floor((double)(xPos/2)));
+        int y = (int)Math.round(Math.floor((double)(-yPos/2)));
+
+//        System.out.println("Tile x: " + x + " tile y: " + y);
+        return getTile(x, y);
     }
 
     public Tile getTile(int x, int y) {

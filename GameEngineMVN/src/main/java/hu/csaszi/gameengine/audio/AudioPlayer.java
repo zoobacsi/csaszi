@@ -1,9 +1,13 @@
 package hu.csaszi.gameengine.audio;
 
+import hu.csaszi.gameengine.audio.openal.OggInputStream;
+import hu.csaszi.gameengine.audio.openal.OpenALStreamPlayer;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +20,11 @@ public class AudioPlayer {
     public static synchronized void playSound(String clipName){
 
         playSound(clipMap.get(clipName));
+    }
+
+    public static synchronized void playOgg(File file) {
+
+        OpenALStreamPlayer openALStreamPlayer = new OpenALStreamPlayer(1, file.getPath());
     }
 
     public static synchronized void playSound(AudioClip sfx){

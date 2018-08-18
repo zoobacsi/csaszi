@@ -10,11 +10,17 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.HashMap;
+
+import static org.lwjgl.openal.ALC10.ALC_FALSE;
+import static org.lwjgl.openal.ALC10.ALC_REFRESH;
+import static org.lwjgl.openal.ALC10.ALC_SYNC;
+import static org.lwjgl.openal.EFX10.ALC_MAX_AUXILIARY_SENDS;
 
 /**
  * Responsible for holding and playing the sounds used in the game.
@@ -293,7 +299,42 @@ public class SoundStore {
             public Object run() {
 				try {
 
-					ALC.create();
+					long device = ALC10.alcOpenDevice((ByteBuffer)null);
+
+					//Create a handle for the device capabilities, as well.
+					ALCCapabilities deviceCaps = ALC.createCapabilities(device);
+					// Create context (often already present, but here, necessary)
+					IntBuffer contextAttribList = BufferUtils.createIntBuffer(16);
+
+					// Note the manner in which parameters are provided to OpenAL...
+					contextAttribList.put(ALC_REFRESH);
+					contextAttribList.put(60);
+
+					contextAttribList.put(ALC_SYNC);
+					contextAttribList.put(ALC_FALSE);
+
+					// Don't worry about this for now; deals with effects count
+					contextAttribList.put(ALC_MAX_AUXILIARY_SENDS);
+					contextAttribList.put(2);
+
+					contextAttribList.put(0);
+					contextAttribList.flip();
+
+					//create the context with the provided attributes
+					long newContext = ALC10.alcCreateContext(device, contextAttribList);
+
+					if(!ALC10.alcMakeContextCurrent(newContext)) {
+						throw new Exception("Failed to make context current");
+					}
+
+					AL.createCapabilities(deviceCaps);
+
+
+					//define listener
+					AL10.alListener3f(AL10.AL_VELOCITY, 0f, 0f, 0f);
+					AL10.alListener3f(AL10.AL_ORIENTATION, 0f, 0f, -1f);
+
+
 
 					soundWorks = true;
 					sounds = true;

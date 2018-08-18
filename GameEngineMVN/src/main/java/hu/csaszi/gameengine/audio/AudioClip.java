@@ -15,6 +15,13 @@ public class AudioClip {
         }
     }
 
+    public AudioClip(File file){
+        this.file = file;
+        if(!file.exists()){
+            System.out.println("Error >> AudioClip not found.");
+        }
+    }
+
     public AudioInputStream getAudioStream(){
 
         try{

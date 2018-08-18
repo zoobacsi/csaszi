@@ -10,8 +10,9 @@ public class Assets {
 
     static {
         models = new HashMap<>();
-        models.put("tall", createRectangleModel(2f));
-        models.put("box", createRectangleModel(1f));
+        models.put("tall", createRectangleModel(2f, 1f));
+        models.put("tall2", createRectangleModel(2f, 1f));
+        models.put("box", createRectangleModel(1f, 1f));
         //models.put("iso", createRectangleModel(0.421875f));
     }
 
@@ -19,13 +20,13 @@ public class Assets {
         return models.get(model);
     }
 
-    private static Model createRectangleModel(float ratio){
+    private static Model createRectangleModel(float ratio, float scale){
 
         float[] vertices = new float[]{
-                -1f, ratio, 0, // TOP LEFT      0
-                1f, ratio, 0, // TOP RIGHT     1
-                1f, -1f, 0, // BOTTOM RIGHT  2
-                -1f, -1f, 0 // BOTTOM LEFT 3
+                -scale, ratio*scale, 0, // TOP LEFT      0
+                scale, ratio*scale, 0, // TOP RIGHT     1
+                scale, -scale, 0, // BOTTOM RIGHT  2
+                -scale, -scale, 0 // BOTTOM LEFT 3
         };
 
         float[] texCoords = new float[]{

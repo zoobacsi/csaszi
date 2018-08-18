@@ -56,7 +56,11 @@ public class TextureSheet {
 
     public Texture getTexture(int tile){
         int x = tile % tileNumX;
-        int y = tile / tileNumY;
+        int y = tile / tileNumX;
         return textures[x][y];
+    }
+
+    public int getTexturesCount() {
+        return tileNumX * tileNumY;
     }
 }

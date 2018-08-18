@@ -26,20 +26,36 @@ public class TileRenderer {
         for(int i = 0; i < Tile.tiles.length; i++){
             if(Tile.tiles[i] != null){
                 String textureKey = Tile.tiles[i].getTexture();
-                if(!tileTextures.containsKey(textureKey)){
-                    tileTextures.put(textureKey, new Texture(textureKey));
+                if(Tile.tiles[i].isAutoTile()){
+                    for (int num = 0; num < Tile.tiles[i].getTexturesNumber(); num++) {
+                        textureKey = Tile.tiles[i].getTexture() + "-" + num;
+                        putTexture(textureKey, Tile.tiles[i].getTexture(num));
+                    }
+                } else {
+                    putTexture(textureKey, new Texture(textureKey));
                 }
+
             }
         }
 
         model = Assets.getModel("box");
     }
 
-    public void renderTile(byte id, float x, float y, Shader shader, Matrix4f world, Camera camera){
+    private void putTexture(String textureKey, Texture texture) {
+        if (!tileTextures.containsKey(textureKey)) {
+            tileTextures.put(textureKey, texture);
+        }
+    }
+
+    public void renderTile(byte id, float x, float y, Shader shader, Matrix4f world, Camera camera, int direction){
         shader.bind();
         String textureKey = Tile.tiles[id].getTexture();
 
-        if(tileTextures.containsKey(textureKey)){
+        if(Tile.tiles[id].isAutoTile()){
+            textureKey = textureKey + "-" + direction;
+        }
+
+        if (tileTextures.containsKey(textureKey)) {
             tileTextures.get(textureKey).bind(0, 0);
         }
 

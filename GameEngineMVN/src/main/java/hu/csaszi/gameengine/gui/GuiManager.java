@@ -1,5 +1,6 @@
 package hu.csaszi.gameengine.gui;
 
+import hu.csaszi.gameengine.game.GameManager;
 import org.lwjgl.nuklear.*;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GLCapabilities;
@@ -54,6 +55,8 @@ public class GuiManager {
 
     private static final NkAllocator ALLOCATOR;
 
+    private static GameManager gameManager;
+
     private static final NkDrawVertexLayoutElement.Buffer VERTEX_LAYOUT;
 
     static {
@@ -70,6 +73,14 @@ public class GuiManager {
     }
 
     private final ByteBuffer ttf;
+
+    public static GameManager getGameManager() {
+        return gameManager;
+    }
+
+    public static void addGameManager(GameManager gManager){
+        gameManager = gManager;
+    }
 
     private int
             display_width,

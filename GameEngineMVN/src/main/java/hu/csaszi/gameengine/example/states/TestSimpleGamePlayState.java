@@ -1,14 +1,23 @@
 package hu.csaszi.gameengine.example.states;
 
+import hu.csaszi.gameengine.audio.AudioClip;
+import hu.csaszi.gameengine.audio.AudioPlayer;
+import hu.csaszi.gameengine.audio.OggPlayer;
+import hu.csaszi.gameengine.audio.openal.Audio;
+import hu.csaszi.gameengine.audio.openal.OpenALPlayer;
+import hu.csaszi.gameengine.audio.openal.SoundStore;
+import hu.csaszi.gameengine.example.SimpleGame;
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.game.GameState;
 import hu.csaszi.gameengine.gui.Calculator;
 import hu.csaszi.gameengine.gui.Demo;
 import hu.csaszi.gameengine.gui.GuiManager;
+import hu.csaszi.gameengine.gui.GuiNode;
 import hu.csaszi.gameengine.physics.objects.Entity;
 import hu.csaszi.gameengine.physics.objects.EntityManager;
 import hu.csaszi.gameengine.physics.objects.Player;
 import hu.csaszi.gameengine.physics.objects.Transform;
+import hu.csaszi.gameengine.physics.objects.ai.PatrolCommand;
 import hu.csaszi.gameengine.physics.world.Tile;
 import hu.csaszi.gameengine.physics.world.TileRenderer;
 import hu.csaszi.gameengine.physics.world.World;
@@ -28,7 +37,9 @@ import org.lwjgl.opengl.GL;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 
 public class TestSimpleGamePlayState extends GameState {
@@ -57,16 +68,10 @@ public class TestSimpleGamePlayState extends GameState {
 	@Override
 	public void init(GLFWWindow window, GameManager gameManager) {
 
-
 		entityManager = EntityManager.createEntityManager(this);
-//
-//		AudioPlayer.addClip("playerHit", new AudioClip("src/main/resources/phit.wav"));
-//
-//		for(int i = 0; i < 6; i++){
-//			ObjectManager.addObject(new BlockSpawner(window, i*64+64));
-//		}
-//
-//		ObjectManager.addObject(new Player(window, "playerHit"));
+
+		File file = IOUtil.getFile("03_Gridscape_-_Cybergrid_Rocker___ALBUM_MASTER.ogg");
+		OggPlayer.runOgg(file);
 
 		if(GL.getCapabilities() != null) {
 			camera = new Camera(window);
@@ -75,10 +80,6 @@ public class TestSimpleGamePlayState extends GameState {
 			tileRenderer = new TileRenderer(true);
 
 			shader = new Shader("shader");
-
-			world.setTile(Tile.getTile("desert").setSolid(), 1, 0);
-
-			world.setTile(Tile.getTile("water0").setSolid(), 4, 4);
 
 			camera.setPosition(new Vector3f(0, 0, 0));
 
@@ -94,13 +95,6 @@ public class TestSimpleGamePlayState extends GameState {
 			transformEnemy.pos.x = 0;
 			transformEnemy.pos.y = -4;
 
-//			entityManager.addObject(new Entity(new Animation(1, 1, "soldier"), transformEnemy){
-//				@Override
-//				public void update(float delta, GLFWWindow window, Camera camera, World world) {
-//					move(new Vector2f(5*delta, 0));
-//					super.update(delta, window, camera, world);
-//				}
-//			});
 			try {
 				readEntitesMap(entityManager);
 			} catch (IOException e) {
@@ -110,10 +104,12 @@ public class TestSimpleGamePlayState extends GameState {
 			}
 
 //			Calculator calc = new Calculator(300, 50);
-//			Demo demo = new Demo(50, 50);
+			Demo demo = new Demo(50, 50);
 //
+			GuiManager.addGameManager(gameManager);
 //			GuiManager.addGuiNode(calc);
-//			GuiManager.addGuiNode(demo);
+			GuiManager.addGuiNode(demo);
+
         }
 
 	}
@@ -154,9 +150,10 @@ public class TestSimpleGamePlayState extends GameState {
 									}
 								}
 							}*/;
-							TextureSheet sheet = new TextureSheet("sheets/Soldier3", 32, 48);
-							entity.setSprite(Entity.ANIM_IDLE, new Animation(5, sheet, AnimationKeys.DEFAULT_CHARSET_IDLE_FRAMES));
-							entity.setSprite(Entity.ANIM_WALK, new Animation(5, sheet, AnimationKeys.DEFAULT_CHARSET_WALKING_FRAMES));
+							TextureSheet sheet = new TextureSheet("sheets/green", 135, 147);
+							entity.setSprite(Entity.ANIM_IDLE, new Animation(5, sheet, AnimationKeys.PLATFORMER_CHARSET_IDLE_FRAMES));
+							entity.setSprite(Entity.ANIM_WALK, new Animation(5, sheet, AnimationKeys.PLATFORMER_CHARSET_WALKING_FRAMES));
+							entity.setCommand(new PatrolCommand(entity, player));
 							entityManager.addObject(entity);
 							break;
 						default:
@@ -183,8 +180,17 @@ public class TestSimpleGamePlayState extends GameState {
 	@Override
 	public void update(float delta, GameManager gameManager) {
 
-		camera.update();
+		camera.update(delta);
 		entityManager.update(delta, gameManager);
 		world.correctCamera(camera);
+
+//		while (GuiManager.getGuiNodeSet().iterator().hasNext()) {
+//			GuiNode guiNode = GuiManager.getGuiNodeSet().iterator().next();
+//			if (guiNode instanceof Demo) {
+//				((Demo)guiNode).setFps(gameManager.getWindow().getCurrentFPS());
+//				((Demo)guiNode).setPosX(player.getPositionX());
+//				((Demo)guiNode).setPosY(player.getPositionY());
+//			}
+//		}
 	}
 }

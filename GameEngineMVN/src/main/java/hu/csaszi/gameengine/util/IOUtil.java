@@ -71,6 +71,10 @@ public final class IOUtil {
         return buffer.slice();
     }
 
+    public static File getFile(String fileName) {
+
+        return getFile(fileName, "");
+    }
     public static File getFile(String fileName, String directory) {
 
         File fsFile = new File(directory + fileName);

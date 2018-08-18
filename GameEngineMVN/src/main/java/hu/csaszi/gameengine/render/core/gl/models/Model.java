@@ -25,7 +25,16 @@ public class Model {
 
     private float ratio;
 
+    public float getScale() {
+        return scale;
+    }
+
+    private float scale;
+
     public Model(float[] vertices, float[] texCoords, int[] indices, float ratio) {
+        this(vertices, texCoords, indices, ratio, 1f);
+    }
+    public Model(float[] vertices, float[] texCoords, int[] indices, float ratio, float scale) {
 
         this.ratio = ratio;
         drawCount = indices.length;

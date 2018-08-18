@@ -2,6 +2,7 @@ package hu.csaszi.gameengine.render.core.gl.renderer;
 
 import hu.csaszi.gameengine.input.Input;
 import hu.csaszi.gameengine.render.core.Window;
+import hu.csaszi.gameengine.util.MathUtil;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
@@ -16,6 +17,9 @@ public class Camera {
 
     private Window window;
     private Input input;
+
+    private float curRotate;
+    private float targetRotate;
 
     public Camera(Window window){
 
@@ -56,11 +60,28 @@ public class Camera {
     }
 
     public Matrix4f getProjection(){
-        return projection.translate(position, new Matrix4f());
+        return projection.translate(position, new Matrix4f()).rotateLocalZ(curRotate);
     }
 
-    public void update(){
+    public float getTargetRotate() {
+        return targetRotate;
+    }
 
+    public void rotateCamera(float targetRotate) {
+        if(targetRotate >= MathUtil.RAD_360){
+            targetRotate -= MathUtil.RAD_360;
+        }
+        this.targetRotate += targetRotate;
+    }
+
+    public void update(float delta){
+
+        if(targetRotate > curRotate){
+            curRotate += delta;
+        }
+        else if (targetRotate < curRotate){
+            curRotate = targetRotate;
+        }
 //        if(input != null){
 //
 //            if(input.isKeyDown(GLFW_KEY_A)) {

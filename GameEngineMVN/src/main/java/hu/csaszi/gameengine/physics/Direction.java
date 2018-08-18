@@ -51,31 +51,35 @@ public enum Direction {
         return y;
     }
 
-    public static Direction getByVector(Vector2f direction){
-        if (direction.x == 0 && direction.y > 0){
-            return NORTH;
-        }
+    public static Direction getByVector(Vector2f direction, Direction lastDirection){
+//        if (direction.x == 0 && direction.y > 0){
+//            return NORTH;
+//        }
         if (direction.x > 0 && direction.y == 0){
             return EAST;
         }
-        if (direction.x == 0 && direction.y < 0){
-            return SOUTH;
-        }
+//        if (direction.x == 0 && direction.y < 0){
+//            return SOUTH;
+//        }
         if (direction.x < 0 && direction.y == 0){
             return WEST;
         }
-        if (direction.x > 0 && direction.y > 0){
-            return NORTH_EAST;
+
+        if (direction.x == 0 && direction.y == 0){
+            return lastDirection;
         }
-        if (direction.x < 0 && direction.y > 0){
-            return NORTH_WEST;
-        }
-        if (direction.x > 0 && direction.y < 0){
-            return SOUTH_EAST;
-        }
-        if (direction.x < 0 && direction.y < 0){
-            return SOUTH_WEST;
-        }
+//        if (direction.x > 0 && direction.y > 0){
+//            return NORTH_EAST;
+//        }
+//        if (direction.x < 0 && direction.y > 0){
+//            return NORTH_WEST;
+//        }
+//        if (direction.x > 0 && direction.y < 0){
+//            return SOUTH_EAST;
+//        }
+//        if (direction.x < 0 && direction.y < 0){
+//            return SOUTH_WEST;
+//        }
         return null;
     }
 
