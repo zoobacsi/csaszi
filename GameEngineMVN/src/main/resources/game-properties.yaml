@@ -1,4 +1,5 @@
 # Game Properties
 ---
 scale: 16
-jumpHeight: 1.5
+jumpHeight: 2
+enemyTurnTime: 0.5

@@ -89,9 +89,6 @@ public final class IOUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Current dir:"+current);
-        String currentDir = System.getProperty("user.dir");
-        System.out.println("Current dir using System:" +currentDir);
 
         InputStream is = SimpleGame.class.getClassLoader().getResourceAsStream(fileName);
 

@@ -2,51 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ebc3135-b385-4740-a4ec-848327e4457b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_2_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_3_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_2_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_yaml_2_3_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/audio/OggPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/audio/openal/OpenALPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/map/PlatformerMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/ai/AttackCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/ai/BasicCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/ai/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/ai/MoveCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/ai/PatrolCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/ai/ScoutCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/GameProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/PropsUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/resources/03_Gridscape_-_Cybergrid_Rocker___ALBUM_MASTER.ogg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/resources/game-properties.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/resources/textures/lofasz.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/resources/textures/sheets/green.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/GameEngineMVN.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/GameEngineMVN.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/audio/AudioClip.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/audio/AudioClip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/audio/AudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/audio/AudioPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/audio/openal/SoundStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/audio/openal/SoundStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/example/SimpleGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/example/SimpleGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/example/states/TestSimpleGamePlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/example/states/TestSimpleGamePlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/gui/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/gui/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/gui/GuiManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/gui/GuiManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/gui/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/gui/DebugPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/world/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/world/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/world/TileRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/world/TileRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/ai/MoveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/ai/MoveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/ai/PatrolCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/objects/ai/PatrolCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/world/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/physics/world/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/GLFWWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/GLFWWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/TextureSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/TextureSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/models/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/models/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/core/gl/renderer/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/graphics/AnimationKeys.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/graphics/AnimationKeys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/graphics/assets/Assets.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/render/graphics/assets/Assets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/GameProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/GameProperties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/IOUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/IOUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/MathUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/MathUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/PropsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/PropsUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/ResourceLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/java/hu/csaszi/gameengine/util/ResourceLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/resources/game-properties.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/resources/game-properties.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/resources/levels/test_entities.png" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/resources/levels/test_entities.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GameEngineMVN/src/main/resources/levels/test_tiles.png" beforeDir="false" afterPath="$PROJECT_DIR$/../GameEngineMVN/src/main/resources/levels/test_tiles.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -60,7 +31,7 @@
     <session id="-1907482015">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.37" value="1" />

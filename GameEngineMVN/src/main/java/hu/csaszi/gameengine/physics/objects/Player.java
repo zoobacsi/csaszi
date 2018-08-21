@@ -20,14 +20,20 @@ public class Player extends Entity {
     public static final int ANIM_JUMP = 2;
     public static final int ANIM_SHOOT = 3;
 
+    public static Player instance;
+
     public Player(Transform transform) {
         super(ANIM_SIZE, transform, "tall");
         this.tag = "player";
+
+
 
 //        this.setSprite(ANIM_WALK, new Animation(4, 5, "soldier"));
         TextureSheet sheet = new TextureSheet("sheets/Soldier3", 32, 48);
         this.setSprite(ANIM_IDLE, new Animation(5, sheet, AnimationKeys.DEFAULT_CHARSET_IDLE_FRAMES));
         this.setSprite(ANIM_WALK, new Animation(5, sheet, AnimationKeys.DEFAULT_CHARSET_WALKING_FRAMES));
+
+        instance = this;
     }
 
     @Override

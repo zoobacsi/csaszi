@@ -16,7 +16,7 @@ public class GameManager {
     private GLFWWindow window;
     private boolean pause;
     private boolean softwareRender;
-    private static GameManager instance;
+    protected static GameManager instance;
 
     protected GameManager() {
         this.softwareRender = false;

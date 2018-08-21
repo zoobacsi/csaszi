@@ -18,7 +18,7 @@ public class PropsUtil {
             gameProperties = objectMapper.readValue(IOUtil.getFile("game-properties.yaml"), GameProperties.class);
             defaultGameProperties = gameProperties.clone();
 
-            System.out.println(ReflectionToStringBuilder.toString(gameProperties, ToStringStyle.MULTI_LINE_STYLE));
+            //System.out.println(ReflectionToStringBuilder.toString(gameProperties, ToStringStyle.MULTI_LINE_STYLE));
 
         } catch (Exception e) {
             // TODO Auto-generated catch block

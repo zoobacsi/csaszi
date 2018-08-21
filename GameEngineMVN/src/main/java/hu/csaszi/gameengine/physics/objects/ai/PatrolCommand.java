@@ -1,19 +1,29 @@
 package hu.csaszi.gameengine.physics.objects.ai;
 
 import hu.csaszi.gameengine.physics.objects.GameObject;
+import hu.csaszi.gameengine.util.PropsUtil;
 import org.joml.Vector2f;
 
 public class PatrolCommand extends BasicCommand {
 
-	boolean moveRight = true;
+	private boolean moveRight = true;
+	private boolean wait;
+	private float waitingTime;
 
 	@Override
 	public void doExecute(float delta) {
 
-		actor.setVelocity(new Vector2f(moveRight ? actor.getSpeed() * delta : -actor.getSpeed() * delta, 0));
-
 		if(!actor.canMoveForward()) {
 			moveRight = !moveRight;
+			waitingTime = PropsUtil.getProperties().getEnemyTurnTime();
+			actor.changeFacing();
+		}
+
+		if (waitingTime > 0) {
+			waitingTime -= delta;
+		} else {
+			waitingTime = 0;
+			actor.setVelocity(moveRight ? actor.getSpeed() * delta : -actor.getSpeed() * delta, 0);
 		}
 
 		if(distance < 5 && actor.isAwareAbout(target)){

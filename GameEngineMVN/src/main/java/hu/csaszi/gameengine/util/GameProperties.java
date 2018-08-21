@@ -32,6 +32,16 @@ public class GameProperties implements Cloneable{
     }
 
     private float jumpHeight;
+
+    public float getEnemyTurnTime() {
+        return enemyTurnTime;
+    }
+
+    public void setEnemyTurnTime(float enemyTurnTime) {
+        this.enemyTurnTime = enemyTurnTime;
+    }
+
+    private float enemyTurnTime;
 //
 //    GameProperties(int scale, int jumpHeight) {
 //

@@ -19,6 +19,7 @@ public class SimpleGame extends GameManager {
     private static Logger logger = LoggerFactory.getLogger(SimpleGame.class);
 
     public SimpleGame() {
+        instance = this;
         window = createWindow(TITLE, WIDTH, HEIGHT);
     }
 

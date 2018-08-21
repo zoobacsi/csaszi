@@ -49,7 +49,7 @@ public class ResourceLoader {
 
         try {
             File imgFile = new File(path);
-            System.out.println("exists: " + imgFile.exists());
+            //System.out.println("exists: " + imgFile.exists());
             //System.out.println("path: " + new File(".//").getAbsolutePath());
             BufferedImage img = ImageIO.read(imgFile);
 

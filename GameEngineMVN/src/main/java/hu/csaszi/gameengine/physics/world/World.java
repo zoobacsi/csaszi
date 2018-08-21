@@ -1,5 +1,7 @@
 package hu.csaszi.gameengine.physics.world;
 
+import hu.csaszi.gameengine.example.SimpleGame;
+import hu.csaszi.gameengine.example.states.TestSimpleGamePlayState;
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.physics.Direction;
 import hu.csaszi.gameengine.physics.collission.AABB;
@@ -24,8 +26,8 @@ import java.nio.Buffer;
 
 public class World {
 
-    private int viewX = 24;
-    private int viewY = 24;
+    private int viewX = 28;
+    private int viewY = 28;
 
     private byte[] tiles;
     private int[] tilesDirection;
@@ -202,14 +204,22 @@ public class World {
     }
 
     public Tile getTileByPosition(float xPos, float yPos){
+        return getTileByPosition(xPos, yPos, 0, 0);
+    }
+
+    public Tile getTileByPosition(float xPos, float yPos, int xDirection, int yDirection){
 
 //        System.out.println("new pos x: " + xPos + " new pos y: " + yPos);
 
         int x = (int)Math.round(Math.floor((double)(xPos/2)));
         int y = (int)Math.round(Math.floor((double)(-yPos/2)));
 
-//        System.out.println("Tile x: " + x + " tile y: " + y);
-        return getTile(x, y);
+        TestSimpleGamePlayState gameState = ((TestSimpleGamePlayState) GameManager.getInstance().getCurrentState());
+        if(gameState != null) {
+            gameState.putDebugInfo("tilex", String.valueOf(x));
+            gameState.putDebugInfo("tiley", String.valueOf(y));
+        }
+        return getTile(x + xDirection, y + yDirection);
     }
 
     public Tile getTile(int x, int y) {

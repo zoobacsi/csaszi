@@ -10,14 +10,19 @@ public class MoveCommand extends BasicCommand {
 	@Override
 	public void doExecute(float delta) {
 
-		Vector3f position = actor.getTransform().pos;
-		Vector3f targetPos = target.getTransform().pos;
+		Vector3f position = new Vector3f(actor.getTransform().pos);
+		Vector3f targetPos = new Vector3f(target.getTransform().pos);
 		float distance = position.distance(targetPos);
 
-		if(distance >= 1){
+		if(distance >= 2.4f){
 			if(actor.isAwareAbout(target)){
 				boolean right = position.sub(targetPos).x < 0;
-				actor.setVelocity(new Vector2f(right ? actor.getSpeed()* delta * 2 : -actor.getSpeed() * delta * 2, 0));
+				if (actor.canMoveForward()) {
+					actor.setVelocity(right ? actor.getSpeed()* delta * 2 : -actor.getSpeed() * delta * 2, 0);
+				} else {
+					actor.setVelocity(0, 0);
+				}
+
 			} else {
 				actor.setCommand(new PatrolCommand(actor, target));
 			}

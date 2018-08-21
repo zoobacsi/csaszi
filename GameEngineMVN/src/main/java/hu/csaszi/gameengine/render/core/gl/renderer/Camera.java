@@ -1,6 +1,7 @@
 package hu.csaszi.gameengine.render.core.gl.renderer;
 
 import hu.csaszi.gameengine.input.Input;
+import hu.csaszi.gameengine.physics.Gravity;
 import hu.csaszi.gameengine.render.core.Window;
 import hu.csaszi.gameengine.util.MathUtil;
 import org.joml.Matrix4f;
@@ -72,6 +73,7 @@ public class Camera {
             targetRotate -= MathUtil.RAD_360;
         }
         this.targetRotate += targetRotate;
+        Gravity.setGravity(targetRotate);
     }
 
     public void update(float delta){

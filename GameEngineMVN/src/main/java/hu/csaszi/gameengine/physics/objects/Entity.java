@@ -1,6 +1,10 @@
 package hu.csaszi.gameengine.physics.objects;
 
+import hu.csaszi.gameengine.audio.OggPlayer;
+import hu.csaszi.gameengine.example.states.TestSimpleGamePlayState;
+import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.physics.Direction;
+import hu.csaszi.gameengine.physics.Gravity;
 import hu.csaszi.gameengine.physics.collission.AABB;
 import hu.csaszi.gameengine.physics.collission.Collision;
 import hu.csaszi.gameengine.physics.world.Tile;
@@ -11,16 +15,20 @@ import hu.csaszi.gameengine.render.core.gl.Sprite;
 import hu.csaszi.gameengine.render.core.gl.TextureSheet;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.graphics.AnimationKeys;
+import hu.csaszi.gameengine.util.IOUtil;
 import hu.csaszi.gameengine.util.PropsUtil;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.lwjgl.Sys;
+
+import java.io.File;
 
 public class Entity extends GameObject {
 
     public static final int ANIM_IDLE = 0;
     public static final int ANIM_WALK = 1;
 
+    private static File biteSound = IOUtil.getFile("bite.ogg");
     private static long maxEntityId = 0;
 
     private boolean isAlive = true;
@@ -112,7 +120,7 @@ public class Entity extends GameObject {
         int scale = PropsUtil.getProperties().getScale();
         float jumpHeight = PropsUtil.getProperties().getJumpHeight();
 
-        gravityVelocity.y = scale * jumpHeight;
+        gravityVelocity.set(Gravity.getGravity().getGravityVector().mul(-scale * jumpHeight));
         onGround = false;
         jumping = true;
 
@@ -124,7 +132,7 @@ public class Entity extends GameObject {
             int scale = PropsUtil.getProperties().getScale();
             float jumpHeight = PropsUtil.getProperties().getJumpHeight();
 
-            gravityVelocity.y = scale * jumpHeight;
+            gravityVelocity.set(Gravity.getGravity().getGravityVector().mul(-scale * jumpHeight));
 
             secondJumpUsed = true;
             return true;
@@ -132,31 +140,60 @@ public class Entity extends GameObject {
         return false;
     }
 
+    private boolean isStuck(World world) {
+//        float deltaX = direction.equals(Direction.WEST) ? -2f : 2f;
+        int deltaX = direction.equals(Direction.WEST) ? -1 : 1;
+        Tile tile = world.getTileByPosition(getPositionX(), getPositionY(), deltaX, 0);
+        if (tile != null) {
+            stuck = tile.isSolid();
+        } else {
+            stuck = true;
+        }
+
+        return stuck;
+    }
+
+    private boolean isAbyssAhead(World world) {
+        int deltaX = direction.equals(Direction.WEST) ? -1 : 1;
+        Tile tile = world.getTileByPosition(getPositionX(), getPositionY(), deltaX, 1);
+        if (tile != null) {
+            abyssAhead = !tile.isSolid();
+        } else {
+            abyssAhead = true;
+        }
+
+        return abyssAhead;
+    }
+
     @Override
     public void update(float delta, GLFWWindow window, Camera camera, World world) {
+
+
+
         if(!"player".equalsIgnoreCase(tag)){
             command.execute(delta);
         }
 
+        isStuck(world);
+        isAbyssAhead(world);
+
+        if("entity_1".equalsIgnoreCase(tag)){
+            TestSimpleGamePlayState gameState = ((TestSimpleGamePlayState)GameManager.getInstance().getCurrentState());
+            Player player = gameState.getPlayer();
+
+            gameState.putDebugInfo("distance", String.valueOf(player.getTransform().pos.distance(this.getTransform().pos)));
+            gameState.putDebugInfo("ent1stuck", String.valueOf(stuck));
+            gameState.putDebugInfo("ent1ahead", String.valueOf(abyssAhead));
+        }
+
         if(onGround) {
-
-            float deltaX = direction.equals(Direction.WEST) ? -2f : 2f;
-            Tile tile = world.getTileByPosition(getPositionX() + deltaX, getPositionY());
-            if (tile != null) {
-                stuck = tile.isSolid();
-            } else {
-                stuck = true;
-            }
-
             gravityVelocity.set(0);
             jumping = false;
             secondJumpUsed = false;
         } else {
-            gravityVelocity.y += GRAVITY;
+            gravityVelocity.x += Gravity.getGravity().getGravityVector().x;
+            gravityVelocity.y += Gravity.getGravity().getGravityVector().y;
         }
-//        if("player".equalsIgnoreCase(tag) && gravityVelocity.y != 0){
-//            System.out.println("gravityVelocity " + gravityVelocity);
-//        }
 
         if((velocity.x != 0 || velocity.y != 0) && !jumping && onGround){
             useAnimation(ANIM_WALK);
@@ -165,6 +202,7 @@ public class Entity extends GameObject {
         }
 
         move(new Vector2f(velocity.x, (gravityVelocity.y * delta) + velocity.y));
+
         collide = collideWithTile(world);
     }
 
@@ -177,6 +215,8 @@ public class Entity extends GameObject {
 
     @Override
     public void attack(GameObject target) {
+
+        //OggPlayer.runOgg(biteSound);
         System.out.println("TÁMADÁS: " + tag + " őt: " + target.getTag());
     }
 
@@ -187,6 +227,17 @@ public class Entity extends GameObject {
 
         return targetDir.equals(direction);
     }
+
+    public void setAttackInterval(float attackInterval) {
+        this.attackInterval = attackInterval;
+    }
+
+    @Override
+    public float getAttackInterval() {
+        return attackInterval;
+    }
+
+    private float attackInterval = 1f;
 
     public boolean isAlive() {
         return isAlive;

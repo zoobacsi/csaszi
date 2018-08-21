@@ -26,24 +26,25 @@ public class AnimationKeys {
     };
 
     public static final int[][] PLATFORMER_CHARSET_WALKING_FRAMES = new int[][] {
-            {0, 1, 2, 3},
-            {0, 1, 2, 3},
-            {0, 1, 2, 3},
-            {0, 1, 2, 3},
             {4, 5, 6, 7},
             {4, 5, 6, 7},
             {4, 5, 6, 7},
-            {4, 5, 6, 7}
+            {4, 5, 6, 7},
+            {0, 1, 2, 3},
+            {0, 1, 2, 3},
+            {0, 1, 2, 3},
+            {0, 1, 2, 3}
+
     };
 
     public static final int[][] PLATFORMER_CHARSET_IDLE_FRAMES = new int[][] {
-            {0},
-            {0},
-            {0},
-            {0},
             {4},
             {4},
             {4},
-            {4}
+            {4},
+            {0},
+            {0},
+            {0},
+            {0}
     };
 }

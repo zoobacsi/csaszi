@@ -11,6 +11,7 @@ package hu.csaszi.gameengine.gui;
         import org.lwjgl.system.*;
 
         import java.nio.*;
+        import java.util.Map;
 
         import static org.lwjgl.nuklear.Nuklear.*;
         import static org.lwjgl.system.MemoryStack.*;
@@ -19,7 +20,7 @@ package hu.csaszi.gameengine.gui;
  * Java port of
  * <a href="https://github.com/vurtun/nuklear/blob/master/demo/glfw_opengl3/main.c">https://github.com/vurtun/nuklear/blob/master/demo/glfw_opengl3/main.c</a>.
  */
-public class Demo extends GuiNode{
+public class DebugPanel extends GuiNode{
 
     private static final int EASY = 0;
     private static final int HARD = 1;
@@ -41,6 +42,8 @@ public class Demo extends GuiNode{
     private float posX;
     private float posY;
 
+    private Map<String, String> debugMap;
+
     NkColorf background = NkColorf.create()
             .r(0.10f)
             .g(0.18f)
@@ -51,15 +54,15 @@ public class Demo extends GuiNode{
 
     private IntBuffer compression = BufferUtils.createIntBuffer(1).put(0, 20);
 
-    public Demo(int x, int y) {
+    public DebugPanel(int x, int y) {
         this.setWindowBorder(false)
                 .setWindowHasTitle(false)
                 .setWindowMinimizable(true)
                 .setWindowMovable(true)
                 .setWindowScalable(true)
                 .setWidth(200)
-                .setHeight(100)
-                .setTitle("Demo")
+                .setHeight(400)
+                .setTitle("Test")
                 .setX(x)
                 .setY(y);
     }
@@ -82,6 +85,18 @@ public class Demo extends GuiNode{
         nk_label(ctx, "PosY", NK_TEXT_ALIGN_LEFT);
         nk_label(ctx,  String.valueOf(posY), NK_TEXT_RIGHT);
 
+        if(debugMap != null) {
+
+            for (Map.Entry<String, String> entry : debugMap.entrySet()) {
+                nk_label(ctx, entry.getKey(), NK_TEXT_ALIGN_LEFT);
+                nk_label(ctx, entry.getValue(), NK_TEXT_RIGHT);
+            }
+        }
+
+    }
+
+    public void setDebugMap(Map<String, String> debugMap) {
+        this.debugMap = debugMap;
     }
 
     @Override
