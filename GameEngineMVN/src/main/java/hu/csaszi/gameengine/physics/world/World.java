@@ -222,6 +222,19 @@ public class World {
         return getTile(x + xDirection, y + yDirection);
     }
 
+    public AABB getBoundingBoxByPosition(float xPos, float yPos, int xDirection, int yDirection){
+
+        int x = (int)Math.round(Math.floor((double)(xPos/2)));
+        int y = (int)Math.round(Math.floor((double)(-yPos/2)));
+
+        TestSimpleGamePlayState gameState = ((TestSimpleGamePlayState) GameManager.getInstance().getCurrentState());
+        if(gameState != null) {
+            gameState.putDebugInfo("bbox-x", String.valueOf(x));
+            gameState.putDebugInfo("bbox-y", String.valueOf(y));
+        }
+        return getTileBoundingBox(x + xDirection, y + yDirection);
+    }
+
     public Tile getTile(int x, int y) {
 
         try {

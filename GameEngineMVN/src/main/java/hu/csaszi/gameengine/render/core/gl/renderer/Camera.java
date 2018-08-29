@@ -69,11 +69,13 @@ public class Camera {
     }
 
     public void rotateCamera(float targetRotate) {
-        if(targetRotate >= MathUtil.RAD_360){
-            targetRotate -= MathUtil.RAD_360;
-        }
         this.targetRotate += targetRotate;
-        Gravity.setGravity(targetRotate);
+
+        if(this.targetRotate >= MathUtil.RAD_360){
+            this.targetRotate = 0;
+        }
+
+        Gravity.setGravity(this.targetRotate);
     }
 
     public void update(float delta){

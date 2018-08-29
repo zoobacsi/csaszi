@@ -82,6 +82,11 @@ public class EntityManager {
 						nearestObjects.remove(o1);
 					}
 				}
+				if (o1 == null){
+					return -1;
+				} else if (o2 == null) {
+					return 1;
+				}
 				return Float.compare(o2.getTransform().pos.y, o1.getTransform().pos.y);
 			}
 		});
@@ -96,7 +101,9 @@ public class EntityManager {
 				}
 			}
 			for(int j = i + 1; j < objects.size(); j++){
-				gameObject.collideWithEntity(objects.get(j));
+				if(gameObject != null) {
+					gameObject.collideWithEntity(objects.get(j));
+				}
 			}
 			i++;
 		}
@@ -111,12 +118,19 @@ public class EntityManager {
 		objects.sort(new Comparator<GameObject>() {
 			@Override
 			public int compare(GameObject o1, GameObject o2) {
+				if (o1 == null){
+					return -1;
+				} else if (o2 == null) {
+					return 1;
+				}
 				return Float.compare(o2.getTransform().pos.y, o1.getTransform().pos.y);
 			}
 		});
 
 		for(GameObject gameObject : objects){
-			gameObject.render(shader, camera, world);
+			if (gameObject != null) {
+				gameObject.render(shader, camera, world);
+			}
 		}
 	}
 	

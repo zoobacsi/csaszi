@@ -98,14 +98,7 @@ public class Entity extends GameObject {
             }
 
             data = boundingBox.getCollision(box);
-            Collision gravityData = gravityBox.getCollision(box);
 
-            if (gravityData.intersects) {
-                onGround = true;
-            } else {
-                onGround = false;
-            }
-//            System.out.println(tag + " onGround: " + onGround);
             if (data.intersects) {
                 boundingBox.correctPosition(box, data);
                 transform.pos.set(boundingBox.getCenter(), 0);
@@ -116,11 +109,27 @@ public class Entity extends GameObject {
         return false;
     }
 
+    public boolean collideWithGround(World world){
+
+        Vector2f gravVector = Gravity.getGravity().getGravityVector().mul(0.1f, new Vector2f());
+
+        Tile tile = world.getTileByPosition(
+                getPositionX() + gravVector.x,
+                getPositionY() + gravVector.y);
+
+        if (tile != null) {
+           return tile.isSolid();
+        }
+        return false;
+    }
+
     public boolean jump() {
         int scale = PropsUtil.getProperties().getScale();
         float jumpHeight = PropsUtil.getProperties().getJumpHeight();
 
-        gravityVelocity.set(Gravity.getGravity().getGravityVector().mul(-scale * jumpHeight));
+        Vector2f gravVector = new Vector2f(Gravity.getGravity().getGravityVector());
+
+        gravityVelocity.set(gravVector.mul(-scale * jumpHeight));
         onGround = false;
         jumping = true;
 
@@ -168,7 +177,7 @@ public class Entity extends GameObject {
     @Override
     public void update(float delta, GLFWWindow window, Camera camera, World world) {
 
-
+        onGround = collideWithGround(world);
 
         if(!"player".equalsIgnoreCase(tag)){
             command.execute(delta);
@@ -187,12 +196,21 @@ public class Entity extends GameObject {
         }
 
         if(onGround) {
-            gravityVelocity.set(0);
+            gravityVelocity.set(0, 0);
             jumping = false;
             secondJumpUsed = false;
         } else {
-            gravityVelocity.x += Gravity.getGravity().getGravityVector().x;
-            gravityVelocity.y += Gravity.getGravity().getGravityVector().y;
+            if(Math.abs(gravityVelocity.x) <= 5f) {
+                gravityVelocity.x += Gravity.getGravity().getGravityVector().x;
+            }
+            if(Math.abs(gravityVelocity.y) <= 5f) {
+                gravityVelocity.y += Gravity.getGravity().getGravityVector().y;
+            }
+        }
+        if(Gravity.getGravity().isChangeInProgress()){
+            gravityVelocity.set(0, 0);
+            Gravity.getGravity().setChangeInProgress(false);
+            onGround = false;
         }
 
         if((velocity.x != 0 || velocity.y != 0) && !jumping && onGround){
@@ -201,7 +219,7 @@ public class Entity extends GameObject {
             useAnimation(ANIM_IDLE);
         }
 
-        move(new Vector2f(velocity.x, (gravityVelocity.y * delta) + velocity.y));
+        move(new Vector2f((gravityVelocity.x * delta) + velocity.x, (gravityVelocity.y * delta) + velocity.y));
 
         collide = collideWithTile(world);
     }
@@ -222,6 +240,10 @@ public class Entity extends GameObject {
 
     @Override
     public boolean isAwareAbout(GameObject target) {
+
+        if(target == null) {
+            return false;
+        }
 
         Direction targetDir = (getPositionX()-target.getPositionX() < 0) ? Direction.EAST : Direction.WEST;
 

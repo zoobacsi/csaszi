@@ -1,7 +1,12 @@
 package hu.csaszi.gameengine.physics;
 
+import hu.csaszi.gameengine.util.GameProperties;
 import hu.csaszi.gameengine.util.MathUtil;
+import hu.csaszi.gameengine.util.PropsUtil;
 import org.joml.Vector2f;
+import org.lwjgl.Sys;
+
+import java.net.URL;
 
 public enum Gravity {
 
@@ -11,6 +16,8 @@ public enum Gravity {
     RIGHT(270, MathUtil.RAD_270, new Vector2f(1, 0));
 
     protected static final float GRAVITY_SPEED_CONSTANT = 1.0f;
+
+    protected boolean changeInProgress;
 
     private Gravity(int angle, double radian, Vector2f gravityVector){
         this.angle = angle;
@@ -22,9 +29,17 @@ public enum Gravity {
         return gravity;
     }
 
+    public boolean isChangeInProgress() {
+        return changeInProgress;
+    }
+
+    public void setChangeInProgress(boolean changeInProgress) {
+        this.changeInProgress = changeInProgress;
+    }
+
     public static void setGravity(float radian){
 
-        if((MathUtil.RAD_270 + MathUtil.RAD_45 < radian) && (radian < MathUtil.RAD_45 )) {
+        if((MathUtil.RAD_270 + MathUtil.RAD_45 < radian) || (radian < MathUtil.RAD_45 )) {
             gravity = Gravity.DOWN;
         } else if((MathUtil.RAD_45 < radian) && (radian < MathUtil.RAD_90 + MathUtil.RAD_45 )) {
             gravity = Gravity.LEFT;
@@ -33,6 +48,34 @@ public enum Gravity {
         } else if((MathUtil.RAD_180 + MathUtil.RAD_45 < radian) && (radian < MathUtil.RAD_270 + MathUtil.RAD_45 )) {
             gravity = Gravity.RIGHT;
         }
+        System.out.println(gravity.toString());
+        gravity.changeInProgress = true;
+    }
+
+    @Override
+    public String toString() {
+        return this.name();
+    }
+
+    public Vector2f getDirectedMovement(boolean right) {
+        Vector2f movement = new Vector2f();
+
+        switch (getGravity()){
+            case DOWN:
+                movement.set((right ? 1: -1) * PropsUtil.getProperties().getPlayerSpeed(), 0);
+                break;
+            case LEFT:
+                movement.set(0, (right ? -1: 1) * PropsUtil.getProperties().getPlayerSpeed());
+                break;
+            case UP:
+                movement.set((right ? -1: 1) * PropsUtil.getProperties().getPlayerSpeed(), 0);
+                break;
+            case RIGHT:
+                movement.set(0, (right ? 1: -1) * PropsUtil.getProperties().getPlayerSpeed());
+                break;
+        }
+
+        return movement;
     }
 
     public int getAngle() {

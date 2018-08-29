@@ -52,7 +52,7 @@ public abstract class GameObject implements Comparable<GameObject> {
         this.model = Assets.getModel(model);
         this.transform = transform;
         this.boundingBox = new AABB(new Vector2f(transform.pos.x, transform.pos.y), new Vector2f(transform.scale.x, transform.scale.y));
-        this.gravityBox = new AABB(new Vector2f(transform.pos.x, transform.pos.y + 0.1f), new Vector2f(transform.scale.x - 0.5f, transform.scale.y));
+        this.gravityBox = new AABB(new Vector2f(transform.pos.x + 0.2f, transform.pos.y), new Vector2f(transform.scale.x - 0.2f, transform.scale.y));
     }
     public GameObject(Sprite sprite, Transform transform, String model) {
         this(new Sprite[]{sprite}, transform, model);

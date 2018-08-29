@@ -105,8 +105,9 @@ public class TestSimpleGamePlayState extends GameState {
 			Transform transform = new Transform();
 			transform.scale.x = 1;
 			transform.scale.y = 1;
-			transform.pos.x = 3;
-			transform.pos.y = -1;
+			transform.pos.x = 4;
+			transform.pos.y = -2;
+
 			player = new Player(transform);
 			entityManager.addObject(player);
 

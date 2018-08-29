@@ -27,6 +27,8 @@ public class GameProperties implements Cloneable{
 
         clone.setScale(scale);
         clone.setJumpHeight(jumpHeight);
+        clone.setEnemyTurnTime(enemyTurnTime);
+        clone.setPlayerSpeed(playerSpeed);
 
         return clone;
     }
@@ -42,6 +44,17 @@ public class GameProperties implements Cloneable{
     }
 
     private float enemyTurnTime;
+
+    public float getPlayerSpeed() {
+        return playerSpeed;
+    }
+
+    public void setPlayerSpeed(float playerSpeed) {
+        this.playerSpeed = playerSpeed;
+    }
+
+    private float playerSpeed;
+
 //
 //    GameProperties(int scale, int jumpHeight) {
 //

@@ -1,5 +1,8 @@
 package hu.csaszi.gameengine.physics.objects;
 
+import hu.csaszi.gameengine.example.states.TestSimpleGamePlayState;
+import hu.csaszi.gameengine.game.GameManager;
+import hu.csaszi.gameengine.physics.Gravity;
 import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
@@ -43,10 +46,10 @@ public class Player extends Entity {
         if (window.getInput() != null) {
 
             if (window.getInput().isKeyDown(GLFW_KEY_A)) {
-                movement.add(-5 * delta, 0);
+                movement.add(Gravity.getGravity().getDirectedMovement(false).mul(delta));
             }
             if (window.getInput().isKeyDown(GLFW_KEY_D)) {
-                movement.add(5 * delta, 0);
+                movement.add(Gravity.getGravity().getDirectedMovement(true).mul(delta));
             }
 //            if (window.getInput().isKeyDown(GLFW_KEY_W)) {
 //                movement.add(0, 5 * delta);
@@ -58,9 +61,9 @@ public class Player extends Entity {
 //                movement.add(0, 10 * delta);
                 jump();
             }
-            if (window.getInput().isKeyDown(GLFW_KEY_UP) && !isOnGround() && jumping) {
-                secondJump();
-            }
+//            if (window.getInput().isKeyDown(GLFW_KEY_UP) && !isOnGround() && jumping) {
+//                secondJump();
+//            }
 
             if(window.getInput().isKeyDown(GLFW_KEY_ENTER)) {
                 GameObject gameObject = EntityManager.getFrontObject();
@@ -74,7 +77,7 @@ public class Player extends Entity {
 
         }
 
-        velocity= movement;
+        velocity = movement;
 
         //move(movement);
         if((movement.x != 0 || movement.y != 0) && !jumping && onGround){
@@ -87,5 +90,12 @@ public class Player extends Entity {
 
         camera.getPosition().lerp(transform.pos.mul(-world.getScale(), new Vector3f()), 0.05f);
 //				camera.setPosition(transform.getPosition().mul(-world.getScale(), new Vector3f()));
+
+        TestSimpleGamePlayState gameState = ((TestSimpleGamePlayState) GameManager.getInstance().getCurrentState());
+
+        gameState.putDebugInfo("player.onGround", String.valueOf(onGround));
+        gameState.putDebugInfo("player.jump", String.valueOf(jumping));
+        gameState.putDebugInfo("grav.vector", Gravity.getGravity().getGravityVector().toString());
+        gameState.putDebugInfo("player.gravVelocity", gravityVelocity.toString());
     }
 }
