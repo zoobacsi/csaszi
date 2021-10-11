@@ -101,7 +101,7 @@ public class EntityManager {
 				}
 			}
 			for(int j = i + 1; j < objects.size(); j++){
-				if(gameObject != null) {
+				if(gameObject != null && !gameObject.isDestroyed()) {
 					gameObject.collideWithEntity(objects.get(j));
 				}
 			}
@@ -118,9 +118,9 @@ public class EntityManager {
 		objects.sort(new Comparator<GameObject>() {
 			@Override
 			public int compare(GameObject o1, GameObject o2) {
-				if (o1 == null){
+				if (o1 == null || o1.isDestroyed()){
 					return -1;
-				} else if (o2 == null) {
+				} else if (o2 == null || o2.isDestroyed()) {
 					return 1;
 				}
 				return Float.compare(o2.getTransform().pos.y, o1.getTransform().pos.y);

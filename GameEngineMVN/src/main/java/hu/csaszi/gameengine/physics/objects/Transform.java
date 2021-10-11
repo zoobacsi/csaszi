@@ -1,6 +1,7 @@
 package hu.csaszi.gameengine.physics.objects;
 
 import org.joml.Matrix4f;
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 public class Transform {
@@ -13,6 +14,11 @@ public class Transform {
 
     public Transform() {
         this.pos = new Vector3f();
+        this.scale = new Vector3f(1, 1, 1);
+    }
+
+    public Transform(Vector3f position) {
+        this.pos = new Vector3f(position);
         this.scale = new Vector3f(1, 1, 1);
     }
 

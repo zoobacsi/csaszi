@@ -209,16 +209,16 @@ public class World {
 
     public Tile getTileByPosition(float xPos, float yPos, int xDirection, int yDirection){
 
-//        System.out.println("new pos x: " + xPos + " new pos y: " + yPos);
-
         int x = (int)Math.round(Math.floor((double)(xPos/2)));
         int y = (int)Math.round(Math.floor((double)(-yPos/2)));
 
-        TestSimpleGamePlayState gameState = ((TestSimpleGamePlayState) GameManager.getInstance().getCurrentState());
-        if(gameState != null) {
-            gameState.putDebugInfo("tilex", String.valueOf(x));
-            gameState.putDebugInfo("tiley", String.valueOf(y));
-        }
+//        System.out.println("new pos x: " + xPos + " new pos y: " + yPos + " x: " + x + " y: " + y);
+
+//        TestSimpleGamePlayState gameState = ((TestSimpleGamePlayState) GameManager.getInstance().getCurrentState());
+//        if(gameState != null) {
+//            gameState.putDebugInfo("tilex", String.valueOf(x));
+//            gameState.putDebugInfo("tiley", String.valueOf(y));
+//        }
         return getTile(x + xDirection, y + yDirection);
     }
 

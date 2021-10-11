@@ -11,8 +11,8 @@ public abstract class BasicCommand implements Command {
 	protected GameObject actor;
 	protected GameObject target;
 
-	protected Vector3f position;
-	protected Vector3f targetPos;
+	protected Vector3f position = new Vector3f();
+	protected Vector3f targetPos = new Vector3f();
 	protected float distance;
 
 	public BasicCommand(GameObject actor, GameObject target) {
@@ -22,11 +22,11 @@ public abstract class BasicCommand implements Command {
 
 	@Override
 	public void execute(float delta){
-		position = actor.getTransform().pos;
+		position.set(actor.getTransform().pos);
 		if(target != null) {
-			targetPos = target.getTransform().pos;
+			targetPos.set(target.getTransform().pos);
 		} else {
-			targetPos = new Vector3f();
+			targetPos.set(0);
 		}
 		distance = position.distance(targetPos);
 

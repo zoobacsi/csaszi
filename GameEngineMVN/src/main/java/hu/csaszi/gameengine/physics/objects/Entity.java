@@ -80,46 +80,24 @@ public class Entity extends GameObject {
             Collision data = boundingBox.getCollision(box);
 
             if (data.intersects) {
-                boundingBox.correctPosition(box, data);
-                transform.pos.set(boundingBox.getCenter(), 0);
-            }
-
-            for (int i = 0; i < boxes.length; i++) {
-                if (boxes[i] != null) {
-                    if (box == null) box = boxes[i];
-
-                    Vector2f length1 = box.getCenter().sub(transform.pos.x, transform.pos.y, new Vector2f());
-                    Vector2f length2 = boxes[i].getCenter().sub(transform.pos.x, transform.pos.y, new Vector2f());
-
-                    if (length1.lengthSquared() > length2.lengthSquared()) {
-                        box = boxes[i];
-                    }
+//                if(tag.equalsIgnoreCase("player")) {
+//                    TestSimpleGamePlayState gameState = ((TestSimpleGamePlayState) GameManager.getInstance().getCurrentState());
+//
+//                    gameState.putDebugInfo("centerx1", String.valueOf(Math.round(boundingBox.getCenter().x/2)));
+//                    gameState.putDebugInfo("centerx2", String.valueOf(Math.round(box.getCenter().x/2)));
+//                }
+                if(Gravity.isAbove(boundingBox.getCenter(), box.getCenter())){
+                    onGround = true;
+                } else if(Gravity.isBelow(boundingBox.getCenter(), box.getCenter())){
+                    gravityVelocity.set(0, 0);
                 }
-            }
-
-            data = boundingBox.getCollision(box);
-
-            if (data.intersects) {
                 boundingBox.correctPosition(box, data);
                 transform.pos.set(boundingBox.getCenter(), 0);
 
                 return true;
             }
         }
-        return false;
-    }
-
-    public boolean collideWithGround(World world){
-
-        Vector2f gravVector = Gravity.getGravity().getGravityVector().mul(0.1f, new Vector2f());
-
-        Tile tile = world.getTileByPosition(
-                getPositionX() + gravVector.x,
-                getPositionY() + gravVector.y);
-
-        if (tile != null) {
-           return tile.isSolid();
-        }
+        onGround = false;
         return false;
     }
 
@@ -163,8 +141,8 @@ public class Entity extends GameObject {
     }
 
     private boolean isAbyssAhead(World world) {
-        int deltaX = direction.equals(Direction.WEST) ? -1 : 1;
-        Tile tile = world.getTileByPosition(getPositionX(), getPositionY(), deltaX, 1);
+        float deltaX = direction.equals(Direction.WEST) ? -0.1f : 2.1f;
+        Tile tile = world.getTileByPosition(getPositionX() + deltaX, getPositionY(), 0, 1);
         if (tile != null) {
             abyssAhead = !tile.isSolid();
         } else {
@@ -177,22 +155,21 @@ public class Entity extends GameObject {
     @Override
     public void update(float delta, GLFWWindow window, Camera camera, World world) {
 
-        onGround = collideWithGround(world);
+        isStuck(world);
+        isAbyssAhead(world);
 
         if(!"player".equalsIgnoreCase(tag)){
             command.execute(delta);
         }
 
-        isStuck(world);
-        isAbyssAhead(world);
-
-        if("entity_1".equalsIgnoreCase(tag)){
+        if("entity_0".equalsIgnoreCase(tag)){
             TestSimpleGamePlayState gameState = ((TestSimpleGamePlayState)GameManager.getInstance().getCurrentState());
             Player player = gameState.getPlayer();
 
             gameState.putDebugInfo("distance", String.valueOf(player.getTransform().pos.distance(this.getTransform().pos)));
-            gameState.putDebugInfo("ent1stuck", String.valueOf(stuck));
-            gameState.putDebugInfo("ent1ahead", String.valueOf(abyssAhead));
+            gameState.putDebugInfo("ent0stuck", String.valueOf(stuck));
+            gameState.putDebugInfo("ent0ahead", String.valueOf(abyssAhead));
+            gameState.putDebugInfo("ent0onGround", String.valueOf(onGround));
         }
 
         if(onGround) {
@@ -200,11 +177,21 @@ public class Entity extends GameObject {
             jumping = false;
             secondJumpUsed = false;
         } else {
-            if(Math.abs(gravityVelocity.x) <= 5f) {
-                gravityVelocity.x += Gravity.getGravity().getGravityVector().x;
+
+            float fallSpeedLimit = 1.9f/delta;
+
+            gravityVelocity.x += Gravity.getGravity().getGravityVector().x;
+            if(gravityVelocity.x > 1f) {
+                gravityVelocity.x = Math.min(gravityVelocity.x, fallSpeedLimit);
+            } else if(gravityVelocity.x < -1f) {
+                gravityVelocity.x = Math.max(gravityVelocity.x, -fallSpeedLimit);
             }
-            if(Math.abs(gravityVelocity.y) <= 5f) {
-                gravityVelocity.y += Gravity.getGravity().getGravityVector().y;
+
+            gravityVelocity.y += Gravity.getGravity().getGravityVector().y;
+            if(gravityVelocity.y > 1f) {
+                gravityVelocity.y = Math.min(gravityVelocity.y, fallSpeedLimit);
+            } else if(gravityVelocity.y < -1f) {
+                gravityVelocity.y = Math.max(gravityVelocity.y, -fallSpeedLimit);
             }
         }
         if(Gravity.getGravity().isChangeInProgress()){

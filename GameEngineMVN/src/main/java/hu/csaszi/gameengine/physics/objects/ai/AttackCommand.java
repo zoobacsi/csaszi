@@ -11,17 +11,14 @@ public class AttackCommand extends BasicCommand {
 	@Override
 	public void doExecute(float delta) {
 
-
-		Vector3f position = actor.getTransform().pos;
-		Vector3f targetPos = target.getTransform().pos;
-
 		if(attackInterval > 0) {
 			attackInterval -= delta;
 		}
-		if(position.distance(targetPos) < 2.4f){
+		if(distance < 2.4f){
 			if(attackInterval <= 0) {
 				attackInterval = actor.getAttackInterval();
 				actor.attack(target);
+				actor.setVelocity(0, 0);
 			}
 		} else {
 			attackInterval = 0;

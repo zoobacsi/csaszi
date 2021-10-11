@@ -3,9 +3,11 @@ package hu.csaszi.gameengine.physics.objects;
 import hu.csaszi.gameengine.example.states.TestSimpleGamePlayState;
 import hu.csaszi.gameengine.game.GameManager;
 import hu.csaszi.gameengine.physics.Gravity;
+import hu.csaszi.gameengine.physics.objects.ai.BulletMoveCommand;
 import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.gl.Animation;
 import hu.csaszi.gameengine.render.core.gl.GLFWWindow;
+import hu.csaszi.gameengine.render.core.gl.Sprite;
 import hu.csaszi.gameengine.render.core.gl.TextureSheet;
 import hu.csaszi.gameengine.render.core.gl.renderer.Camera;
 import hu.csaszi.gameengine.render.graphics.AnimationKeys;
@@ -73,6 +75,18 @@ public class Player extends Entity {
             }
             if (window.getInput().isKeyPressed(GLFW_KEY_R)) {
                 camera.rotateCamera(MathUtil.RAD_90);
+            }
+            if (window.getInput().isKeyPressed(GLFW_KEY_LEFT_CONTROL)) {
+                Vector2f targetDir = Gravity.getGravity().getDirectedMovement(Gravity.getGravity().isRight(direction));
+
+                BulletEntity bulletEntity = new BulletEntity(2, new Transform(new Vector3f(this.transform.pos).add(targetDir.x, targetDir.y, 0)), "tall");
+                TextureSheet sheet = new TextureSheet("sheets/bullet", 135, 147);
+                bulletEntity.setSprite(Entity.ANIM_IDLE, new Animation(20, sheet, AnimationKeys.PLATFORMER_CHARSET_WALKING_FRAMES));
+                bulletEntity.setSprite(Entity.ANIM_WALK, new Animation(20, sheet, AnimationKeys.PLATFORMER_CHARSET_WALKING_FRAMES));
+                bulletEntity.setCommand(new BulletMoveCommand(bulletEntity, targetDir));
+                bulletEntity.getVelocity().mul(40);
+
+                EntityManager.getEntityManager(GameManager.getInstance().getCurrentState()).addObject(bulletEntity);
             }
 
         }

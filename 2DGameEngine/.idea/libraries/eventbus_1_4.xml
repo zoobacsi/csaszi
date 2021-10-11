@@ -1,0 +1,52 @@
+<component name="libraryTable">
+  <library name="eventbus-1.4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jars/eventbus-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/ibxm.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/jinput.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/jnlp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/jogg-0.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/jorbis-0.0.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/lwjgl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/lwjgl_util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/lwjgl_util_applet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/lzma.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/natives-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/natives-mac.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-1.3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-1.4.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-default-controls-1.3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-default-controls-1.4.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-examples-1.3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-examples-slick2d-1.3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-lwjgl-renderer-1.3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-slick-renderer-1.3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-slick2d-renderer-1.4.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-slick2d-renderer-1.4.3-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/slick-examples.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/slick.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/tinylinepp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/TWL.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/TWLEffects.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/xpp3-1.1.4c.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-1.3.3-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-1.4.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-default-controls-1.3.3-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-default-controls-1.4.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-examples-1.3.3-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-examples-slick2d-1.3.3-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-lwjgl-renderer-1.3.3-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-slick-renderer-1.3.3-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-slick2d-renderer-1.4.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-1.4.2-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-default-controls-1.4.2-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-slick2d-renderer-1.4.2-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jars/nifty-slick2d-renderer-1.4.3-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,5 +1,6 @@
 package hu.csaszi.gameengine.physics;
 
+import hu.csaszi.gameengine.physics.objects.GameObject;
 import hu.csaszi.gameengine.util.GameProperties;
 import hu.csaszi.gameengine.util.MathUtil;
 import hu.csaszi.gameengine.util.PropsUtil;
@@ -27,6 +28,51 @@ public enum Gravity {
 
     public static Gravity getGravity(){
         return gravity;
+    }
+
+
+    public static boolean isAbove(Vector2f center1, Vector2f center2) {
+
+        if(center1 == null) {
+            return false;
+        }
+        if(center2 == null) {
+            return true;
+        }
+        switch (getGravity()){
+            case DOWN:
+                return center1.y > center2.y && Math.round(center1.x/2) == Math.round(center2.x/2);
+            case LEFT:
+                return center1.x > center2.x && Math.round(center1.y/2) == Math.round(center2.y/2);
+            case UP:
+                return center1.y < center2.y && Math.round(center1.x/2) == Math.round(center2.x/2);
+            case RIGHT:
+                return center1.x < center2.x && Math.round(center1.y/2) == Math.round(center2.y/2);
+        }
+
+        return false;
+    }
+
+    public static boolean isBelow(Vector2f center1, Vector2f center2) {
+
+        if(center1 == null) {
+            return false;
+        }
+        if(center2 == null) {
+            return true;
+        }
+        switch (getGravity()){
+            case DOWN:
+                return center1.y < center2.y && Math.round(center1.x/2) == Math.round(center2.x/2);
+            case LEFT:
+                return center1.x < center2.x && Math.round(center1.y/2) == Math.round(center2.y/2);
+            case UP:
+                return center1.y > center2.y && Math.round(center1.x/2) == Math.round(center2.x/2);
+            case RIGHT:
+                return center1.x > center2.x && Math.round(center1.y/2) == Math.round(center2.y/2);
+        }
+
+        return false;
     }
 
     public boolean isChangeInProgress() {
@@ -57,6 +103,27 @@ public enum Gravity {
         return this.name();
     }
 
+    public boolean isRight(Direction direction) {
+        boolean right = false;
+
+        switch (getGravity()){
+            case DOWN:
+                right = direction.equals(Direction.EAST);
+                break;
+            case LEFT:
+                right = direction.equals(Direction.SOUTH);
+                break;
+            case UP:
+                right = direction.equals(Direction.WEST);
+                break;
+            case RIGHT:
+                right = direction.equals(Direction.NORTH);
+                break;
+        }
+
+        return right;
+    }
+
     public Vector2f getDirectedMovement(boolean right) {
         Vector2f movement = new Vector2f();
 
@@ -72,6 +139,30 @@ public enum Gravity {
                 break;
             case RIGHT:
                 movement.set(0, (right ? 1: -1) * PropsUtil.getProperties().getPlayerSpeed());
+                break;
+        }
+
+        return movement;
+    }
+
+    public Vector2f getDirectedMovement(GameObject actor, GameObject target) {
+        Vector2f movement = new Vector2f();
+
+        float distanceX = Float.compare(target.getPositionX(),actor.getPositionX());
+        float distanceY = -Float.compare(target.getPositionY(), actor.getPositionY());
+
+        switch (getGravity()){
+            case DOWN:
+                movement.set(distanceX * PropsUtil.getProperties().getPlayerSpeed(), 0);
+                break;
+            case LEFT:
+                movement.set(0, distanceY * PropsUtil.getProperties().getPlayerSpeed());
+                break;
+            case UP:
+                movement.set(distanceX * PropsUtil.getProperties().getPlayerSpeed(), 0);
+                break;
+            case RIGHT:
+                movement.set(0, distanceY * PropsUtil.getProperties().getPlayerSpeed());
                 break;
         }
 

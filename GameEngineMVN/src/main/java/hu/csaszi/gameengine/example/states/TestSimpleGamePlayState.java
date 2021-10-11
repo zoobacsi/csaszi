@@ -10,6 +10,7 @@ import hu.csaszi.gameengine.physics.objects.EntityManager;
 import hu.csaszi.gameengine.physics.objects.Player;
 import hu.csaszi.gameengine.physics.objects.Transform;
 import hu.csaszi.gameengine.physics.objects.ai.PatrolCommand;
+import hu.csaszi.gameengine.physics.particle.ParticleManager;
 import hu.csaszi.gameengine.physics.world.TileRenderer;
 import hu.csaszi.gameengine.physics.world.World;
 import hu.csaszi.gameengine.render.core.Drawer;
@@ -53,6 +54,7 @@ public class TestSimpleGamePlayState extends GameState {
 
 	private Player player;
 	private EntityManager entityManager;
+	private ParticleManager particleManager;
 
 	public World getWorld() {
 		return world;
@@ -68,6 +70,8 @@ public class TestSimpleGamePlayState extends GameState {
 
 		entityManager = EntityManager.createEntityManager(this);
 
+		particleManager = new ParticleManager();
+
 		File file = IOUtil.getFile("03_Gridscape_-_Cybergrid_Rocker___ALBUM_MASTER.ogg");
 		OggPlayer.runOgg(file);
 
@@ -81,10 +85,17 @@ public class TestSimpleGamePlayState extends GameState {
 
 			camera.setPosition(new Vector3f(0, 0, 0));
 
-
 			Transform transformEnemy = new Transform();
 			transformEnemy.pos.x = 0;
 			transformEnemy.pos.y = -4;
+
+			Transform transform = new Transform();
+			transform.scale.x = 1;
+			transform.scale.y = 1;
+			transform.pos.x = 4;
+			transform.pos.y = -2;
+
+			player = new Player(transform);
 
 			try {
 				readEntitesMap(entityManager);
@@ -102,13 +113,6 @@ public class TestSimpleGamePlayState extends GameState {
 //			GuiManager.addGuiNode(calc);
 			GuiManager.addGuiNode(debugPanel);
 
-			Transform transform = new Transform();
-			transform.scale.x = 1;
-			transform.scale.y = 1;
-			transform.pos.x = 4;
-			transform.pos.y = -2;
-
-			player = new Player(transform);
 			entityManager.addObject(player);
 
 		}
@@ -177,8 +181,10 @@ public class TestSimpleGamePlayState extends GameState {
 	@Override
 	public void render(GLFWWindow window, Drawer drawer, GameManager gameManager) {
 
+
 		world.render(tileRenderer, shader, camera);
 		entityManager.render(shader, camera, world);
+		particleManager.renderParticles(camera, world);
 //        gui.render();
 	}
 
@@ -190,7 +196,7 @@ public class TestSimpleGamePlayState extends GameState {
 		world.correctCamera(camera);
 		debugPanel.setPosX(player.getPositionX());
 		debugPanel.setPosY(player.getPositionY());
-
+		particleManager.update(delta, gameManager);
 //		while (GuiManager.getGuiNodeSet().iterator().hasNext()) {
 //			GuiNode guiNode = GuiManager.getGuiNodeSet().iterator().next();
 //			if (guiNode instanceof DebugPanel) {

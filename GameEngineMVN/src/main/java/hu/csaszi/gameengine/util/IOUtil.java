@@ -6,16 +6,18 @@ package hu.csaszi.gameengine.util;
 
 
 import hu.csaszi.gameengine.example.SimpleGame;
-import org.lwjgl.*;
+import org.lwjgl.BufferUtils;
 
 import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.*;
-import java.nio.channels.*;
-import java.nio.file.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.SeekableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-import static org.lwjgl.BufferUtils.*;
+import static org.lwjgl.BufferUtils.createByteBuffer;
 
 public final class IOUtil {
 
@@ -93,9 +95,11 @@ public final class IOUtil {
         InputStream is = SimpleGame.class.getClassLoader().getResourceAsStream(fileName);
 
         if (is == null) {
+            System.out.println("1");
             is = SimpleGame.class.getClassLoader().getResourceAsStream(directory + fileName);
         }
         if (is == null) {
+            System.out.println("2");
             is = SimpleGame.class.getClassLoader().getResourceAsStream("src/main/resources/" + directory + fileName);
         }
 
@@ -105,9 +109,16 @@ public final class IOUtil {
             byte[] buffer = new byte[is.available()];
             is.read(buffer);
 
+            System.out.println("dir: " + directory + " file: " + fileName);
             File targetFile = File.createTempFile("temp","temp");
+            System.out.println("tempPath: " + targetFile.getPath());
             OutputStream outStream = new FileOutputStream(targetFile);
             outStream.write(buffer);
+            outStream.write(10);
+            outStream.flush();
+            outStream.close();
+
+            is.close();
 
 //            file = new File(url.getFile());
 //            System.out.println(file);

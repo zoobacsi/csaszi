@@ -69,11 +69,16 @@ public class Camera {
     }
 
     public void rotateCamera(float targetRotate) {
-        this.targetRotate += targetRotate;
-
-        if(this.targetRotate >= MathUtil.RAD_360){
-            this.targetRotate = 0;
+        System.out.println(Math.round(Math.floor((this.targetRotate - curRotate)*1000f)));
+        if(Math.floor(Math.round(Math.floor(this.targetRotate - curRotate)*1000f)) != 0){
+            return;
         }
+        System.out.println("benis");
+        this.targetRotate += targetRotate;
+//
+//        if(this.targetRotate >= MathUtil.RAD_360){
+//            this.targetRotate = 0;
+//        }
 
         Gravity.setGravity(this.targetRotate);
     }
@@ -85,6 +90,14 @@ public class Camera {
         }
         else if (targetRotate < curRotate){
             curRotate = targetRotate;
+
+        }
+
+        if (targetRotate == curRotate){
+            if(curRotate == MathUtil.RAD_360) {
+                curRotate = 0;
+                targetRotate = 0;
+            }
         }
 //        if(input != null){
 //

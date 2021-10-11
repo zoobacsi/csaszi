@@ -4,7 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
- 
+
+import java.util.Map;
+
 @Controller
 public class AppController {
  
@@ -16,6 +18,7 @@ public class AppController {
  
     @RequestMapping("/partials/{page}")
     String partialHandler(@PathVariable("page") final String page) {
+        Map.of
         return page;
     }
  
